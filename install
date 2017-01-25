@@ -1,0 +1,4 @@
+# Use GNU Stow to install the included dotfiles
+stow --target=$HOME tmux
+stow --target=$HOME vim
+stow --target=$HOME zsh

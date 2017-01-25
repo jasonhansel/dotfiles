@@ -1,0 +1,80 @@
+" VIM CONFIGURATION
+" Based heavily on: https://raw.githubusercontent.com/skwp/dotfiles/master/vimrc
+" Optimized for use on Arch Linux, with many customizations of my own.
+
+
+
+" VUNDLE INITIALIZATION & PLUGINS
+" Based on Vundle's recommended setup code.
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
+Plug 'gmarik/Vundle.vim'
+
+" Set some sensible defaults
+Plug 'tpope/vim-sensible'
+" Configure vim for the base16 color scheme
+Plug 'chriskempson/base16-vim'
+" Enable indent guides
+Plug 'nathanaelkane/vim-indent-guides'
+
+call plug#end()
+filetype plugin indent on
+
+
+
+" PERSISTENT UNDO
+" Keep undo history across sessions. Requires that ~/.vim/backups exist.
+
+if has('persistent_undo')
+	set undodir=~/.vim/backups
+	set undofile
+endif
+
+
+
+" SETTINGS
+
+" Show current mode in status bar
+set showmode
+
+" Allow buffers to exist without being displayed
+set hidden
+
+" Override sensible.vim
+set noautoread
+set noshowcmd
+
+" Make indentation use tabs, and set tab width to 4
+set smartindent
+set shiftwidth=4
+set softtabstop=0
+set tabstop=4
+set noexpandtab
+
+" Display tabs and trailing spaces
+set list listchars=tab:\│\ ,trail:·
+
+" Disable line wrapping by default
+set nowrap
+set linebreak
+set sidescroll=1
+
+" Disable code folding
+set nofoldenable
+
+" Highlight search results
+set hlsearch
+
+" Make searches case-insensitive, unless the search contains a capital letter.
+set ignorecase
+set smartcase
+
+" Set a better color scheme
+set background=dark
+colorscheme desert
+
+" Change viminfo location
+set viminfo+=n~/.vim/viminfo
