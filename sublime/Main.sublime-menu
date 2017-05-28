@@ -1,0 +1,7 @@
+[
+	{
+		"caption": "Terminal",
+		"command": "open_terminal",
+		"id": "Terminal"
+	}
+]

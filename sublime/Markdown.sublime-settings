@@ -1,0 +1,8 @@
+{
+	"extensions": [ "todo", "md", "mdown" ],
+	"draw_centered": false,
+	"tab_completion": false,
+	"line_numbers": true,
+	"font_size": 8,
+	"highlight_line": false
+}

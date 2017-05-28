@@ -2,3 +2,4 @@
 stow --target=$HOME tmux
 stow --target=$HOME vim
 stow --target=$HOME zsh
+ln -s $PWD/sublime ~/.config/sublime-text-3/Packages/User
