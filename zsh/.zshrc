@@ -8,7 +8,7 @@ zstyle ':completion:*' rehash true
 
 # Load antigen package manager. Assumes that antigen was installed
 # through the Arch Linux AUR.
-source /usr/share/zsh/scripts/antigen/antigen.zsh
+source /usr/share/zsh/share/antigen.zsh
 
 # Enable oh-my-zsh within antigen.
 antigen use oh-my-zsh
