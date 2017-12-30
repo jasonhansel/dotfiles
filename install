@@ -1,5 +1,6 @@
 # Use GNU Stow to install the included dotfiles
-stow --target=$HOME tmux
-stow --target=$HOME vim
-stow --target=$HOME zsh
+stow -R --target=$HOME tmux
+stow -R --target=$HOME vim
+stow -R --target=$HOME zsh
+stow -R --target=$HOME git
 ln -s $PWD/sublime ~/.config/sublime-text-3/Packages/User
