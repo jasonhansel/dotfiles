@@ -4,6 +4,11 @@ alias c='less -e ' # -F results in one-page files not being shown at all
 # Sudo stuff
 alias supac='sudo pacman '
 alias susy='sudo systemctl '
+alias sy='systemctl '
+alias usy='systemctl --user'
+alias sujo='sudo journalctl -e '
+alias jo='journalctl -e '
+alias ujo='journalctl --user -e '
 alias suvi='sudoedit ' # More secure than vim when used with sudo
 alias sudocker='sudo docker '
 

@@ -75,6 +75,7 @@ set smartcase
 " Set a better color scheme
 set background=dark
 colorscheme desert
+" colorscheme base16-default-dark
 
 " Change viminfo location
 set viminfo+=n~/.vim/viminfo

@@ -41,5 +41,8 @@ setopt nosharehistory noincappendhistory
 # See https://news.ycombinator.com/item?id=9752238 for details.
 stty -ixon
 
+# Override
+export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
+
 # Start "tmux", if necessary
 source ~/.zsh/start-tmux.zsh

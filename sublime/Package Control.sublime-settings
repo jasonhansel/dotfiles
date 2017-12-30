@@ -5,8 +5,12 @@
 	],
 	"installed_packages":
 	[
+		"Anaconda",
 		"Babel",
 		"Base16 Color Schemes",
+		"CMake",
+		"Dockerfile Syntax Highlighting",
+		"FSharp",
 		"JSX",
 		"LaTeXTools",
 		"LESS",

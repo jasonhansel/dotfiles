@@ -1,0 +1,28 @@
+{
+	    "suppress_word_completions": true,
+    "suppress_explicit_completions": true,
+    "complete_parameters": true,
+    "anaconda_linter_mark_style": "stippled_underline",
+    "anaconda_gutter_theme": "hard",
+    // pep8 annoys me
+    "pep8": false,
+        "auto_project_switch": false
+    //     "pep8_ignore":
+    // [
+    // 	// Blank lines
+    // 	"E301",
+    // 	"E302",
+    // 	"E303",
+    // 	"E305",
+    // 	"E306",
+    //     "E309",
+    //     // Whitespace
+    //     "E201",
+    //     "E202",
+    //     "E203"
+    // ],
+
+    // // Maximum line length for pep8
+    // "pep8_max_line_length": 120
+
+}
