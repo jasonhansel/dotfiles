@@ -9,6 +9,8 @@
 
 set nocompatible
 filetype off
+
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
@@ -20,10 +22,48 @@ Plug 'chriskempson/base16-vim'
 " Enable indent guides
 Plug 'nathanaelkane/vim-indent-guides'
 
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+
 call plug#end()
 filetype plugin indent on
 
+let g:airline#extensions#tabline#buffer_idx_format = {
+	  \ '0': '0 ',
+	  \ '1': '1 ',
+	  \ '2': '2 ',
+	  \ '3': '3 ',
+	  \ '4': '4 ',
+	  \ '5': '5 ',
+	  \ '6': '6 ',
+	  \ '7': '7 ',
+	  \ '8': '8 ',
+	  \ '9': '9 '
+	  \}
+ let g:airline_powerline_fonts = 0
+ let g:airline_symbols_ascii = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#tabnr_formatter = 'default'
+let g:airline_section_x = airline#section#create([])
+let g:airline_section_y = airline#section#create([])
+let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_extensions = [ 'tabline' ]
+let g:airline#extensions#tabline#enabled = 0
+let g:airline_detect_spell=0
+let g:airline_inactive_collapse=0
+let g:airline_theme='term'
+let g:airline_symbols_ascii=1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#exclude_preview = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#fnamecollapse = 1
 
+let g:airline#extensions#tabline#show_close_button = 0
 
 " PERSISTENT UNDO
 " Keep undo history across sessions. Requires that ~/.vim/backups exist.
@@ -35,6 +75,7 @@ endif
 
 
 
+
 " SETTINGS
 
 " Show current mode in status bar
@@ -43,8 +84,10 @@ set showmode
 " Allow buffers to exist without being displayed
 set hidden
 
+
+set undoreload=50000
+
 " Override sensible.vim
-set noautoread
 set noshowcmd
 
 " Make indentation use tabs, and set tab width to 4
@@ -74,11 +117,15 @@ set smartcase
 
 " Set a better color scheme
 set background=dark
-colorscheme desert
-" colorscheme base16-default-dark
+"colorscheme desert
+colorscheme base16-default-dark
 
 " Change viminfo location
 set viminfo+=n~/.vim/viminfo
+
+" Mouse support
+set ttymouse=xterm2
+set mouse=a
 
 " https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red

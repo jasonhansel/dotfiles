@@ -29,5 +29,6 @@
 		"Vintage"
 	],
 	"preview_on_click": false,
-	"show_line_endings": true
+	"show_line_endings": true,
+	"theme": "Spacegray.sublime-theme"
 }
