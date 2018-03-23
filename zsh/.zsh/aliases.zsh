@@ -29,10 +29,14 @@ alias sudo='sudo '
 
 # "ls" variants
 # For LC_COLLATE, see: http://superuser.com/questions/448291/
-alias l='ls -Fh'
+alias l='ls -F'
 alias la='ls -FhA'
 alias ll='LC_COLLATE=C ls -lhA '
 alias lc='ls++ --potsf '
+
+
+function linkto() ln -s $1 $2
+function linkfrom() ln -s $2 $1
 
 # Put a separator on the terminal
 # Makes tmux scrollback more readable
