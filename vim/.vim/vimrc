@@ -10,27 +10,133 @@
 set nocompatible
 filetype off
 
+let $SUDO_ASKPASS=''
+
+if has("termguicolors")     " set true colors
+    set termguicolors
+endif
+
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
 
+
+Plug 'rust-lang/rust.vim'
+" ^ before filetype on in vim-sesnible
+
+Plug 'w0rp/ale'
+Plug 'airblade/vim-rooter'
+" Plug 'troydm/easytree.vim'
 " Set some sensible defaults
 Plug 'tpope/vim-sensible'
 " Configure vim for the base16 color scheme
 Plug 'chriskempson/base16-vim'
-" Enable indent guides
-Plug 'nathanaelkane/vim-indent-guides'
 
-
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'tpope/vim-eunuch'
+Plug 'fholgado/minibufexpl.vim'
+
+Plug 'Shougo/deoplete.nvim'
+Plug 'sebastianmarkow/deoplete-rust'
+
+Plug 'lifepillar/vim-mucomplete'
+" Plug 'vim-scripts/AutoComplPop'
+
+
 
 call plug#end()
-filetype plugin indent on
 
-let g:airline#extensions#tabline#buffer_idx_format = {
+let g:deoplete#max_menu_width=80
+let g:mucomplete#enable_auto_at_startup = 1
+
+" let g:mucomplete#chains = { 'default' : ['omni', 'user'] }
+
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.rust="\w"
+let g:deoplete#complete_method = "completefunc"
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#enable_refresh_always = 0
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_on_insert_enter = 0
+let g:deoplete#auto_refresh_delay = 1
+
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['buffer', 'tag', 'file', 'dictionary', 'around']
+
+let g:miniBufExplorerAutoStart = 0
+let g:miniBufExplBRSplit = 1
+let g:miniBufExplVSplit = 20
+
+" Fix dtach issues
+autocmd VimResized * set term=xterm-256color
+
+
+" https://github.com/vim/vim/issues/453
+let s:oldval = ""
+function! SearchCount()
+	let keyString=@/
+	if strlen(keyString) == 0
+		return ""
+	endif
+
+	let pos=getpos('.')
+	let cnt = ''
+	redir => cnt
+		silent exe '%s/' . keyString . '//nge'
+	redir END
+	let cnt = matchstr(cnt, '\d\+')
+	if cnt == "0" || cnt == ""
+		return "🔍 0/0"
+	endif
+	
+	let nth = ''
+	let rest = ''
+	try
+		call setpos('.', pos)
+		redir => rest
+			silent exe 's/' . keyString . '\(.\{-}\%#\)\@=//nge'
+		call setpos('.', pos)
+		redir => nth
+			silent exe '0,.-1s/' . keyString . '//nge'
+		redir END
+		let s:oldval = '🔍 ' . (matchstr( nth, '\d\+' ) + matchstr(rest,'\d\+')) . '/' . cnt. ''
+		return s:oldval
+	catch
+		return "ERR".v:exception
+	finally
+		call setpos('.', pos)
+		let s:oldval = "NONE"
+	endtry
+endfunction
+
+" https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
+command! C let @/=""
+
+call airline#parts#define_function('search2', 'SearchCount')
+
+let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '0-IMPT.md']
+
+let g:ale_linters = {'rust': ['cargo']}
+filetype plugin indent on
+let g:ale_sign_column_always=1
+let g:ale_set_highlights=0
+let g:ale_rust_cargo_check_all_targets=1
+let g:ale_rust_rls_toolchain='stable'
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_text_changed='normal'
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
+let $RUST_SRC_PATH='/usr/src/rust/src'
+
+let g:airline#etensions#tabline#buffer_idx_format = {
 	  \ '0': '0 ',
 	  \ '1': '1 ',
 	  \ '2': '2 ',
@@ -42,20 +148,21 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 	  \ '8': '8 ',
 	  \ '9': '9 '
 	  \}
- let g:airline_powerline_fonts = 0
- let g:airline_symbols_ascii = 1
+
+let g:airline_powerline_fonts = 0
+let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tabnr_formatter = 'default'
 let g:airline_section_x = airline#section#create([])
-let g:airline_section_y = airline#section#create([])
+let g:airline#extensions#ale#enabled = 1
+let g:airline_section_y = airline#section#create(['search2'])
 let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
-let g:airline_extensions = [ 'tabline' ]
-let g:airline#extensions#tabline#enabled = 0
+let g:airline_extensions = ['tabline',  'ale' ]
 let g:airline_detect_spell=0
 let g:airline_inactive_collapse=0
-let g:airline_theme='term'
+let g:airline_theme='base16_pop'
 let g:airline_symbols_ascii=1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tabs = 0
@@ -63,7 +170,22 @@ let g:airline#extensions#tabline#exclude_preview = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#fnamecollapse = 1
 
+
+
+let mapleader=","
+
 let g:airline#extensions#tabline#show_close_button = 0
+
+" https://shapeshed.com/vim-netrw/
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
 
 " PERSISTENT UNDO
 " Keep undo history across sessions. Requires that ~/.vim/backups exist.
@@ -73,10 +195,35 @@ if has('persistent_undo')
 	set undofile
 endif
 
-
-
-
 " SETTINGS
+
+set matchpairs+=<:>
+
+" http://vim.wikia.com/wiki/Highlight_current_line
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
+" paste with proper indent
+nnoremap <c-p> p
+nnoremap p ]p
+
+
+nnoremap q a
+
+call deoplete#custom#source('_', 'matchers', ['matcher_head']) " , 'matcher_length'])
+set complete=d
+set completeopt=menu,menuone,noinsert
+" ,preview pumheight=5
+set shortmess+=c
+
+"make < > shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
+
+set splitright
 
 " Show current mode in status bar
 set showmode
@@ -118,17 +265,73 @@ set smartcase
 " Set a better color scheme
 set background=dark
 "colorscheme desert
-colorscheme base16-default-dark
-
+colorscheme base16-pop
+hi Normal guibg='#000000' ctermbg=0
+hi Terminal guibg='#000000' ctermbg=0
+hi CursorLine guibg=#262626
+hi SignColumn guibg=#262626
+hi ALEWarningSign guibg=#D78700 guifg=#D78700
+hi ALEErrorLine guibg=NONE
+hi ALEErrorSign guibg=#FF0000 guifg=#FF0000
 " Change viminfo location
 set viminfo+=n~/.vim/viminfo
+
+"
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>+ <Plug>AirlineSelectNextTab
+
+
+
+imap <C-w> <Esc><C-w>
+" https://github.com/vim/vim/issues/2216
+tnoremap <Esc> <c-\><c-n>
+" below is needed to fix arrow-key issues; sadly, it breaks the <nowait> stuff
+tnoremap <Esc>: <c-\><c-n>:
+tnoremap <silent> <C-e> <C-\><C-n>:call term_sendkeys("","\<lt>Esc>")<CR>a
+
+func! SendToTerm(what)
+  call term_sendkeys('', a:what)
+  return ''
+endfunc
+
+
+" https://stackoverflow.com/questions/13850914/vim-overloaded-mapping-for-multiple-modes
+function! MapBoth(keys, rhs)
+    execute 'nmap' '<silent>' a:keys a:rhs
+	execute 'imap' '<silent>' a:keys '<C-o>'.a:rhs
+	execute 'tmap' '<silent>' a:keys '<C-\><C-n>'.a:rhs
+endfunction
+
+" https://stackoverflow.com/questions/18546533/execute-plug-commands-in-vim
+for i in [1,2,3,4,5,6,7,8,9]
+	call MapBoth('<C-w>'.i, '<Plug>AirlineSelectTab'.i)
+endfor
+
+call MapBoth('<C-w>[', 'gT')
+call MapBoth('<C-w>]', 'gt')
+call MapBoth('<C-T>', ':ter ++close zsh<CR>')
 
 " Mouse support
 set ttymouse=xterm2
 set mouse=a
+
+" Misc
+set whichwrap=b,s,<,>,[,]
 
 " https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
+
