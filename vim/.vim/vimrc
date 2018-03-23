@@ -17,6 +17,7 @@ if has("termguicolors")     " set true colors
 endif
 
 
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
@@ -51,6 +52,8 @@ Plug 'lifepillar/vim-mucomplete'
 
 call plug#end()
 
+
+
 let g:deoplete#max_menu_width=80
 let g:mucomplete#enable_auto_at_startup = 1
 
@@ -74,30 +77,31 @@ let g:miniBufExplBRSplit = 1
 let g:miniBufExplVSplit = 20
 
 " Fix dtach issues
+set term=xterm-256color
 autocmd VimResized * set term=xterm-256color
 
 
 " https://github.com/vim/vim/issues/453
 let s:oldval = ""
 function! SearchCount()
-	let keyString=@/
-	if strlen(keyString) == 0
-		return ""
-	endif
-
-	let pos=getpos('.')
-	let cnt = ''
-	redir => cnt
-		silent exe '%s/' . keyString . '//nge'
-	redir END
-	let cnt = matchstr(cnt, '\d\+')
-	if cnt == "0" || cnt == ""
-		return "🔍 0/0"
-	endif
-	
-	let nth = ''
-	let rest = ''
 	try
+		let keyString=@/
+		if strlen(keyString) == 0
+			return ""
+		endif
+
+		let pos=getpos('.')
+		let cnt = ''
+		redir => cnt
+			silent exe '%s/' . keyString . '//nge'
+		redir END
+		let cnt = matchstr(cnt, '\d\+')
+		if cnt == "0" || cnt == ""
+			return "🔍 0/0"
+		endif
+		
+		let nth = ''
+		let rest = ''
 		call setpos('.', pos)
 		redir => rest
 			silent exe 's/' . keyString . '\(.\{-}\%#\)\@=//nge'
@@ -148,6 +152,84 @@ let g:airline#etensions#tabline#buffer_idx_format = {
 	  \ '8': '8 ',
 	  \ '9': '9 '
 	  \}
+" Set a better color scheme
+set background=dark
+"colorscheme desert
+colorscheme base16-pop
+hi AirlineNormal guibg='#00d400' guifg='#000000'
+hi AirlineInsert guibg='#00ddff' guifg='#000000'
+hi AirlineTerminal guibg='#ff8d2d' guifg='#000000'
+hi AirlineVisual guibg='#d5b51c' guifg='#000000'
+hi DarkText guifg='#000000'
+hi Normal guibg='#000000' ctermbg=0
+hi Terminal guibg='#000000' ctermbg=0
+hi CursorLine guibg=#262626
+hi SignColumn guibg=#262626
+hi ALEWarningSign guibg=#D78700 guifg=#D78700
+hi AirlineWarning guibg=#D78700 guifg=#000000
+hi ALEErrorLine guibg=NONE
+hi ALEErrorSign guibg=#FF0000 guifg=#FF0000
+hi AirlineError guibg=#FF0000 guifg=#000000
+" Change viminfo location
+set viminfo+=n~/.vim/viminfo
+
+
+
+let g:airline#themes#jason#palette = {}
+let s:guibg = '#080808'
+let s:guibg2 = '#1c1c1c'
+let s:termbg = 232
+let s:termbg2= 234
+let s:N1 = [ s:guibg , '#00dfff' , s:termbg , 45 ]
+let s:N2 = [ '#ff5f00' , s:guibg2, 202 , s:termbg2 ]
+let s:N3 = [ '#767676' , s:guibg, 243 , s:termbg]
+
+
+
+
+let g:airline#themes#jason#palette.normal = 'AirlineNormal'
+" airline#themes#generate_color_map(s:N1, s:N2, s:N3)
+let g:airline#themes#jason#palette.insert = 'AirlineInsert'
+" airline#themes#generate_color_map(s:I1, s:N2, s:N3)
+let g:airline#themes#jason#palette.replace = 'AirlineInsert'
+" airline#themes#generate_color_map(s:R1, s:N2, s:N3)
+let g:airline#themes#jason#palette.visual = 'AirlineVisual'
+let g:airline#themes#jason#palette.terminal = 'AirlineTerminal'
+
+
+
+
+
+let warn = airline#themes#get_highlight('AirlineWarning')
+let err = airline#themes#get_highlight('AirlineError')
+let N2 = airline#themes#get_highlight('LineNr')
+let modified = airline#themes#get_highlight2(['AirlineError', 'bg'], ['StatusLine', 'bg'], 'none')
+for mode in keys(g:airline#themes#jason#palette)
+	let str = g:airline#themes#jason#palette[mode]
+	let N1 = airline#themes#get_highlight(str)
+	let N3 = airline#themes#get_highlight2([str, 'bg'], ['StatusLine', 'bg'], 'none')
+
+	" let N2 = airline#themes#get_highlight2([str, 'bg'], ['StatusLine', 'bg'], 'none')
+	let g:airline#themes#jason#palette[mode] = airline#themes#generate_color_map(N1, N2, N3)
+	
+	if mode != "terminal"
+		let g:airline#themes#jason#palette[mode . '_modified'] = airline#themes#generate_color_map(N1, N2, modified)
+		let g:airline#themes#jason#palette[mode . '_modified']['airline_warning'] = warn
+		let g:airline#themes#jason#palette[mode . '_modified']['airline_err'] = err
+	endif
+	let g:airline#themes#jason#palette[mode]['airline_warning'] = warn
+	let g:airline#themes#jason#palette[mode]['airline_error'] = err
+endfor
+
+let g:airline#themes#jason#palette.inactive = airline#themes#generate_color_map(s:N2, s:N2, s:N2)
+
+let g:airline#themes#jason#palette['inactive_modified'] = airline#themes#generate_color_map(s:N2, s:N2, modified)
+let g:airline#themes#jason#palette['inactive_modified']['airline_warning'] = warn
+let g:airline#themes#jason#palette['inactive_modified']['airline_err'] = err
+" Accent color
+" It helps to remove the bold typography into modes section
+let g:airline#themes#jason#palette.accents = {}  "'black' : airline#themes#get_highlight2(['LineNr', 'bg'], ['ModeMsg', 'fg'], 'none')}
+
 
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
@@ -155,21 +237,21 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tabnr_formatter = 'default'
 let g:airline_section_x = airline#section#create([])
 let g:airline#extensions#ale#enabled = 1
-let g:airline_section_y = airline#section#create(['search2'])
-let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
 let g:airline_extensions = ['tabline',  'ale' ]
 let g:airline_detect_spell=0
 let g:airline_inactive_collapse=0
-let g:airline_theme='base16_pop'
 let g:airline_symbols_ascii=1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#exclude_preview = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#fnamecollapse = 1
+let g:airline_section_y = airline#section#create(['search2']) " ,'ale_warning_count','ale_error_count'])
+let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 
+let g:airline_theme='jason'
 
 
 let mapleader=","
@@ -225,8 +307,7 @@ vnoremap > >gv
 
 set splitright
 
-" Show current mode in status bar
-set showmode
+set noshowmode
 
 " Allow buffers to exist without being displayed
 set hidden
@@ -261,21 +342,6 @@ set hlsearch
 " Make searches case-insensitive, unless the search contains a capital letter.
 set ignorecase
 set smartcase
-
-" Set a better color scheme
-set background=dark
-"colorscheme desert
-colorscheme base16-pop
-hi Normal guibg='#000000' ctermbg=0
-hi Terminal guibg='#000000' ctermbg=0
-hi CursorLine guibg=#262626
-hi SignColumn guibg=#262626
-hi ALEWarningSign guibg=#D78700 guifg=#D78700
-hi ALEErrorLine guibg=NONE
-hi ALEErrorSign guibg=#FF0000 guifg=#FF0000
-" Change viminfo location
-set viminfo+=n~/.vim/viminfo
-
 "
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1

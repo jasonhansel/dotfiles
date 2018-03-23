@@ -34,9 +34,7 @@ alias la='ls -FhA'
 alias ll='LC_COLLATE=C ls -lhA '
 alias lc='ls++ --potsf '
 
-
-function linkto() ln -s $1 $2
-function linkfrom() ln -s $2 $1
+alias linkto='ln -sT'
 
 # Put a separator on the terminal
 # Makes tmux scrollback more readable
