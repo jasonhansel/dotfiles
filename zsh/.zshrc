@@ -14,8 +14,6 @@ source /usr/share/zsh/share/antigen.zsh
 antigen use oh-my-zsh
 
 # Load a few oh-my-zsh packages.
-antigen bundle git
-antigen bundle common-aliases
 antigen bundle archlinux
 antigen bundle systemd
 antigen bundle npm

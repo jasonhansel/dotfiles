@@ -1,7 +1,0 @@
-[Unit]
-
-[Service]
-ExecStart=/usr/bin/lsyncd ${HOME}/.lsync/config.lua
-
-[Install]
-WantedBy=default.target

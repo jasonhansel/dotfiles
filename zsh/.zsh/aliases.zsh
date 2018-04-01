@@ -14,7 +14,11 @@ alias sudocker='sudo docker '
 
 # Git
 alias gls='git ls-tree --name-only -r HEAD'
-alias ginit='git init --bare'
+alias gbare='git init --bare'
+alias st='git status'
+alias am='git commit -am'
+alias aa='git add :/'
+alias ap='git add --patch :/'
 
 # Misc
 alias pac='pacman'
@@ -34,7 +38,15 @@ alias la='ls -FhA'
 alias ll='LC_COLLATE=C ls -lhA '
 alias lc='ls++ --potsf '
 
+alias grep='grep --color'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 alias linkto='ln -sT'
+
+
+# Make zsh know about hosts already accessed by SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Put a separator on the terminal
 # Makes tmux scrollback more readable
