@@ -1,0 +1,38 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Anaconda",
+		"Babel",
+		"Base16 Color Schemes",
+		"CMake",
+		"Dockerfile Syntax Highlighting",
+		"FSharp",
+		"JSX",
+		"LaTeXTools",
+		"LESS",
+		"Markdown Extended",
+		"MarkdownEditing",
+		"MarkdownLight",
+		"Materialize",
+		"Monokai - Spacegray",
+		"Package Control",
+		"PowerShell",
+		"QML",
+		"Rust Enhanced",
+		"RustAutoComplete",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-contrib-rustc",
+		"SublimeLinter-jshint",
+		"SublimeLinter-jsxhint",
+		"Terminal",
+		"Theme - amCoder",
+		"Theme - Spacegray",
+		"TOML"
+	]
+}

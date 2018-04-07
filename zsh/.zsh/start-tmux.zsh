@@ -8,5 +8,9 @@ then
 	then 
 		export ZSH_TMUX_AUTOSTARTED=true 
 		tmux attach || tmux new-session
+		if [[ -n "$SSH_CONNECTION" ]] 
+		then
+			exit
+		fi
 	fi
 fi

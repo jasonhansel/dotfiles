@@ -8,7 +8,7 @@ zstyle ':completion:*' rehash true
 
 # Load antigen package manager. Assumes that antigen was installed
 # through the Arch Linux AUR.
-source /usr/share/zsh/scripts/antigen/antigen.zsh
+source /usr/share/zsh/share/antigen.zsh
 
 # Enable oh-my-zsh within antigen.
 antigen use oh-my-zsh
@@ -40,6 +40,9 @@ setopt nosharehistory noincappendhistory
 # Disable default CTRL-S behavior.
 # See https://news.ycombinator.com/item?id=9752238 for details.
 stty -ixon
+
+# Override
+export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 
 # Start "tmux", if necessary
 source ~/.zsh/start-tmux.zsh
