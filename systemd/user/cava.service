@@ -1,0 +1,9 @@
+[Unit]
+Description=Sound Service
+
+[Service]
+# Note that notify will only work if --daemonize=no
+ExecStart=/usr/bin/cava
+
+[Install]
+WantedBy=default.target
