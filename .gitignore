@@ -1,5 +1,6 @@
 **/Package Control.cache
 **/SublimeLinter/*.tmTheme
+**/.vim/swap
 **/*.last-run
 **/.vim/.netrwhist
 **/.vim/autoload/
