@@ -14,7 +14,7 @@ source /usr/share/zsh/share/antigen.zsh
 antigen use oh-my-zsh
 
 # Load a few oh-my-zsh packages.
-antigen bundle git
+antigen bundle gitfast
 antigen bundle common-aliases
 antigen bundle archlinux
 antigen bundle systemd
@@ -37,9 +37,13 @@ source ~/.zsh/aliases.zsh
 # Don't try to share history between zsh sessions.
 setopt nosharehistory noincappendhistory
 
-# Disable default CTRL-S behavior.
 # See https://news.ycombinator.com/item?id=9752238 for details.
-stty -ixon
+setopt noflowcontrol
+
+setopt nobgnice
+setopt appendcreate
+setopt shortloops
+
 
 # Override
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
