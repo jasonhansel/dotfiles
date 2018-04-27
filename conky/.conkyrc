@@ -1,0 +1,78 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+    alignment = 'top_right',
+    background = false,
+    border_width = 1,
+	double_buffer = true,
+    cpu_avg_samples = 2,
+	default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+	override_utf8_locale = true,
+    draw_shades = false,
+    use_xft = true,
+    font = 'Ubuntu Mono:size=12',
+    net_avg_samples = 2,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    gap_x = 0,
+	gap_y = 0,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'normal',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    stippled_borders = 0,
+    update_interval = 1,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false,
+	maximum_width = 480,
+	minimum_width = 480
+}
+
+-- ${texeci 3162240000 cava}
+-- ${texecpi 0.1 sed -Eue 's/([0-9]+);/${execbar 10,100 echo \1}\n/g;q' /tmp/cava-jason.fifo }
+--${voffset -2}${font Segoe UI Symbol:size=12}$if_pa_sink_muted 🔇 $else 🔊 $endif${font}${voffset 2
+-- }${tab 20}${pa_sink_volumebar}
+conky.text = [[
+${color grey}Battery: $color$battery
+$hr
+${color grey}Audio: $color$pa_sink_description
+$hr
+${color grey}Disk usage: $color${fs_used /}/${fs_size /}
+$hr
+${texeci 10 journalctl --quiet --output=short -p 3 -n 5 --no-full --no-hostname | cut -d ' ' -f3- }
+$hr
+${texeci 10 ls -1t /tmp/lsyncd-status.* | head -1 | xargs head -n4 | sed -e "s/^Lsyncd status report at /lsyncd: /;/^$/d" }
+]]

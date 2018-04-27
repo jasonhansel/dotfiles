@@ -19,6 +19,8 @@ antigen bundle common-aliases
 antigen bundle archlinux
 antigen bundle systemd
 antigen bundle npm
+antigen bundle djui/alias-tips
+
 
 # Load oh-my-zsh's tmux plugin. Don't autoconnect to tmux -- my custom
 # package will take care of this.
@@ -37,6 +39,7 @@ source ~/.zsh/aliases.zsh
 # Don't try to share history between zsh sessions.
 setopt nosharehistory noincappendhistory
 
+setopt correct
 # See https://news.ycombinator.com/item?id=9752238 for details.
 setopt noflowcontrol
 

@@ -1,7 +1,7 @@
 [alias]
 	st = status
 	aa = add :/
-	am = commit -am
+	cam = commit -am
 	cm = commit -m
 	ap = add -p :/
 [status]

@@ -1,0 +1,8 @@
+[Unit]
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c "echo sudo -u $USER $(unxrandr) --display $DISPLAY > /tmp/unxrandr-$USER.sh ; chmod +x /tmp/unxrandr-$USER.sh"
+
+[Install]
+WantedBy=default.target
