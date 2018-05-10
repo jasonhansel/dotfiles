@@ -81,6 +81,7 @@ CommandWindowWheel=Scroll
 contrastEnabled=true
 enforcedecoEnabled=false
 highlightwindowEnabled=true
+kwin4_effect_dialogparentEnabled=false
 kwin4_effect_fadeEnabled=false
 kwin4_effect_translucencyEnabled=false
 minimizeallEnabled=false

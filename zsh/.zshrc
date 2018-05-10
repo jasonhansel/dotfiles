@@ -20,6 +20,7 @@ antigen bundle archlinux
 antigen bundle systemd
 antigen bundle npm
 antigen bundle djui/alias-tips
+antigen bundle zdharma/fast-syntax-highlighting
 
 
 # Load oh-my-zsh's tmux plugin. Don't autoconnect to tmux -- my custom
@@ -43,13 +44,27 @@ setopt correct
 # See https://news.ycombinator.com/item?id=9752238 for details.
 setopt noflowcontrol
 
-setopt nobgnice
 setopt appendcreate
 setopt shortloops
+
+bindkey -M isearch '^[OA' history-incremental-search-backward
+bindkey -M isearch '^[OB' history-incremental-search-forward
+bindkey -M isearch '\e' accept-search
 
 
 # Override
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 
+# Fix syntax highlighting
+
+source $HOME/.antigen/bundles/zdharma/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+typeset -A FAST_HIGHLIGHT_STYLES
+FAST_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+FAST_HIGHLIGHT_STYLES[command]='none'
+FAST_HIGHLIGHT_STYLES[builtin]='none'
+FAST_HIGHLIGHT_STYLES[alias]='none'
+FAST_HIGHLIGHT_STYLES[unknown-token]='none'
+FAST_HIGHLIGHT_STYLES[arg0]='none'
 # Start "tmux", if necessary
 source ~/.zsh/start-tmux.zsh
+

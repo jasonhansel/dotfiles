@@ -1,7 +1,9 @@
-import sublime
-import sublime_plugin
-
 #!/usr/bin/env python3
+try:
+    import sublime
+    import sublime_plugin
+except ImportError:
+    pass
 import re
 import unittest
 import itertools
@@ -9,25 +11,27 @@ import collections
 
 
 def parse(text):
-    level = 0
+    level = ''
     ret = []
     thus_far = ''
     for char in text:
         to_append = char
-        if level == 0:
+        if level == '':
             if char == '(':
                 if len(thus_far.strip()): ret.append([thus_far.strip()])
                 thus_far = ''
                 ret.append([])
                 to_append = ''
-        if level == 1:
+        if level == '(':
             if (char == '+' or char == '-' or char == ')'):
                 if len(thus_far.strip()):  ret[-1].append(thus_far.strip())
                 thus_far = ''
             if char == ')':
                 to_append = ''
-        if char == '(': level += 1;
-        elif char == ')': level -= 1;
+        if char == '(': level += '(';
+        elif char == ')' and level[-1] == '(': level = level[:-1]
+        if char == '{': level += '{';
+        elif char == '}' and level[-1] == '{': level = level[:-1]
         thus_far += to_append
     if len(thus_far.strip()): ret.append([thus_far.strip()])
     thus_far = ''
@@ -97,6 +101,11 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(
             expand("(x - 5)(x - 5)"),
             "+ (x)(x)\n- 10(x)\n+ 25"
+        )
+    def test_fix(self):
+        self.assertEqual(
+            expand("x^{(5-3)}"),
+            "+ (x^{(5-3)})"
         )
 
 if __name__ == '__main__':
