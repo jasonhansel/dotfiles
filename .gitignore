@@ -1,9 +1,9 @@
-sublime/Package Control.cache
-sublime/SublimeLinter/*.tmTheme
+**/Package Control.cache
+**/SublimeLinter/*.tmTheme
 **/*.last-run
 vim/.vim/.netrwhist
 vim/.vim/autoload/
 vim/.vim/bundle/
 vim/.vim/viminfo
 xdg-config/vifm/vifminfo
-sublime/Package Control.*-ca-bundle
+**/Package Control.*-ca-bundle
