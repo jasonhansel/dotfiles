@@ -28,13 +28,14 @@ ZSH_TMUX_AUTOCONNECT=false
 antigen bundle tmux
 
 # Load custom theme
-antigen theme ~/.zsh jason --no-local-clone
+# antigen theme ~/.zsh jason --no-local-clone
 
 # Commit the antigen changes.
 antigen apply
 
 # Load aliases
 source ~/.zsh/aliases.zsh
+source ~/.zsh/jason.zsh-theme
 
 # Don't try to share history between zsh sessions.
 setopt nosharehistory noincappendhistory
