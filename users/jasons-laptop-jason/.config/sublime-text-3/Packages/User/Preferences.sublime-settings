@@ -1,0 +1,27 @@
+{
+	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-darktooth.tmTheme",
+	"enable_tab_scrolling": false,
+	"file_exclude_patterns":
+	[
+	],
+	"find_selected_text": false,
+	"font_face": "Consolas",
+	"font_size": 8,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"INI",
+		"JSX",
+		"PowerShell",
+		"QML",
+		"SublimeHaskell",
+		"SublimeLinter",
+		"SublimeLinter-eslint",
+		"SublimeLinter-jsxhint",
+		"Vintage"
+	],
+	"preview_on_click": false,
+	"show_line_endings": true,
+	"theme": "Spacegray.sublime-theme",
+	 "update_check": false
+}

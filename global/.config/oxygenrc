@@ -1,0 +1,7 @@
+[Windeco Exception 0]
+BorderSize=1
+Enabled=true
+ExceptionPattern=Navigator Firefox
+ExceptionType=0
+HideTitleBar=true
+Mask=16

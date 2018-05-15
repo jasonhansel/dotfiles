@@ -1,11 +1,14 @@
 # Use GNU Stow to install the included dotfiles
-stow -R --target=$HOME tmux
-stow -R --target=$HOME vim
-stow -R --target=$HOME zsh
-stow -R --target=$HOME git
-stow -R --target=$HOME x11
-stow --no-folding -R --target=$HOME/.config xdg-config
 
-ln -sf $(readlink -f ~/.config/alacritty/*) ~/.config/alacritty/*
+stow --no-folding -R --target=$HOME global
 
-ln -s $PWD/sublime ~/.config/sublime-text-3/Packages/User
+USERDIR="$(hostname)-$(whoami)"
+if [ -d "users/$USERDIR" ] ; then
+	cd users
+	stow --no-folding -R --target=$HOME $USERDIR
+	cd ..
+else
+	echo "No user-specific stuff at users/$USERDIR"
+fi
+
+ln -sf $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alacritty.yml
