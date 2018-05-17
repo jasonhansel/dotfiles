@@ -26,38 +26,45 @@ def parse(text):
     ret = []
     thus_far = ''
     first = True
+    den = ''
     for char in text:
         to_append = char
         if level == '':
-            if char == '(' or char == '﹝':
-                if len(thus_far.strip()): ret.append([('', thus_far.strip())])
-                thus_far = ''
+            if (char == '(' or char == '﹝'):
+                if len(thus_far.strip()): ret.append([('', 'N', thus_far.strip())])
                 ret.append([])
+                thus_far = ''
                 to_append = ''
-
         if level == '(' or level == '﹝':
-            if char == '／':
+            if char == '／' and den[-1] == 'N':
                 # )
-                ret[-1].append((level[-1], thus_far.strip()))
-                # ( 
-                ret.append([])
-                # 1 /
-                thus_far = '1'
-            if (char == '+' or char == '-' or char == brackets[level]):
-                if len(thus_far.strip()): ret[-1].append((level[-1], thus_far.strip()))
+                ret[-1].append((level[-1], 'N', thus_far.strip()))
+                den = den[:-1] + 'D'
                 thus_far = ''
-            if char == brackets[level]:
+                # ( 
+                # 1 /
+                to_append = ''
+            if (char == '+' or char == '-' or char == brackets[level]) and den[-1] == 'N':
+                if len(thus_far.strip()): ret[-1].append((level[-1], 'N', thus_far.strip()))
+                thus_far = ''
+                if char == brackets[level]:
+                    to_append = ''
+            if (char == brackets[level]) and den[-1] == 'D':
+                ret.append([(level[-1], 'D', thus_far.strip())])
+                thus_far = ''
                 to_append = ''
 
         if char in brackets:
             level += char
+            den += 'N'
         elif char in inv_brackets and inv_brackets[char] == level[-1]:
             level = level[:-1]
+            den = den[:-1]
 
         thus_far += to_append
         first = False
 
-    if len(thus_far.strip()): ret.append([('', thus_far.strip())])
+    if len(thus_far.strip()): ret.append([(level, 'N', thus_far.strip())])
     thus_far = ''
     return ret
 
@@ -106,29 +113,45 @@ def parse_bracketed(text):
 
 
 def expand(text):
-    pb = parse_bracketed(text)
-    if pb is not None:
-        nums, den = pb
-        return '\n'.join([(nsign + ' {' + ndata + den) for (nsign, ndata) in nums])
+    # pb = parse_bracketed(text)
+    # if pb is not None:
+    #     nums, den = pb
+    #     return '\n'.join([(nsign + ' {' + ndata + den) for (nsign, ndata) in nums])
 
     combos = list(itertools.product(*parse(text)))
     ret = collections.OrderedDict()
+    
     for combo in combos:
         out = ''
         mul = 1
-        for (bracket, part) in combo:
-            if part[0] == '+':
-                mul *= 1
-                part = part[1:]
-            elif part[0] == '-':
-                mul *= -1
-                part = part[1:]
-            part = part.strip()
-            if part.isdigit():
-                mul *= int(part)
-                part = ''
-            if len(part):
-                out += bracket + part.strip() + brackets[bracket]
+        denom = []
+        for (bracket, nd, part) in combo:
+            if nd == 'D':
+                denom.append((bracket, part.strip()))
+            elif nd == 'N':
+                if part[0] == '+':
+                    mul *= 1
+                    part = part[1:]
+                elif part[0] == '-':
+                    mul *= -1
+                    part = part[1:]
+                part = part.strip()
+                if part.isdigit():
+                    mul *= int(part)
+                    part = ''
+                if len(part):
+                    out += bracket +  part.strip() + brackets[bracket]
+        if len(denom) == 0:
+            denom = ''
+        elif len(denom) == 1:
+            bracket, text = denom[0]
+            denom = text
+        else:
+            denom = ''.join([ bracket + text + brackets[bracket] for (bracket, text) in denom])
+
+        if len(denom):
+            out = '{' + out + '／' + denom + '}'
+
         if out in ret:
             ret[out] += mul
         else:
@@ -172,38 +195,48 @@ class TestStringMethods(unittest.TestCase):
         )
     def test_div(self):
         self.assertEqual(
-            expand("{x5 - {x10／2}(z + 1) ／ 3}"),
-            "+ {x5 ／ 3}\n- { {x10／2}(z + 1) ／ 3}"
+            expand("(x5 - {x10／2}(z + 1) ／ 3)"),
+            "+ {(x5)／3}\n- {({x10／2}(z + 1))／3}"
         )
         self.assertEqual(
             expand("{x}\sin{x5 - x10(z + 1) ／ 3}"),
             "+ {x}\sin{x5 - x10(z + 1) ／ 3}"
         )
-        # self.assertEqual(
-        #     expand("﹝x5 - x10 ／ 3﹞"),
-        #     "﹝+ {x5 ／ 3} - {x10 ／ 3}﹞"
-        # )
+        self.assertEqual(
+            expand("﹝x5 - x10 ／ 3﹞"),
+            "+ {﹝x5﹞／3}\n- {﹝x10﹞／3}"
+        )
         self.assertEqual(
             expand("{x5 - x10 ／ 3}(x + 1)"),
             "+ {x5 - x10 ／ 3}(x)\n+ {x5 - x10 ／ 3}"
         )
+    def test_divb(self):
         self.assertEqual(
             expand("{x5 - x10 ／ 3}﹝x + 1﹞"),
             "+ {x5 - x10 ／ 3}﹝x﹞\n+ {x5 - x10 ／ 3}"
         )
         self.assertEqual(
-            expand("﹝x5 - x10 ／ 3﹞﹝x + 1﹞"),
-            "+ ﹝x5﹞﹝1／ 3﹞﹝x﹞\n+ ﹝x5﹞﹝1／ 3﹞\n- ﹝x10﹞﹝1／ 3﹞﹝x﹞\n- ﹝x10﹞﹝1／ 3﹞"
+            expand("﹝x5 - x10 ／3﹞﹝x + 1﹞"),
+            "+ {﹝x5﹞﹝x﹞／3}\n+ {﹝x5﹞／3}\n- {﹝x10﹞﹝x﹞／3}\n- {﹝x10﹞／3}"
         )
         self.assertEqual(
-            expand("﹝{x10 ／ 3}﹞﹝x + 1﹞"),
-            "+ ﹝{x10 ／ 3}﹞﹝x﹞\n+ ﹝{x10 ／ 3}﹞"
+            expand("﹝{x10 ／3}﹞﹝x + 1﹞"),
+            "+ ﹝{x10 ／3}﹞﹝x﹞\n+ ﹝{x10 ／3}﹞"
+        )
+        self.assertEqual(
+            expand("﹝x ／3﹞﹝x ／3﹞"),
+            "+ {﹝x﹞﹝x﹞／﹝3﹞﹝3﹞}"
+        )
+        self.assertEqual(
+            expand("{x + 1 ／ 2}﹝x + 1 ／ 2﹞"),
+            "+ {{x + 1 ／ 2}﹝x﹞／2}\n+ {{x + 1 ／ 2}／2}"
         )
     def test_fix(self):
         self.assertEqual(
             expand("x^{(5-3)}"),
             "+ x^{(5-3)}"
         )
+
 
 if __name__ == '__main__':
     unittest.main()
