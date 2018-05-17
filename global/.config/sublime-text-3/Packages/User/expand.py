@@ -71,47 +71,6 @@ def parse(text):
 
 
 
-def parse_bracketed(text):
-    level = 0
-    t2 = text
-    found_div = False
-    while t2 != '':
-        if level == 1 and t2[0] == '／':
-            found_div = True
-        elif t2[0] == '{':
-            level += 1
-        elif t2[0] == '}':
-            level -= 1
-        t2 = t2[1:]
-        if t2 != '' and level == 0:
-            return None
-    if level != 0 or not found_div:
-        return None
-
-    numerators = ['']
-    signs = ['+']
-
-    level = ''
-    for (idx,char) in enumerate(text):
-        if level == '{':
-            if char == '／':
-                return (zip(signs, numerators), text[idx:])
-            elif (char == '+' or char == '-'):
-                numerators.append('')
-                signs.append(char)
-                char = ''
-        if level != '':
-            numerators[-1] += char
-
-        if char in brackets:
-            level += char
-        elif char in inv_brackets and inv_brackets[char] == level[-1]:
-            level = level[:-1]
-        
-
-    return None
-
-
 def expand(text):
     # pb = parse_bracketed(text)
     # if pb is not None:
