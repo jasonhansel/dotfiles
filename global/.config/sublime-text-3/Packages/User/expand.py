@@ -109,19 +109,21 @@ def expand(text):
             denom = ''.join([ bracket + text + brackets[bracket] for (bracket, text) in denom])
 
         if len(denom):
+            if out == '':
+                out = '1'
             out = '{' + out + '／' + denom + '}'
 
         if out in ret:
-            ret[out] += mul
+            ret[out.strip()] += mul
         else:
-            ret[out] = mul
+            ret[out.strip()] = mul
     fin = []
     for out, mul in ret.items():
         if mul != 0:
             if mul >= 0: sign = '+'
             else: sign = '-'
             sign += ' ';
-            if abs(mul) != 1: sign += "{0}".format(abs(mul))
+            if abs(mul) != 1 or out == '': sign += "{0}".format(abs(mul))
             fin.append(sign + out)
     return '\n'.join(fin)
 
@@ -194,6 +196,14 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(
             expand("x^{(5-3)}"),
             "+ x^{(5-3)}"
+        )
+        self.assertEqual(
+            expand("﹝x + 1／2﹞"),
+            "+ {﹝x﹞／2}\n+ {1／2}"
+        )
+        self.assertEqual(
+            expand("﹝x + 1﹞"),
+            "+ ﹝x﹞\n+ 1"
         )
 
 
