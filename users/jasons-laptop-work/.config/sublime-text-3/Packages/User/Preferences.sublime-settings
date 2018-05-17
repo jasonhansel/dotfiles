@@ -10,14 +10,7 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
-		"INI",
-		"JSX",
-		"PowerShell",
-		"QML",
 		"SublimeHaskell",
-		"SublimeLinter",
-		"SublimeLinter-eslint",
-		"SublimeLinter-jsxhint",
 		"Vintage"
 	],
 	"ignored_words":

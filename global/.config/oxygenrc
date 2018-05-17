@@ -1,7 +1,30 @@
+[InactiveShadow]
+VerticalOffset=0
+
+[Windeco]
+AnimationsEnabled=false
+ButtonAnimationsEnabled=false
+
 [Windeco Exception 0]
 BorderSize=1
 Enabled=true
 ExceptionPattern=Navigator Firefox
+ExceptionType=0
+HideTitleBar=true
+Mask=0
+
+[Windeco Exception 1]
+BorderSize=0
+Enabled=true
+ExceptionPattern=epiphany-.*
+ExceptionType=0
+HideTitleBar=true
+Mask=16
+
+[Windeco Exception 2]
+BorderSize=0
+Enabled=true
+ExceptionPattern=Evince|Nautilus
 ExceptionType=0
 HideTitleBar=true
 Mask=16

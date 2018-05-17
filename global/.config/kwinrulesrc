@@ -39,8 +39,14 @@ wmclassmatch=1
 
 [2]
 Description=Settings for Conky
+activity=00000000-0000-0000-0000-000000000000
+activityrule=1
+desktop=1
+desktoprule=2
 position=1440,0
 positionrule=2
+screen=0
+screenrule=1
 wmclass=conky
 wmclasscomplete=true
 wmclassmatch=2
@@ -77,14 +83,14 @@ wmclasscomplete=false
 wmclassmatch=1
 
 [4]
-Description=Application settings for pulseaudio-equalizer.py
+Description=Application settings for wine
 above=true
 aboverule=2
 below[$d]
 belowrule[$d]
 clientmachine=jasons-laptop
 clientmachinematch=0
-closeable=false
+closeable=true
 closeablerule=2
 ignoregeometry[$d]
 ignoregeometryrule[$d]
@@ -107,99 +113,63 @@ skiptaskbarrule=2
 title[$d]
 titlematch[$d]
 types=1
-wmclass=pulseaudio-equalizer.py
-wmclasscomplete=false
-wmclassmatch=1
+wmclass=.*wine
+wmclasscomplete=true
+wmclassmatch=3
 
 [5]
-Description[$d]
-above[$d]
-aboverule[$d]
-clientmachine[$d]
-clientmachinematch[$d]
-closeable[$d]
-closeablerule[$d]
-minimize[$d]
-minimizerule[$d]
-skippager[$d]
-skippagerrule[$d]
-skipswitcher[$d]
-skipswitcherrule[$d]
-skiptaskbar[$d]
-skiptaskbarrule[$d]
-title[$d]
-titlematch[$d]
-types[$d]
-wmclass[$d]
-wmclasscomplete[$d]
-wmclassmatch[$d]
+Description=Window settings for toplevel
+above=false
+aboverule=3
+clientmachine=localhost
+clientmachinematch=0
+fsplevel=0
+fsplevelrule=2
+title=analyzer
+titlematch=0
+types=1
+wmclass=analyzer toplevel
+wmclasscomplete=true
+wmclassmatch=1
 
 [6]
-Description[$d]
-above[$d]
-aboverule[$d]
-clientmachine[$d]
-clientmachinematch[$d]
-closeable[$d]
-closeablerule[$d]
-minimize[$d]
-minimizerule[$d]
-skippager[$d]
-skippagerrule[$d]
-skipswitcher[$d]
-skipswitcherrule[$d]
-skiptaskbar[$d]
-skiptaskbarrule[$d]
-title[$d]
-titlematch[$d]
-type[$d]
-typerule[$d]
-types[$d]
-windowrole[$d]
-windowrolematch[$d]
-wmclass[$d]
-wmclasscomplete[$d]
-wmclassmatch[$d]
+Description=Window settings for com-sun-electric-launcher
+clientmachine=jasons-laptop
+clientmachinematch=0
+opacityactive=100
+opacityactiverule=2
+opacityinactive=50
+opacityinactiverule=2
+title=Electric Messages
+titlematch=1
+type=5
+typerule=2
+types=1
+wmclass=sun-awt-x11-xframepeer com-sun-electric-launcher
+wmclasscomplete=true
+wmclassmatch=1
 
 [7]
-Description[$d]
-above[$d]
-aboverule[$d]
-clientmachine[$d]
-clientmachinematch[$d]
-minimize[$d]
-minimizerule[$d]
-skippager[$d]
-skippagerrule[$d]
-skipswitcher[$d]
-skipswitcherrule[$d]
-skiptaskbar[$d]
-skiptaskbarrule[$d]
-title[$d]
-titlematch[$d]
-type[$d]
-typerule[$d]
-types[$d]
-windowrole[$d]
-windowrolematch[$d]
-wmclass[$d]
-wmclasscomplete[$d]
-wmclassmatch[$d]
+Description=Window settings for biz-papercut-pcng-client-uit-userclient
+clientmachine=jasons-laptop
+clientmachinematch=0
+closeable=false
+closeablerule=2
+title=Balance for jsh5
+titlematch=0
+types=1
+wmclass=sun-awt-x11-xframepeer biz-papercut-pcng-client-uit-userclient
+wmclasscomplete=true
+wmclassmatch=1
 
 [8]
-Description[$d]
-clientmachine[$d]
-clientmachinematch[$d]
-title[$d]
-titlematch[$d]
-type[$d]
-typerule[$d]
-types[$d]
-windowrole[$d]
-windowrolematch[$d]
-wmclass[$d]
-wmclasscomplete[$d]
-wmclassmatch[$d]
+Description=Epiphany web apps
+noborder=false
+noborderrule=2
+types=1
+wmclass=epiphany-.*
+wmclasscomplete=true
+wmclassmatch=3
 
 [General]
-count=4
+count=8
