@@ -108,23 +108,23 @@ def expand(text):
         else:
             denom = ''.join([ bracket + text + brackets[bracket] for (bracket, text) in denom])
 
-        if len(denom):
-            if out == '':
-                out = '1'
-            out = '{' + out + '／' + denom + '}'
-
-        if out in ret:
-            ret[out.strip()] += mul
+        if (out.strip(), denom) in ret:
+            ret[(out.strip(), denom)] += mul
         else:
-            ret[out.strip()] = mul
+            ret[(out.strip(), denom)] = mul
     fin = []
-    for out, mul in ret.items():
+    for (out, denom), mul in ret.items():
         if mul != 0:
             if mul >= 0: sign = '+'
             else: sign = '-'
-            sign += ' ';
-            if abs(mul) != 1 or out == '': sign += "{0}".format(abs(mul))
-            fin.append(sign + out)
+            if abs(mul) != 1 or out == '':
+                out = "{0}".format(abs(mul)) + out
+            if len(denom):
+                if out == '':
+                    out = '1'
+                out = '{' + out + '／' + denom + '}'
+            fin.append(sign + ' ' + out)
+
     return '\n'.join(fin)
 
 
@@ -204,6 +204,14 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(
             expand("﹝x + 1﹞"),
             "+ ﹝x﹞\n+ 1"
+        )
+        self.assertEqual(
+            expand("﹝3 + 1 ／ 5﹞"),
+            "+ {4／5}"
+        )
+        self.assertEqual(
+            expand("﹝3x／ 5﹞"),
+            "+ {﹝3x﹞／5}"
         )
 
 
