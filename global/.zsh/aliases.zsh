@@ -34,6 +34,7 @@ alias up='cd ..'
 alias suvi='sudoedit ' # More secure than vim when used with sudo
 alias sudocker='sudo docker '
 alias sudc='sudo docker-compose '
+alias diff='colordiff '
 
 # Git
 alias gls='git ls-tree --name-only -r HEAD'

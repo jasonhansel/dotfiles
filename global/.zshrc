@@ -4,6 +4,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export RUST_BACKTRACE=1
 
 
+
+export LEDGER_SORT=date
+export LEDGER_ADD_BUDGET=1
+
 # Don't try to cache completions.
 # See https://wiki.archlinux.org/index.php/zsh
 zstyle ':completion:*' rehash true
