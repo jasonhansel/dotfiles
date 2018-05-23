@@ -39,7 +39,7 @@ wmclassmatch=1
 
 [2]
 Description=Settings for Conky
-position=1440,0
+position=1430,0
 positionrule=2
 wmclass=conky
 wmclasscomplete=true
