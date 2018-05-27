@@ -10,6 +10,9 @@ zstyle ':completion:*' rehash true
 # through the Arch Linux AUR.
 source /usr/share/zsh/share/antigen.zsh
 
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 # Enable oh-my-zsh within antigen.
 antigen use oh-my-zsh
 

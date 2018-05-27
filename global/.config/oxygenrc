@@ -1,7 +1,13 @@
-[Windeco Exception 0]
-BorderSize=1
+[InactiveShadow]
 Enabled=true
-ExceptionPattern=Navigator Firefox
-ExceptionType=0
-HideTitleBar=true
-Mask=16
+
+[Windeco]
+ShadowAnimationsEnabled=false
+
+[Windeco Exception 0]
+BorderSize[$d]
+Enabled[$d]
+ExceptionPattern[$d]
+ExceptionType[$d]
+HideTitleBar[$d]
+Mask[$d]

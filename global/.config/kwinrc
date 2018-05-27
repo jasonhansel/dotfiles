@@ -150,7 +150,8 @@ WindowSnapZone=10
 
 [org.kde.kdecoration2]
 BorderSize=NoSides
-ButtonsOnLeft=MS
+ButtonsOnLeft=M
 ButtonsOnRight=HIAX
 CloseOnDoubleClickOnMenu=false
 library=org.kde.oxygen
+theme[$d]
