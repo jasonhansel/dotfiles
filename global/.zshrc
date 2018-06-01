@@ -1,6 +1,7 @@
 # Configure paths.
 export GOPATH=~/go
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export RUST_BACKTRACE=1
 
 # Don't try to cache completions.
 # See https://wiki.archlinux.org/index.php/zsh
@@ -13,22 +14,26 @@ source /usr/share/zsh/share/antigen.zsh
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 
+
+
 # Enable oh-my-zsh within antigen.
 antigen use oh-my-zsh
 
 # Load a few oh-my-zsh packages.
 antigen bundle gitfast
-antigen bundle common-aliases
-antigen bundle archlinux
+antigen bundle docker
 antigen bundle systemd
 antigen bundle npm
 antigen bundle djui/alias-tips
+antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 
 # Load oh-my-zsh's tmux plugin. Don't autoconnect to tmux -- my custom
 # package will take care of this.
 ZSH_TMUX_AUTOCONNECT=false
 antigen bundle tmux
+
+antigen bundle --no-local-clone $HOME/.zsh
 
 # Load custom theme
 # antigen theme ~/.zsh jason --no-local-clone
@@ -37,16 +42,12 @@ antigen bundle tmux
 antigen apply
 
 # Load aliases
-source ~/.zsh/aliases.zsh
+# source ~/.zsh/aliases.zsh
 source ~/.zsh/jason.zsh-theme
 
-# Don't try to share history between zsh sessions.
-setopt nosharehistory noincappendhistory
-
-setopt correct
-# See https://news.ycombinator.com/item?id=9752238 for details.
+setopt nosharehistory
+setopt noincappendhistory
 setopt noflowcontrol
-
 setopt nobgnice
 setopt appendcreate
 setopt shortloops
@@ -59,4 +60,4 @@ bindkey " " self-insert
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 
 # Start "tmux", if necessary
-source ~/.zsh/start-tmux.zsh
+# source ~/.zsh/start-tmux.zsh
