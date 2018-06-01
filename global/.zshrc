@@ -51,6 +51,9 @@ setopt nobgnice
 setopt appendcreate
 setopt shortloops
 
+bindkey -r "^Q"
+bindkey -r "^O"
+bindkey " " self-insert
 
 # Override
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
