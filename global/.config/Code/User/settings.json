@@ -1,0 +1,33 @@
+{
+	"window.zoomLevel": -0.5,
+	"FSharp.linter": false,
+	"FSharp.enableTreeView": false,
+	"editor.fontSize": 12,
+	"editor.insertSpaces": false,
+	"[fsharp]": {
+		"editor.insertSpaces": true,
+		"editor.useTabStops": false
+	},
+	"editor.minimap.enabled": false,
+	"editor.acceptSuggestionOnEnter": "off",
+	"editor.acceptSuggestionOnCommitCharacter": false,
+	"editor.renderLineHighlight": "all",
+	"editor.folding": false,
+	"editor.dragAndDrop": false,
+	"workbench.editor.enablePreview": false,
+	"workbench.iconTheme": "vs-minimal",
+	"window.title": "${dirty}${activeEditorShort} (${rootName})",
+	"files.trimTrailingWhitespace": true,
+	"files.hotExit": "off",
+	"explorer.openEditors.visible": 0,
+	"explorer.enableDragAndDrop": false,
+	"editor.fontFamily": "Hack",
+	"editor.codeLens": false,
+	"FSharp.msbuildLocation": "/home/jason/Desktop/Projects/kasm/packages/MSBuild/tools/Unix/MSBuild.exe",
+	"FSharp.logLanguageServiceRequestsOutputWindowLevel": "DEBUG",
+	"terminal.integrated.confirmOnExit": true,
+	// using zsh leads to problems
+	"terminal.integrated.shell.linux": "/usr/bin/bash",
+	"workbench.editor.closeOnFileDelete": false,
+	"git.autofetch": false
+}
