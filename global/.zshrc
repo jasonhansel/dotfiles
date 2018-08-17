@@ -63,10 +63,6 @@ bindkey -r "^O"
 bindkey " " self-insert
 
 
-function title {
-	: ${2=$1}
-	tmux rename-window "${(%e)1}" >/dev/null 2>/dev/null
-}
 
 
 # Override
