@@ -3,6 +3,8 @@ export GOPATH=~/go
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export RUST_BACKTRACE=1
 
+export DISABLE_AUTO_TITLE=false
+export AUTO_TITLE=true
 
 export LEDGER_FILE=/home/jason/ledger/data.journal
 export LEDGER_SORT=date
@@ -60,6 +62,15 @@ bindkey -r "^Q"
 bindkey -r "^O"
 bindkey " " self-insert
 
+
+function title {
+	: ${2=$1}
+	tmux rename-window "${(%e)1}" >/dev/null 2>/dev/null
+}
+
+
 # Override
+export DISABLE_AUTO_TITLE="false"
+export AUTO_TITLE=true
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 
