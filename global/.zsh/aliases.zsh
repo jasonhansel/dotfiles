@@ -15,6 +15,12 @@ alias c='cat -v '
 alias vi='vim -O '
 
 alias pac='pacman'
+function restic()
+{
+	( source /etc/restic/b2_env.sh ; /usr/bin/restic "$@" ; )
+}
+
+# Sudo stuff
 alias supac='sudo pacman '
 alias tri='trizen'
 

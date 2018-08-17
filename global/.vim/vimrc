@@ -25,6 +25,9 @@ endif
 "let g:netrw_keepdir=0
 let g:airline#extensions#tabline#formatter = 'jason'
 
+set pyxversion=3 encoding=utf-8
+
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
@@ -35,6 +38,8 @@ Plug 'rust-lang/rust.vim' " before filetype on in vim-sesnible
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
 Plug 'chriskempson/base16-vim'
+
+" needs  pip install --user neovim greenlet==0.4.10
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-airline/vim-airline'

@@ -4,7 +4,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export RUST_BACKTRACE=1
 
 
-
+export LEDGER_FILE=/home/jason/ledger/data.journal
 export LEDGER_SORT=date
 export LEDGER_ADD_BUDGET=1
 
