@@ -3,7 +3,6 @@
 " Optimized for use on Arch Linux, with many customizations of my own.
 
 
-
 " VUNDLE INITIALIZATION & PLUGINS
 " Based on Vundle's recommended setup code.
 
@@ -23,15 +22,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+"let g:netrw_keepdir=0
+let g:airline#extensions#tabline#formatter = 'jason'
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
 
-
+" Plug 'eiginn/netrw'
+Plug 'tpope/vim-vinegar'
 Plug 'rust-lang/rust.vim' " before filetype on in vim-sesnible
 Plug 'w0rp/ale'
-" Plug 'airblade/vim-rooter' -- had to disable because breaks netrw :(
 Plug 'tpope/vim-sensible'
 Plug 'chriskempson/base16-vim'
 Plug 'roxma/nvim-yarp'
@@ -42,30 +43,52 @@ Plug 'tpope/vim-eunuch'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'sebastianmarkow/deoplete-rust'
-Plug 'lifepillar/vim-mucomplete'
+" Plug 'lifepillar/vim-mucomplete
+Plug 'vim-scripts/DetectIndent'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'wellle/tmux-complete.vim'
 
+Plug 'junegunn/fzf'
+
+" Plug 'tpope/vim-sleuth'
+
+" Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'junegunn/fzf.vim'
 call plug#end()
+
+autocmd BufReadPost * :DetectIndent
 
 "TEST
 let g:rooter_manual_only = 1
 
 let g:deoplete#max_menu_width=80
-let g:mucomplete#enable_auto_at_startup = 1
 
-
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.rust="\w"
-let g:deoplete#complete_method = "completefunc"
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#enable_refresh_always = 0
+
+" Use <tab> for completion
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
+
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_on_insert_enter = 0
 let g:deoplete#auto_refresh_delay = 1
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#file#enable_buffer_path = 1
 
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['buffer', 'tag', 'file', 'dictionary', 'around']
+
+let g:airline#extensions#tabline#formatter = 'jason'
+
+" call deoplete#custom#option('complete_method', 'omnifunc')
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around'  ]  })
+" 
+" call deoplete#custom#option('ignore_sources', { '_' : [ 'around', 'dictionary', 'member',  'buffer', 'file']  })
+
+call deoplete#custom#source('file', 'enable_buffer_path', 1)
+
+" let g:deoplete#ignore_sources = {}
+" let g:deoplete#ignore_sources._ = ['buffer', 'tag', 'file', 'dictionary', 'around']
 
 let g:miniBufExplorerAutoStart = 0
 let g:miniBufExplBRSplit = 1
@@ -78,14 +101,19 @@ autocmd VimResized * set term=xterm-256color
 
 " https://github.com/vim/vim/issues/453
 let s:oldval = ""
+
 function! SearchCount()
+	let pos=getpos('.')
 	try
 		let keyString=@/
 		if strlen(keyString) == 0
 			return ""
 		endif
 
-		let pos=getpos('.')
+		if getfsize(expand(@%)) > 100000
+			return "Too Large"
+		endif
+
 		let cnt = ''
 		redir => cnt
 			silent exe '%s/' . keyString . '//nge'
@@ -97,10 +125,10 @@ function! SearchCount()
 		
 		let nth = ''
 		let rest = ''
-		call setpos('.', pos)
+		 call setpos('.', pos)
 		redir => rest
 			silent exe 's/' . keyString . '\(.\{-}\%#\)\@=//nge'
-		call setpos('.', pos)
+		 call setpos('.', pos)
 		redir => nth
 			silent exe '0,.-1s/' . keyString . '//nge'
 		redir END
@@ -109,7 +137,7 @@ function! SearchCount()
 	catch
 		return "ERR".v:exception
 	finally
-		call setpos('.', pos)
+		 call setpos('.', pos)
 		let s:oldval = "NONE"
 	endtry
 endfunction
@@ -121,7 +149,8 @@ call airline#parts#define_function('search2', 'SearchCount')
 
 let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '0-IMPT.md']
 
-let g:ale_linters = {'rust': ['cargo']}
+let g:ale_linters = {'rust': ['cargo'], 'javascript': ['eslint']}
+let g:ale_linters_explicit = 1
 filetype plugin indent on
 let g:ale_sign_column_always=1
 let g:ale_set_highlights=0
@@ -135,17 +164,18 @@ let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
 let $RUST_SRC_PATH='/usr/src/rust/src'
 
-let g:airline#etensions#tabline#buffer_idx_format = {
-	  \ '0': '0 ',
-	  \ '1': '1 ',
-	  \ '2': '2 ',
-	  \ '3': '3 ',
-	  \ '4': '4 ',
-	  \ '5': '5 ',
-	  \ '6': '6 ',
-	  \ '7': '7 ',
-	  \ '8': '8 ',
-	  \ '9': '9 '
+
+let g:airline#extensions#tabline#buffer_idx_format = {
+	  \ '0': '0·',
+	  \ '1': '1·',
+	  \ '2': '2·',
+	  \ '3': '3·',
+	  \ '4': '4·',
+	  \ '5': '5·',
+	  \ '6': '6·',
+	  \ '7': '7·',
+	  \ '8': '8·',
+	  \ '9': '9·'
 	  \}
 " Set a better color scheme
 set background=dark
@@ -225,6 +255,7 @@ let g:airline#themes#jason#palette['inactive_modified']['airline_err'] = err
 " It helps to remove the bold typography into modes section
 let g:airline#themes#jason#palette.accents = {}  "'black' : airline#themes#get_highlight2(['LineNr', 'bg'], ['ModeMsg', 'fg'], 'none')}
 
+let g:airline#extensions#tabline#formatter = 'jason'
 
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
@@ -253,16 +284,17 @@ let mapleader=","
 
 let g:airline#extensions#tabline#show_close_button = 0
 
+
+
 " https://shapeshed.com/vim-netrw/
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_keepdir=0
-let g:netrw_browse_split = 4
+" let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-let g:netrw_preview = 1
+"let g:netrw_preview = 1
 let g:netrw_winsize = 25
 
-let g:netrw_mousemaps= 0
+"let g:netrw_mousemaps= 0
 " augroup ProjectDrawer
 "  autocmd!
 "  autocmd VimEnter * :Vexplore
@@ -353,12 +385,15 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>, <Plug>AirlineSelectPrevTab
+nmap <leader>. <Plug>AirlineSelectNextTab
 nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>+ <Plug>AirlineSelectNextTab
-
+nmap <leader>= <Plug>AirlineSelectNextTab
 
 
 imap <C-w> <Esc><C-w>
+nmap <C-w>\|  <C-w>v
+nmap <C-w>-  <C-w>s
 " https://github.com/vim/vim/issues/2216
 tnoremap <Esc> <c-\><c-n>
 " below is needed to fix arrow-key issues; sadly, it breaks the <nowait> stuff
@@ -400,4 +435,18 @@ highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Re
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
+let g:fzf_layout = {'window': 'botright split'}
+
+nnoremap <silent> <C-o> :Files<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
+
+
+"below code is stolen from fzf.vim
+
+nnoremap <silent> <C-i> :History<CR>
+nnoremap <silent> <C-u> :Buffer<CR>

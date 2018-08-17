@@ -3,6 +3,7 @@ export GOPATH=~/go
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export RUST_BACKTRACE=1
 
+
 # Don't try to cache completions.
 # See https://wiki.archlinux.org/index.php/zsh
 zstyle ':completion:*' rehash true
@@ -23,7 +24,6 @@ antigen use oh-my-zsh
 antigen bundle gitfast
 antigen bundle docker
 antigen bundle systemd
-antigen bundle npm
 antigen bundle djui/alias-tips
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 
@@ -59,5 +59,3 @@ bindkey " " self-insert
 # Override
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 
-# Start "tmux", if necessary
-# source ~/.zsh/start-tmux.zsh

@@ -1,5 +1,5 @@
 {
-	"window.zoomLevel": -0.5,
+	"window.zoomLevel": -2,
 	"FSharp.linter": false,
 	"FSharp.enableTreeView": false,
 	"editor.fontSize": 12,
@@ -26,8 +26,31 @@
 	"FSharp.msbuildLocation": "/home/jason/Desktop/Projects/kasm/packages/MSBuild/tools/Unix/MSBuild.exe",
 	"FSharp.logLanguageServiceRequestsOutputWindowLevel": "DEBUG",
 	"terminal.integrated.confirmOnExit": true,
-	// using zsh leads to problems
 	"terminal.integrated.shell.linux": "/usr/bin/bash",
 	"workbench.editor.closeOnFileDelete": false,
-	"git.autofetch": false
+	"git.autofetch": false,
+	"files.associations": {
+		"*.todo": "markdown"
+	},
+	"workbench.sideBar.location": "left",
+	"window.menuBarVisibility": "toggle",
+	"css.colorDecorators.enable": false,
+	"workbench.colorTheme": "Kimbie Dark",
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"scope": [
+					"comment"
+				],
+				"settings": {
+					"fontStyle": ""
+				}
+			}
+		]
+	},
+	"workbench.colorCustomizations": {
+		"editor.lineHighlightBackground": "#342817",
+		"editorLineNumber.foreground": "#7a5e37"
+	},
+	"tslint.jsEnable": true
 }

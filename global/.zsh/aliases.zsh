@@ -1,5 +1,16 @@
 # Loosely based on: https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/common-aliases/common-aliases.plugin.zsh
 
+function ssh() {
+  # Force SSH to always get passwords and passphrases from SSH_ASKPASS, every time,
+  # and not from the TTY *or* from the agent.
+  if [[ -n "$SSH_CONNECTION" ]]
+  then
+    SSH_AUTH_SOCK= /usr/bin/ssh "$@"
+  else
+    SSH_AUTH_SOCK= SSH_ASKPASS=$HOME/bin/askpass SSH_TTY=`tty` setsid -w /usr/bin/ssh "$@"
+  fi
+}
+
 alias c='cat -v '
 alias vi='vim -O '
 
