@@ -21,7 +21,7 @@ if which code
 then
 	cat vscode-extensions | while read -r EXTENSION
 	do
-		code --install-extension $EXTENSION || true
+		yes 0 | code --install-extension $EXTENSION || true
 	done
 fi
 cd ..
