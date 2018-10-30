@@ -2,6 +2,9 @@
 
 trap "exit && exit" INT
 
+declare -A failures
+
+
 { echo change ; pactl subscribe } | grep --line-buffered -P "change|sink" | \
 while read line
 do
@@ -12,6 +15,13 @@ do
 done | \
 while read pa
 do
-	echo "Running: $pa"
-	pacmd $pa
+	
+	if [[ "${failures[$pa]}" = "1" ]]; then
+		# echo "Would just fail $pa"
+	elif [[ $(pacmd $pa 2>&1) = *"failed"* ]]; then
+		failures[$pa]=1
+		echo "Giving up on: $pa"
+	else
+		echo "Succeeded: $pa"
+	fi
 done
