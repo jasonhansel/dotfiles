@@ -31,13 +31,14 @@ antigen bundle gitfast
 antigen bundle docker
 antigen bundle systemd
 antigen bundle djui/alias-tips
+antigen bundle zdharma/fast-syntax-highlighting
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 
 # Load oh-my-zsh's tmux plugin. Don't autoconnect to tmux -- my custom
 # package will take care of this.
-ZSH_TMUX_AUTOCONNECT=false
-antigen bundle tmux
+# ZSH_TMUX_AUTOCONNECT=false
+# antigen bundle tmux
 
 antigen bundle --no-local-clone $HOME/.zsh
 
@@ -54,6 +55,11 @@ source ~/.zsh/jason.zsh-theme
 setopt nosharehistory
 setopt noincappendhistory
 setopt noflowcontrol
+
+bindkey -M isearch '^[OA' history-incremental-search-backward
+bindkey -M isearch '^[OB' history-incremental-search-forward
+bindkey -M isearch '\e' accept-search
+
 setopt nobgnice
 setopt appendcreate
 setopt shortloops
@@ -64,10 +70,22 @@ bindkey " " self-insert
 
 
 
-
 # Override
 export DISABLE_AUTO_TITLE="false"
 export AUTO_TITLE=true
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 export SSH_ASKPASS=$HOME/bin/askpass
+
+# Fix syntax highlighting
+
+source $HOME/.antigen/bundles/zdharma/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+typeset -A FAST_HIGHLIGHT_STYLES
+FAST_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+FAST_HIGHLIGHT_STYLES[command]='none'
+FAST_HIGHLIGHT_STYLES[builtin]='none'
+FAST_HIGHLIGHT_STYLES[alias]='none'
+FAST_HIGHLIGHT_STYLES[unknown-token]='none'
+FAST_HIGHLIGHT_STYLES[arg0]='none'
+# Start "tmux", if necessary
+source ~/.zsh/start-tmux.zsh
 

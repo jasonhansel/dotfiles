@@ -1,7 +1,11 @@
 
 [
     {
-        "caption": "JasonExpand",
-        "command": "jason_expand"
-}
+            "caption": "JasonExpand",
+            "command": "jason_expand"
+    },
+   {
+        "caption": "JasonVars",
+        "command": "jason_vars"
+    }
 ]

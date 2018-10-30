@@ -1,0 +1,17 @@
+{
+        "haskell_build_tool": "cabal",
+        "add_to_PATH": ["~/.cabal/bin"],
+        "inhibit_completions": true,
+        "backends": {
+        "Local hsdev": {
+            "default": true,
+            "backend": "hsdev",
+            "exec-with": "cabal",
+            "install-dir": "~/.cabal/bin",
+            "options": {
+              "local": true,
+              "port": 4567
+            }
+        }
+    }
+}

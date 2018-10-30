@@ -1,7 +1,12 @@
 {
 	"extensions":
 	[
-		"sty",
-		"cls"
-	]
+		"cls",
+		"tex"
+	],
+	"rulers":
+	[
+	],
+	"word_wrap": true,
+	"wrap_width": 120
 }

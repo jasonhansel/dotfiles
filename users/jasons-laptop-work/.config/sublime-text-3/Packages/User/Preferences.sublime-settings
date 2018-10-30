@@ -10,10 +10,19 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
+		"SublimeHaskell",
 		"Vintage"
 	],
-	"preview_on_click": false,
-	"show_line_endings": true,
-	"theme": "Default.sublime-theme",
+	"ignored_words":
+	[
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"rulers":
+	[
+	],
+	"show_definitions": false,
+	"theme": "Soda Dark 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
 	"update_check": false
 }

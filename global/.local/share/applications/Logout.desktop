@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Comment=
+Exec=qdbus org.kde.ksmserver /KSMServer logout 1 3 3
+Icon=system-switch-user
+Name=Logout
+NoDisplay=false
+Path[$e]=
+StartupNotify=false
+Terminal=0
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

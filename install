@@ -2,15 +2,26 @@
 
 stow --no-folding -R --target=$HOME global
 
+USERDIR="$(hostname)-$(whoami)"
+if [ -d "users/$USERDIR" ] ; then
+	cd users
+	stow --no-folding -R --target=$HOME $USERDIR
+	cd ..
+else
+	echo "No user-specific stuff at users/$USERDIR"
+fi
 
-cd users
-
-if [ -d "$(hostname)-$(whoami)" ] ; then stow --no-folding -R --target=$HOME "$(hostname)-$(whoami)"; fi
-if [ -d "$(hostname)" ] ; then stow --no-folding -R --target=$HOME "$(hostname)"; fi
-if [ -d "$(whoami)" ] ; then stow --no-folding -R --target=$HOME "$(whoami)"; fi
+ln -sf $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alacritty.yml || true
 
 # NB: may also need pacman -S python-neovim
 pip3 install --user neovim
 vim +PlugInstall +qa
 
+if which code
+then
+	cat vscode-extensions | while read -r EXTENSION
+	do
+		yes 0 | code --install-extension $EXTENSION || true
+	done
+fi
 cd ..
