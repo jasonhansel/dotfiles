@@ -64,11 +64,11 @@ conky.config = {
 -- ${texeci 3162240000 cava}
 -- ${texecpi 0.1 sed -Eue 's/([0-9]+);/${execbar 10,100 echo \1}\n/g;q' /tmp/cava-jason.fifo }
 --${voffset -2}${font Segoe UI Symbol:size=12}$if_pa_sink_muted 🔇 $else 🔊 $endif${font}${voffset 2
+-- ${color grey}Audio: $color$pa_sink_description
 -- }${tab 20}${pa_sink_volumebar}
 conky.text = [[
 ${color grey}Battery: $color$battery
 $hr
-${color grey}Audio: $color$pa_sink_description
 $hr
 ${color grey}Disk usage: $color${fs_used /}/${fs_size /}
 $hr

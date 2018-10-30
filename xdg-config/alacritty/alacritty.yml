@@ -1,3 +1,4 @@
+
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
 
@@ -13,19 +14,17 @@ env:
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.
   TERM: xterm-256color
-
 # Window dimensions in character columns and lines
 # (changes require restart)
 dimensions:
   columns: 80
   lines: 24
-
 # Adds this many blank pixels of padding around the window
 # Units are physical pixels; this is not DPI aware.
 # (change requires restart)
 padding:
-  x: 2
-  y: 2
+  x: 0
+  y: 0
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
@@ -37,7 +36,7 @@ dpi:
 tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 font:
@@ -49,13 +48,14 @@ font:
 
   # The bold font face
   bold:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Hack # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The italic font face
   italic:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Hack # should be "Menlo" or something on macOS.
+    style: Regular
     # Style can be specified to pick a specific face.
     # style: Italic
 

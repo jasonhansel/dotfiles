@@ -1,6 +1,14 @@
 # Configure paths.
 export GOPATH=~/go
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export RUST_BACKTRACE=1
+
+export DISABLE_AUTO_TITLE=false
+export AUTO_TITLE=true
+
+export LEDGER_FILE=/home/jason/ledger/data.journal
+export LEDGER_SORT=date
+export LEDGER_ADD_BUDGET=1
 
 # Don't try to cache completions.
 # See https://wiki.archlinux.org/index.php/zsh
@@ -10,23 +18,29 @@ zstyle ':completion:*' rehash true
 # through the Arch Linux AUR.
 source /usr/share/zsh/share/antigen.zsh
 
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+
+
 # Enable oh-my-zsh within antigen.
 antigen use oh-my-zsh
 
 # Load a few oh-my-zsh packages.
 antigen bundle gitfast
-antigen bundle common-aliases
-antigen bundle archlinux
+antigen bundle docker
 antigen bundle systemd
-antigen bundle npm
 antigen bundle djui/alias-tips
 antigen bundle zdharma/fast-syntax-highlighting
+antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 
 # Load oh-my-zsh's tmux plugin. Don't autoconnect to tmux -- my custom
 # package will take care of this.
-ZSH_TMUX_AUTOCONNECT=false
-antigen bundle tmux
+# ZSH_TMUX_AUTOCONNECT=false
+# antigen bundle tmux
+
+antigen bundle --no-local-clone $HOME/.zsh
 
 # Load custom theme
 # antigen theme ~/.zsh jason --no-local-clone
@@ -35,25 +49,30 @@ antigen bundle tmux
 antigen apply
 
 # Load aliases
-source ~/.zsh/aliases.zsh
+# source ~/.zsh/aliases.zsh
 source ~/.zsh/jason.zsh-theme
 
-# Don't try to share history between zsh sessions.
-setopt nosharehistory noincappendhistory
-
-setopt correct
-# See https://news.ycombinator.com/item?id=9752238 for details.
+setopt nosharehistory
+setopt noincappendhistory
 setopt noflowcontrol
-
-setopt appendcreate
-setopt shortloops
 
 bindkey -M isearch '^[OA' history-incremental-search-backward
 bindkey -M isearch '^[OB' history-incremental-search-forward
 bindkey -M isearch '\e' accept-search
 
+setopt nobgnice
+setopt appendcreate
+setopt shortloops
+
+bindkey -r "^Q"
+bindkey -r "^O"
+bindkey " " self-insert
+
+
 
 # Override
+export DISABLE_AUTO_TITLE="false"
+export AUTO_TITLE=true
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 
 # Fix syntax highlighting

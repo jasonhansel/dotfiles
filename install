@@ -12,3 +12,9 @@ else
 fi
 
 ln -sf $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alacritty.yml || true
+
+# NB: may also need pacman -S python-neovim
+pip3 install --user neovim
+vim +PlugInstall +qa
+
+cd ..
