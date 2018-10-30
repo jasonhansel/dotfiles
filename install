@@ -17,4 +17,11 @@ ln -sf $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alac
 pip3 install --user neovim
 vim +PlugInstall +qa
 
+if which code
+then
+	cat vscode-extensions | while read -r EXTENSION
+	do
+		code --install-extension $EXTENSION || true
+	done
+fi
 cd ..
