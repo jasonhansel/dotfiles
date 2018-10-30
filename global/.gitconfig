@@ -9,7 +9,8 @@
 [user]
 	email = jason@jasonhansel.com
 	name = Jason Hansel
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+# below breaks trizen
+#[url "ssh://git@github.com/"]
+#	insteadOf = https://github.com/
 [receive]
 	denyCurrentBranch = updateInstead

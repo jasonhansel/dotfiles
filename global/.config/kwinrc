@@ -1,3 +1,6 @@
+[$Version]
+update_info=kwin.upd:replace-scalein-with-scale
+
 [Compositing]
 AnimationSpeed=1
 Backend=OpenGL
@@ -27,6 +30,12 @@ BorderActivateSphere=9
 
 [Effect-DesktopGrid]
 BorderActivate=9
+
+[Effect-DimInactive]
+DimDesktop=true
+DimKeepAbove=true
+DimPanels=true
+Strength=8
 
 [Effect-FlipSwitch]
 TabBox=false
@@ -79,10 +88,14 @@ CommandWindowWheel=Scroll
 
 [Plugins]
 contrastEnabled=true
+diminactiveEnabled[$d]
 enforcedecoEnabled=false
-highlightwindowEnabled=true
+highlightwindowEnabled[$d]
+kwin4_effect_dialogparentEnabled=false
 kwin4_effect_fadeEnabled=false
+kwin4_effect_morphingpopupsEnabled=false
 kwin4_effect_translucencyEnabled=false
+kwin4_effect_windowapertureEnabled=false
 minimizeallEnabled=false
 minimizeanimationEnabled=false
 synchronizeskipswitcherEnabled=false

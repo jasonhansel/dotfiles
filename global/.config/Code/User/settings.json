@@ -1,8 +1,8 @@
 {
-	"window.zoomLevel": -2,
+	"window.zoomLevel": -1,
 	"FSharp.linter": false,
 	"FSharp.enableTreeView": false,
-	"editor.fontSize": 12,
+	"editor.fontSize": 14,
 	"editor.insertSpaces": false,
 	"[fsharp]": {
 		"editor.insertSpaces": true,
@@ -52,5 +52,7 @@
 		"editor.lineHighlightBackground": "#342817",
 		"editorLineNumber.foreground": "#7a5e37"
 	},
-	"tslint.jsEnable": true
+	"tslint.jsEnable": true,
+	"tslint.validateWithDefaultConfig": true,
+	"tslint.alwaysShowRuleFailuresAsWarnings": true
 }
