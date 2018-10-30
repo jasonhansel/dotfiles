@@ -1,14 +1,12 @@
 {
 	"extensions":
 	[
-		"cls"
+		"cls",
+		"tex"
 	],
-    "wrap_width": 95,
-       "rulers": [95], // 95 earlier
-       // ,
-    // Disables horizontal scrolling if enabled.
-    // May be set to true, false, or "auto", where it will be disabled for
-    // source code, and otherwise enabled.
-    "word_wrap": true
-
+	"rulers":
+	[
+	],
+	"word_wrap": true,
+	"wrap_width": 120
 }

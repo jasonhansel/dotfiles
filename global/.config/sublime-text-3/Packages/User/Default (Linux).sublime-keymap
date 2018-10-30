@@ -1,10 +1,13 @@
 [
+        { "keys": ["insert"], "command": "insert", "args": {"characters": "x"} },
     { "keys": ["ctrl+alt+a"], "command": "alignment" },
 	{ "keys": ["ctrl+d"], "command": "find_under_expand" },
     { "keys": ["ctrl+,"], "command": "insert", "args": {"characters": "§"} }, // 0xa7
     { "keys": ["f18","3"], "command": "insert", "args": {"characters": "§"} }, // 0xa7
     { "keys": ["ctrl+."], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
     { "keys": ["f18", "c"], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
+    { "keys": ["f18", "f18"], "command": "insert", "args": {"characters": "¯"} }, //0x186
+    { "keys": ["f18", "4"], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
     { "keys": ["f18", "."], "command": "insert", "args": {"characters": "·"} }, //0x186
     { "keys": ["f18", "d"], "command": "insert", "args": {"characters": "ｄ"} }, //0x186
     { "keys": ["f18", "D"], "command": "insert", "args": {"characters": "Ｄ"} }, //0x186
@@ -14,7 +17,7 @@
     { "keys": ["ctrl+r"], "command": "nop" },
     { "keys": ["tab+d"], "command": "insert", "args": { "characters": "x" } },
     { "keys": ["alt+/"], "command": "insert", "args": { "characters": "／" } },
-    { "keys": ["f18", "f18"], "command": "insert", "args": { "characters": "／" } },
+    // { "keys": ["f18", "f18"], "command": "insert", "args": { "characters": "／" } },
     { "keys": ["f18", "9"], "command": "insert", "args": { "characters": "﹝" } },
     { "keys": ["f18", "8"],"command": "insert_snippet", "args": {"contents": "\\of{$0}"}},
     { "keys": ["f18", "0"], "command": "insert", "args": { "characters": "﹞" } },

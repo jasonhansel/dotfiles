@@ -7,7 +7,7 @@ ButtonAnimationsEnabled=false
 
 [Windeco Exception 0]
 BorderSize=1
-Enabled=true
+Enabled=false
 ExceptionPattern=Navigator Firefox
 ExceptionType=0
 HideTitleBar=true

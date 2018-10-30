@@ -18,6 +18,9 @@
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
+	"rulers":
+	[
+	],
 	"show_definitions": false,
 	"theme": "Soda Dark 3.sublime-theme",
 	"translate_tabs_to_spaces": true,

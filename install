@@ -11,4 +11,4 @@ else
 	echo "No user-specific stuff at users/$USERDIR"
 fi
 
-ln -sf $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alacritty.yml
+ln -sf $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alacritty.yml || true
