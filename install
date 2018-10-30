@@ -1,6 +1,8 @@
 # Use GNU Stow to install the included dotfiles
 
+rm -f ~/.config/alacritty/alacritty.yml
 stow --no-folding -R --target=$HOME global
+
 
 USERDIR="$(hostname)-$(whoami)"
 if [ -d "users/$USERDIR" ] ; then
