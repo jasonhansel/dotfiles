@@ -74,6 +74,7 @@ bindkey " " self-insert
 export DISABLE_AUTO_TITLE="false"
 export AUTO_TITLE=true
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
+export SSH_ASKPASS=$HOME/bin/askpass
 
 # Fix syntax highlighting
 

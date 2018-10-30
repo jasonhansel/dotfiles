@@ -10,18 +10,10 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
-		"INI",
-		"JSX",
-		"PowerShell",
-		"QML",
-		"SublimeHaskell",
-		"SublimeLinter",
-		"SublimeLinter-eslint",
-		"SublimeLinter-jsxhint",
 		"Vintage"
 	],
 	"preview_on_click": false,
 	"show_line_endings": true,
-	"theme": "Spacegray.sublime-theme",
+	"theme": "Default.sublime-theme",
 	"update_check": false
 }

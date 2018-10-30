@@ -1,4 +1,63 @@
 {
+<<<<<<< HEAD
+	"window.zoomLevel": -1,
+	"FSharp.linter": false,
+	"FSharp.enableTreeView": false,
+	"editor.fontSize": 14,
+	"editor.insertSpaces": false,
+	"[fsharp]": {
+		"editor.insertSpaces": true,
+		"editor.useTabStops": false
+	},
+	"editor.minimap.enabled": false,
+	"editor.acceptSuggestionOnEnter": "off",
+	"editor.acceptSuggestionOnCommitCharacter": false,
+	"editor.renderLineHighlight": "all",
+	"editor.folding": false,
+	"editor.dragAndDrop": false,
+	"workbench.editor.enablePreview": false,
+	"workbench.iconTheme": "vs-minimal",
+	"window.title": "${dirty}${activeEditorShort} (${rootName})",
+	"files.trimTrailingWhitespace": true,
+	"files.hotExit": "off",
+	"explorer.openEditors.visible": 0,
+	"explorer.enableDragAndDrop": false,
+	"editor.fontFamily": "Hack",
+	"editor.codeLens": false,
+	"FSharp.msbuildLocation": "/home/jason/Desktop/Projects/kasm/packages/MSBuild/tools/Unix/MSBuild.exe",
+	"FSharp.logLanguageServiceRequestsOutputWindowLevel": "DEBUG",
+	"terminal.integrated.confirmOnExit": true,
+	"terminal.integrated.shell.linux": "/usr/bin/bash",
+	"workbench.editor.closeOnFileDelete": false,
+	"git.autofetch": false,
+	"files.associations": {
+		"*.todo": "markdown"
+	},
+	"workbench.sideBar.location": "left",
+	"window.menuBarVisibility": "toggle",
+	"css.colorDecorators.enable": false,
+	"workbench.colorTheme": "Kimbie Dark",
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"scope": [
+					"comment"
+				],
+				"settings": {
+					"fontStyle": ""
+				}
+			}
+		]
+	},
+	"workbench.colorCustomizations": {
+		"editor.lineHighlightBackground": "#342817",
+		"editorLineNumber.foreground": "#7a5e37"
+	},
+	"tslint.jsEnable": true,
+	"tslint.validateWithDefaultConfig": true,
+	"tslint.alwaysShowRuleFailuresAsWarnings": true
+}
+=======
     "window.zoomLevel": -1,
     "editor.fontSize": 14,
     "editor.fontFamily": "Consolas",
@@ -217,3 +276,4 @@
         "zolocode.editorzoom"
     ]
 }
+>>>>>>> 8ff55aead8c508e589016c9fec3d6b2cec8edc2c
