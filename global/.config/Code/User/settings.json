@@ -274,6 +274,9 @@
         "srfrnk.user-extensions",
         "tushortz.python-extended-snippets",
         "zolocode.editorzoom"
-    ]
+    ],
+    "editor.formatOnPaste": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "window.zoomLevel": 0,
+    "editor.fontSize": 11
 }
->>>>>>> 8ff55aead8c508e589016c9fec3d6b2cec8edc2c
