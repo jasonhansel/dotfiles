@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"window.zoomLevel": -1,
 	"FSharp.linter": false,
 	"FSharp.enableTreeView": false,
@@ -10,78 +9,22 @@
 		"editor.useTabStops": false
 	},
 	"editor.minimap.enabled": false,
-	"editor.acceptSuggestionOnEnter": "off",
-	"editor.acceptSuggestionOnCommitCharacter": false,
-	"editor.renderLineHighlight": "all",
-	"editor.folding": false,
-	"editor.dragAndDrop": false,
-	"workbench.editor.enablePreview": false,
-	"workbench.iconTheme": "vs-minimal",
-	"window.title": "${dirty}${activeEditorShort} (${rootName})",
-	"files.trimTrailingWhitespace": true,
-	"files.hotExit": "off",
-	"explorer.openEditors.visible": 0,
-	"explorer.enableDragAndDrop": false,
 	"editor.fontFamily": "Hack",
-	"editor.codeLens": false,
-	"FSharp.msbuildLocation": "/home/jason/Desktop/Projects/kasm/packages/MSBuild/tools/Unix/MSBuild.exe",
-	"FSharp.logLanguageServiceRequestsOutputWindowLevel": "DEBUG",
-	"terminal.integrated.confirmOnExit": true,
-	"terminal.integrated.shell.linux": "/usr/bin/bash",
-	"workbench.editor.closeOnFileDelete": false,
-	"git.autofetch": false,
-	"files.associations": {
-		"*.todo": "markdown"
-	},
-	"workbench.sideBar.location": "left",
-	"window.menuBarVisibility": "toggle",
-	"css.colorDecorators.enable": false,
-	"workbench.colorTheme": "Kimbie Dark",
-	"editor.tokenColorCustomizations": {
-		"textMateRules": [
-			{
-				"scope": [
-					"comment"
-				],
-				"settings": {
-					"fontStyle": ""
-				}
-			}
-		]
-	},
-	"workbench.colorCustomizations": {
-		"editor.lineHighlightBackground": "#342817",
-		"editorLineNumber.foreground": "#7a5e37"
-	},
-	"tslint.jsEnable": true,
 	"tslint.validateWithDefaultConfig": true,
-	"tslint.alwaysShowRuleFailuresAsWarnings": true
-}
-=======
-    "window.zoomLevel": -1,
-    "editor.fontSize": 14,
-    "editor.fontFamily": "Consolas",
+	"tslint.alwaysShowRuleFailuresAsWarnings": true,
     "editor.fontLigatures": true,
     "editor.renderControlCharacters": true,
-    "FSharp.linter": false,
-    "FSharp.enableTreeView": false,
-    "editor.insertSpaces": true,
-    "[fsharp]": {
-        "editor.insertSpaces": true,
-        "editor.useTabStops": false
-    },
-    "editor.minimap.enabled": false,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.renderLineHighlight": "all",
     "editor.folding": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.revealIfOpen": true,
-    // "java.signatureHelp.enabled": true,
-    // "java.format.enabled": false,
-    // "java.import.exclusions": [
-    //     "**/hadoop-2.7.4"
-    // ],
+    "java.signatureHelp.enabled": true,
+    "java.format.enabled": false,
+    "java.import.exclusions": [
+        "**/hadoop-2.7.4"
+    ],
     "java.classPath":
     [
         "./lib-*/*.jar",
@@ -109,8 +52,10 @@
         "*.todo": "markdown"
     },
     "workbench.sideBar.location": "left",
-    "window.menuBarVisibility": "toggle",
-    "css.colorDecorators.enable": false,
+    "window.menuBarVisibility": "hidden",
+    "editor.colorDecorators": false,
+    "workbench.settings.editor": "json",
+    "workbench.statusBar.feedback.visible": false,
     "workbench.colorTheme": "Solarized Dark",
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -236,47 +181,10 @@
     "window.closeWhenEmpty": true,
     "explorer.autoReveal": false,
     "terminal.external.linuxExec": "alacritty",
-    "sublimeTextKeymap.promptV3Features": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.snippetSuggestions": "top",
-    "editor.formatOnPaste": true,
-    "python.linting.enabled": true,
-    "python.autoComplete.addBrackets": true,
     "editor.wordBasedSuggestions": false,
-    "python.formatting.provider": "none",
-    "python.linting.mypyEnabled": false,
-    "python.linting.mypyArgs": [
-        "--disallow-any-decorated",
-        "--follow-imports=silent",
-        "--strict-optional",
-        "--check-untyped-defs",
-        "--incremental",
-        "--disallow-untyped-defs"
-    ],
-    "python.linting.pylintEnabled": false,
-    "python.venvPath": "/home/work/.local/share/virtualenvs",
     "extensions.ignoreRecommendations": true,
     "update.channel": "none",
-    "extensions.recommendations": [
-        "AndrsDC.base16-themes",
-        "Gruntfuggly.activitusbar",
-        "Ionide.Ionide-fsharp",
-        "SolarLiner.linux-themes",
-        "aaron-bond.better-comments",
-        "dbaeumer.vscode-eslint",
-        "eg2.tslint",
-        "georgewfraser.vscode-javac",
-        "magicstack.MagicPython",
-        "donjayamanne.python",
-        "ms-vscode.sublime-keybindings",
-        "redhat.java",
-        "spywhere.whiteviz",
-        "srfrnk.user-extensions",
-        "tushortz.python-extended-snippets",
-        "zolocode.editorzoom"
-    ],
-    "editor.formatOnPaste": true,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "window.zoomLevel": 0,
-    "editor.fontSize": 11
+    "editor.formatOnPaste": true
 }
