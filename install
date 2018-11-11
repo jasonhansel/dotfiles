@@ -1,6 +1,12 @@
 # Use GNU Stow to install the included dotfiles
 
+set -euo pipefail
+
+ln -siT "$HOME/.config/Code" "$HOME/.config/Code - OSS"
+
+rm -f ~/.config/alacritty/alacritty.yml
 stow --no-folding -R --target=$HOME global
+
 
 USERDIR="$(hostname)-$(whoami)"
 if [ -d "users/$USERDIR" ] ; then
@@ -11,7 +17,7 @@ else
 	echo "No user-specific stuff at users/$USERDIR"
 fi
 
-ln -sf $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alacritty.yml || true
+ln -sfT $(readlink -f ~/.config/alacritty/alacritty.yml) ~/.config/alacritty/alacritty.yml || true
 
 # NB: may also need pacman -S python-neovim
 pip3 install --user neovim

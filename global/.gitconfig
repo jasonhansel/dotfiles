@@ -4,6 +4,8 @@
 	cam = commit -am
 	cm = commit -m
 	ap = add -p :/
+[diff]
+	colorMoved = plain
 [status]
 	showUntrackedFiles = all
 [user]
