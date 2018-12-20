@@ -1,0 +1,6 @@
+#!/bin/bash
+# TEMPDIR=$(mktemp -d)
+# ln -Ts /home/jason/photos $TEMPDIR/photos 
+# ln -Ts /var/www/photos $TEMPDIR/output 
+# echo $TEMPDIR
+sudo docker run -it -v=/home/jason/photos:/data/pictures:ro -v=/var/www/photos:/data/output gallery-builder

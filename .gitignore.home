@@ -116,7 +116,7 @@
 /.*log
 /.docker
 /.links
-
+/.vifm/vifminfo
 
 !/.ssh/config-default
 !/.zshrc

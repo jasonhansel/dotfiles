@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+# also remember to call "sync" on occasion
+
+
+{
+LEDGER_FILE=/home/jason/ledger/data.journal \
+LEDGER_SORT=date \
+LEDGER_ADD_BUDGET=1 \
+ledger reg \
+		--date-format %m-%d \
+		-b 2017/08 \
+		--account-width 4 \
+		--register-format "%-6.6(format_date(date))\t%5(int(display_amount))\t%5(int(display_total))\t%P\n" \
+		-- not expenses
+echo -n "As of: "
+date -I -r /home/jason/ledger/data.journal
+} | less +G
