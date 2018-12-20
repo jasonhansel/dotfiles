@@ -1,0 +1,33 @@
+{
+	"added_words":
+	[
+		"Tempora"
+	],
+	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-darktooth.tmTheme",
+	"enable_tab_scrolling": false,
+	"file_exclude_patterns":
+	[
+	],
+	"find_selected_text": false,
+	"font_face": "Consolas",
+	"font_size": 11,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"ScopeHunter",
+		"SublimeHaskell",
+		"Vintage"
+	],
+	"ignored_words":
+	[
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"rulers":
+	[
+	],
+	"show_definitions": false,
+	"theme": "Soda Dark 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"update_check": false
+}

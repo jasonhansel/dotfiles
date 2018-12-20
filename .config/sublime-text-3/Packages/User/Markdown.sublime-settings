@@ -1,0 +1,11 @@
+{
+    "color_scheme": "Packages/Base16 Color Schemes/Themes/base16-solarized-light.tmTheme",
+	"extensions":
+	[
+		"md",
+		"md"
+	],
+
+    // Set to true to insert spaces when tab is pressed
+    "translate_tabs_to_spaces": false
+}

@@ -1,0 +1,33 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Alignment",
+		"ApacheConf",
+		"AutoAligner",
+		"Babel",
+		"Base16 Color Schemes",
+		"C++11",
+		"ClangAutoComplete",
+		"DeleteBlankLines",
+		"FAlign",
+		"INI",
+		"LaTeXTools",
+		"Markdown Extended",
+		"MarkdownLight",
+		"MarkdownPreview",
+		"Package Control",
+		"Print to HTML",
+		"Quick File Move",
+		"ScopeAlways",
+		"ScopeHunter",
+		"SML (Standard ML)",
+		"Strapdown Markdown Preview",
+		"SublimeHaskell",
+		"Theme - Soda",
+		"VAlign"
+	]
+}

@@ -29,6 +29,7 @@
 !/.config/Code/User/*.json
 !/.config/greek.xkb
 !/.config/vifm**
+/.config/vifm/vifm-help.txt
 !/.local
 /.local/*
 !/.local/share

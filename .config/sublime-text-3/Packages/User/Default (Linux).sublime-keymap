@@ -1,0 +1,83 @@
+[
+        { "keys": ["insert"], "command": "insert", "args": {"characters": "x"} },
+    { "keys": ["ctrl+alt+a"], "command": "alignment" },
+	{ "keys": ["ctrl+d"], "command": "find_under_expand" },
+    { "keys": ["ctrl+,"], "command": "insert", "args": {"characters": "§"} }, // 0xa7
+    { "keys": ["f18","3"], "command": "insert", "args": {"characters": "§"} }, // 0xa7
+    { "keys": ["ctrl+."], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
+    { "keys": ["f18", "c"], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
+    { "keys": ["f18", "f18"], "command": "insert", "args": {"characters": "¯"} }, //0x186
+    { "keys": ["f18", "4"], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
+    { "keys": ["f18", "."], "command": "insert", "args": {"characters": "·"} }, //0x186
+    { "keys": ["f18", "d"], "command": "insert", "args": {"characters": "ｄ"} }, //0x186
+    { "keys": ["f18", "D"], "command": "insert", "args": {"characters": "Ｄ"} }, //0x186
+    { "keys": ["f18", "q"], "command": "insert", "args": {"characters": "■"} }, //0x186
+    { "keys": ["alt+."], "command": "insert", "args": {"characters": "·"} }, //0x186
+    // { "keys": ["f18"], "command": "insert", "args": {"characters": "·"} }, //0x186
+    { "keys": ["ctrl+r"], "command": "nop" },
+    { "keys": ["tab+d"], "command": "insert", "args": { "characters": "x" } },
+    { "keys": ["alt+/"], "command": "insert", "args": { "characters": "／" } },
+    // { "keys": ["f18", "f18"], "command": "insert", "args": { "characters": "／" } },
+    { "keys": ["f18", "9"], "command": "insert", "args": { "characters": "﹝" } },
+    { "keys": ["f18", "8"],"command": "insert_snippet", "args": {"contents": "\\of{$0}"}},
+    { "keys": ["f18", "0"], "command": "insert", "args": { "characters": "﹞" } },
+    { "keys": ["f18", "n"], "command": "insert", "args": { "characters": "∇" } },
+    { "keys": ["f18", "p"], "command": "insert", "args": { "characters": "∂" } },
+    { "keys": ["alt+d"], "command": "insert", "args": { "characters": "ｄ" } },
+    { "keys": ["alt+l"], "command": "insert", "args": { "characters": "ℓ" } },
+    { "keys": ["f18","l"], "command": "insert", "args": { "characters": "ℓ" } },
+    { "keys": ["alt+e"], "command": "insert", "args": { "characters": "ℰ" } },
+    { "keys": ["f18","e"], "command": "insert", "args": { "characters": "ℰ" } },
+    { "keys": ["ctrl+r", "A"], "command": "insert", "args": { "characters": "Α" } },
+    { "keys": ["ctrl+r", "A"], "command": "insert", "args": { "characters": "Α" } },
+    { "keys": ["ctrl+r", "a"], "command": "insert", "args": { "characters": "α" } },
+    { "keys": ["ctrl+r", "B"], "command": "insert", "args": { "characters": "Β" } },
+    { "keys": ["ctrl+r", "b"], "command": "insert", "args": { "characters": "β" } },
+    { "keys": ["ctrl+r", "G"], "command": "insert", "args": { "characters": "Γ" } },
+    { "keys": ["ctrl+r", "g"], "command": "insert", "args": { "characters": "γ" } },
+    { "keys": ["ctrl+r", "D"], "command": "insert", "args": { "characters": "Δ" } },
+    { "keys": ["ctrl+r", "d"], "command": "insert", "args": { "characters": "δ" } },
+    { "keys": ["ctrl+r", "E"], "command": "insert", "args": { "characters": "Ε" } },
+    { "keys": ["ctrl+r", "e"], "command": "insert", "args": { "characters": "ε" } },
+    { "keys": ["ctrl+r", "V"], "command": "insert", "args": { "characters": "Ν" } },
+    { "keys": ["ctrl+r", "v"], "command": "insert", "args": { "characters": "ν" } },
+    { "keys": ["ctrl+r", "Z"], "command": "insert", "args": { "characters": "Ζ" } },
+    { "keys": ["ctrl+r", "z"], "command": "insert", "args": { "characters": "ζ" } },
+    { "keys": ["ctrl+r", "H"], "command": "insert", "args": { "characters": "Η" } },
+    { "keys": ["ctrl+r", "h"], "command": "insert", "args": { "characters": "η" } },
+    { "keys": ["ctrl+r", "Q"], "command": "insert", "args": { "characters": "Θ" } },
+    { "keys": ["ctrl+r", "q"], "command": "insert", "args": { "characters": "θ" } },
+    { "keys": ["ctrl+r", "I"], "command": "insert", "args": { "characters": "Ι" } },
+    { "keys": ["ctrl+r", "i"], "command": "insert", "args": { "characters": "ι" } },
+    { "keys": ["ctrl+r", "K"], "command": "insert", "args": { "characters": "Κ" } },
+    { "keys": ["ctrl+r", "k"], "command": "insert", "args": { "characters": "κ" } },
+    { "keys": ["ctrl+r", "L"], "command": "insert", "args": { "characters": "Λ" } },
+    { "keys": ["ctrl+r", "l"], "command": "insert", "args": { "characters": "λ" } },
+    { "keys": ["ctrl+r", "M"], "command": "insert", "args": { "characters": "Μ" } },
+    { "keys": ["ctrl+r", "m"], "command": "insert", "args": { "characters": "μ" } },
+    { "keys": ["ctrl+r", "N"], "command": "insert", "args": { "characters": "Ν" } },
+    { "keys": ["ctrl+r", "n"], "command": "insert", "args": { "characters": "ν" } },
+    { "keys": ["ctrl+r", "C"], "command": "insert", "args": { "characters": "Ξ" } },
+    { "keys": ["ctrl+r", "c"], "command": "insert", "args": { "characters": "ξ" } },
+    { "keys": ["ctrl+r", "O"], "command": "insert", "args": { "characters": "Ο" } },
+    { "keys": ["ctrl+r", "o"], "command": "insert", "args": { "characters": "ο" } },
+    { "keys": ["ctrl+r", "P"], "command": "insert", "args": { "characters": "Π" } },
+    { "keys": ["ctrl+r", "p"], "command": "insert", "args": { "characters": "π" } },
+    { "keys": ["ctrl+r", "R"], "command": "insert", "args": { "characters": "Ρ" } },
+    { "keys": ["ctrl+r", "r"], "command": "insert", "args": { "characters": "ρ" } },
+    { "keys": ["ctrl+r", "S"], "command": "insert", "args": { "characters": "Σ" } },
+    { "keys": ["ctrl+r", "s"], "command": "insert", "args": { "characters": "σ" } },
+    { "keys": ["ctrl+r", "T"], "command": "insert", "args": { "characters": "Τ" } },
+    { "keys": ["ctrl+r", "t"], "command": "insert", "args": { "characters": "τ" } },
+    { "keys": ["ctrl+r", "U"], "command": "insert", "args": { "characters": "Υ" } },
+    { "keys": ["ctrl+r", "u"], "command": "insert", "args": { "characters": "υ" } },
+    { "keys": ["ctrl+r", "F"], "command": "insert", "args": { "characters": "Φ" } },
+    { "keys": ["ctrl+r", "f"], "command": "insert", "args": { "characters": "φ" } },
+    { "keys": ["ctrl+r", "X"], "command": "insert", "args": { "characters": "Χ" } },
+    { "keys": ["ctrl+r", "x"], "command": "insert", "args": { "characters": "χ" } },
+    { "keys": ["ctrl+r", "Y"], "command": "insert", "args": { "characters": "Ψ" } },
+    { "keys": ["ctrl+r", "y"], "command": "insert", "args": { "characters": "ψ" } },
+    { "keys": ["ctrl+r", "W"], "command": "insert", "args": { "characters": "Ω" } },
+    { "keys": ["ctrl+r", "w"], "command": "insert", "args": { "characters": "ω" } },
+]
+

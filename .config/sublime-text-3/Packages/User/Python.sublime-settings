@@ -1,0 +1,8 @@
+// These settings override both User and Default settings for the Python syntax
+{
+	
+    // Set to true to insert spaces when tab is pressed
+    "translate_tabs_to_spaces": true,
+        "trim_trailing_white_space_on_save": false,
+            "ensure_newline_at_eof_on_save": true
+}

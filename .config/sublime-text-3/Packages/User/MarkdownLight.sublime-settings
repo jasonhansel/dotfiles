@@ -1,0 +1,9 @@
+{
+	"extensions":
+	[
+		"markdown",
+		"mdown",
+		"markdn"
+	],
+	"translate_tabs_to_spaces": false
+}
