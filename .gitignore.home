@@ -27,8 +27,7 @@
 /.asoundrc
 /.aspell*
 /.audacity-data
-/.autokey-log
-/.bash_*
+/.bash*
 /.bundle
 /.cabal
 /.cargo
@@ -105,8 +104,19 @@
 /.xkb
 /.xmaximarc
 /.xsession*
-/.zcompdump
+/.zcompdump*
+/.gem
+/.lnav
+/.qws
+/.w3m
 /.zotero
+/.v8flags*
+/.vifm/scripts/README
+/.zdirs
+/.*log
+/.docker
+/.links
+
 
 !/.ssh/config-default
 !/.zshrc

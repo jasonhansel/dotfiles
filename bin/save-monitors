@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "sudo -u $USER $(unxrandr) --display $DISPLAY" > ~/.unxrandr
-echo "echo 'RAN UNXRANDR $(unxrandr)'" >> ~/.unxrandr
-chmod +x ~/.unxrandr
