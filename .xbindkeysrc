@@ -1,14 +1,3 @@
-"xte 'keydown XF86AudioLowerVolume'"
-	m:0x0 + b:8
-
-"xte 'key XF86AudioLowerVolume'"
-	m:0x0 + b:8 + Release
-
-"xte 'key XF86AudioRaiseVolume'"
-	m:0x0 + b:9
-
-"krunner"
-	F18
 
 
 #"xdotool keydown Super_L"

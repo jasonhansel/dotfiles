@@ -1203,12 +1203,12 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
      key <AE09> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [               9, parenleft ],
-        symbols[Group2]= [      dead_abovereversedcomma, parenleft ]
+        symbols[Group2]= [      dead_abovereversedcomma, dead_abovereversedcomma ]
     };
     key <AE10> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [               0,      parenright ],
-        symbols[Group2]= [      dead_abovecomma, parenright ]
+        symbols[Group2]= [      dead_abovecomma, dead_abovecomma ]
     };
     key <AE11> {
         type[group2]= "THREE_LEVEL",
@@ -1278,12 +1278,12 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     key <AD11> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [     bracketleft,       braceleft ],
-        symbols[Group2]= [     bracketleft,       braceleft ]
+        symbols[Group2]= [      dead_tilde,  dead_diaeresis,     dead_macron ]
     };
     key <AD12> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [    bracketright,      braceright ],
-        symbols[Group2]= [    bracketright,      braceright ]
+        symbols[Group2]= [       dead_iota,      VoidSymbol,      dead_breve ]
     };
     key <RTRN> {         [          Return ] };
     key <LCTL> {         [       Control_L ] };
@@ -1335,7 +1335,7 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     key <AC10> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [       semicolon,           colon ],
-        symbols[Group2]= [     semicolon, periodcentered ]
+        symbols[Group2]= [      dead_acute, dead_abovecomma,        NoSymbol ]
     };
     key <AC11> {
         type[group2]= "FOUR_LEVEL",
@@ -1388,12 +1388,12 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     key <AB08> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [           comma,            less ],
-        symbols[Group2]= [           comma,            slash ]
+        symbols[Group2]= [           comma,            less,   guillemotleft ]
     };
     key <AB09> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [          period,         greater ],
-        symbols[Group2]= [          period,         backslash ]
+        symbols[Group2]= [          period,         greater,  guillemotright ]
     };
     key <AB10> {
         type[group2]= "THREE_LEVEL",

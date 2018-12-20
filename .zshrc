@@ -1,6 +1,6 @@
 # Configure paths.
 export GOPATH=~/go
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 export RUST_BACKTRACE=1
 
 export DISABLE_AUTO_TITLE=false
