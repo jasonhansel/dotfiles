@@ -117,6 +117,8 @@
 /.docker
 /.links
 /.vifm/vifminfo
+/.vifm/*.txt
+/.zkbd/*.tmp
 
 !/.ssh/config-default
 !/.zshrc
