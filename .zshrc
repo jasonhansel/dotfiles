@@ -10,6 +10,9 @@ export LEDGER_FILE=/home/jason/ledger/data.journal
 export LEDGER_SORT=date
 export LEDGER_ADD_BUDGET=1
 
+# Keep prompt at bottom of screen [issue: window resize]
+# printf '\n%.0s' {2..$LINES}
+
 # Don't try to cache completions.
 # See https://wiki.archlinux.org/index.php/zsh
 zstyle ':completion:*' rehash true
@@ -86,6 +89,8 @@ FAST_HIGHLIGHT_STYLES[builtin]='none'
 FAST_HIGHLIGHT_STYLES[alias]='none'
 FAST_HIGHLIGHT_STYLES[unknown-token]='none'
 FAST_HIGHLIGHT_STYLES[arg0]='none'
+
+
 # Start "tmux", if necessary
 source ~/.zsh/start-tmux.zsh
 
