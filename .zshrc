@@ -19,7 +19,7 @@ zstyle ':completion:*' rehash true
 
 # Load antigen package manager. Assumes that antigen was installed
 # through the Arch Linux AUR.
-source /usr/share/zsh/share/antigen.zsh
+source ~/.zsh/antigen.zsh
 
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic

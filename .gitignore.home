@@ -4,6 +4,7 @@
 # Include all things, make installable
 
 !/.*
+/.profile
 /.sbt
 /.rustup
 /.ivy2
@@ -62,7 +63,7 @@
 /.fltk
 /.gdbinit
 /.gimp-2.8
-/.gitconfig
+/.gitconfig.local
 /.gnome*
 /.gnupg
 /.gstreamer*
@@ -156,6 +157,7 @@
 /.local/share/applications/q4wine**
 !/.zsh
 !/.zsh**
+/.zsh/antigen.zsh
 /.zsh_history
 /*.zwc
 !/.config/kwinrulesrc
