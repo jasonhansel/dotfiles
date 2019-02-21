@@ -1,3 +1,0 @@
-#!/bin/bash
-export SSH_ASKPASS=/usr/bin/lxqt-openssh-askpass
-xmodmap ~/.Xmodmap

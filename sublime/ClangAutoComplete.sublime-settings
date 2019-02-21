@@ -1,7 +1,0 @@
-{
-    "autocomplete_all" : "false",
-    "selectors" : [ ">",".",",","    "],
-    "include_dirs" : [
-                        "/usr/include",
-                        "$project_base_path"]
-}

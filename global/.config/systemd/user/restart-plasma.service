@@ -1,9 +1,0 @@
-[Unit]
-Description=Restart Plasma
-
-[Service]
-Type=simple
-ExecStart=/bin/bash -c "while ! pidof plasmashell ; do sleep 1; done ; kill $pids; sleep 2; DISPLAY=:0 plasmashell"
-
-[Install]
-WantedBy=default.target
