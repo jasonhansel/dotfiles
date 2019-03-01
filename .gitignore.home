@@ -118,8 +118,8 @@
 /.thumbnails
 /.tooling
 /.unxrandr
-/.viminfo
 /.virtualenvs
+/.viminfo
 /.vpython-root
 /.vscode*
 /.wget-hsts
@@ -194,7 +194,6 @@
 /.config/GIMP/
 /.config/KDE/
 /.config/LanguageTool/
-/.config/Minituberc
 /.config/Nextcloud/
 /.config/NotSnapChat/
 /.config/NuGet/
@@ -209,17 +208,6 @@
 /.config/VirtualBox/
 /.config/XpdfReaderrc
 /.config/abiword/
-/.config/akonadi-firstrunrc
-/.config/akonadi-migrationrc
-/.config/akonadi/
-/.config/akonadi_akonotes_resource_0rc
-/.config/akonadi_archivemail_agentrc
-/.config/akonadi_contactrc
-/.config/akonadi_imap_resource_0rc
-/.config/akonadi_indexing_agentrc
-/.config/akonadi_maildir_resource_0rc
-/.config/akonadi_newmailnotifier_agentrc
-/.config/akonadiconsolerc
 /.config/akregatorrc
 /.config/arkrc
 /.config/auroraerc
