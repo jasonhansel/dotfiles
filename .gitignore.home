@@ -16,9 +16,6 @@
 /*.ofx
 /My *
 
-# Add instructions
-# Include all things, make installable
-
 /**/.git
 /.scalac/fsc_redirects/*.log
 /.sbt
@@ -84,7 +81,6 @@
 /.gtk-bookmarks
 /.icons
 /.indicator-weather
-/.ipython
 /.java
 /.kde4
 /.keychain
@@ -342,8 +338,6 @@
 /.config/ristretto/
 /.config/rocsrc
 /.config/scdl/
-/.config/scribus/
-/.config/spacefm/
 /.config/specialmailcollectionsrc
 /.config/spectaclerc
 /.config/spotify/
