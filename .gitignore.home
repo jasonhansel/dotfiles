@@ -4,8 +4,6 @@
 # Include all things, make installable
 
 /**/.git
-/.IdeaIC2018.2/config/options/window.*.xml
-/.IdeaIC2018.2/config/options/runner.layout.xml
 /.IdeaIC2018.2/config/tasks/*.zip
 /.scalac/fsc_redirects/*.log
 !/.*
@@ -13,14 +11,8 @@
 /.rustup
 /.ivy2
 /.Idea*/system
-/.Idea*/config/port
-/.Idea*/config/plugins
-/.Idea*/config/options/dimensions.xml
-/.Idea*/config/options/options.xml
-/.Idea*/config/options/recentProjects.xml
-/.Idea*/config/options/images.support.xml
-/.Idea*/config/options/updates.xml
-/.Idea*/config/options/usage.statistics.xml
+/.Idea*/config/*
+!/.Idea*/config/settingsRepository
 /.install4j
 /.idea-build
 /.pdfstudio2018
