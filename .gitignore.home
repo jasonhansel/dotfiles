@@ -11,9 +11,10 @@
 /idea-settings-repo
 /Nextcloud
 /Pictures
+/ofxclient.ini
+/texmf
+/*.ofx
 /My *
-/*
-!/.*
 
 # Add instructions
 # Include all things, make installable
@@ -98,7 +99,6 @@
 /.node-gyp
 /.npm
 /.nuget
-/.nylas
 /.odbc.ini
 /.oracle_jre_usage
 /.parallel
