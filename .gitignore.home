@@ -1,12 +1,11 @@
 /*
+!/.*
 
 # Add instructions
 # Include all things, make installable
 
 /**/.git
-/.IdeaIC2018.2/config/tasks/*.zip
 /.scalac/fsc_redirects/*.log
-!/.*
 /.sbt
 /.rustup
 /.ivy2
@@ -80,7 +79,6 @@
 /.m2
 /.macromedia
 /.magic*
-/.moneydance
 /.mono
 /.mozilla
 /.node-gyp
@@ -96,7 +94,7 @@
 /.recently-used
 /.rnd
 /.sage
-/.ssh
+/.ssh/*
 /.stack
 /.stalonetrayrc
 /.subversion
@@ -108,7 +106,6 @@
 /.viminfo
 /.virtualenvs
 /.vpython-root
-/.vpython_cipd_cache
 /.vscode*
 /.wget-hsts
 /.wine*
