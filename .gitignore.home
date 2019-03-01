@@ -1,3 +1,17 @@
+/Desktop
+/Documents
+/Downloads
+/Dropbox.OLD
+/FoxitSoftware
+/linux
+/LTspiceXVII
+/eclipse-workspace
+/dotfiles*
+/VirtualBox *
+/idea-settings-repo
+/Nextcloud
+/Pictures
+/My *
 /*
 !/.*
 
@@ -54,14 +68,15 @@
 /.dmrc
 /.dockbarx
 /.drirc
-/.dropbox*
 /.eclipse
 /.ecryptfs
 /.electron*
 /.fltk
 /.gdbinit
 /.gimp-2.8
-/.gnome*
+/.gnome
+/.gnome2
+/.gnome2_private
 /.gnupg
 /.gstreamer*
 /.gsutil
@@ -74,7 +89,6 @@
 /.keychain
 /.languagetool.cfg
 /.lastpass
-/.ledgerrc
 /.ltspice
 /.m2
 /.macromedia
@@ -99,7 +113,8 @@
 /.stalonetrayrc
 /.subversion
 /.swt
-/.texlive
+/.texlive/texmf-var/web2c
+/.texlive/texmf-var/arch
 /.thumbnails
 /.tooling
 /.unxrandr
