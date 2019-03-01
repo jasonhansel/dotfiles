@@ -1,0 +1,17 @@
+[alias]
+	st = status
+	aa = add :/
+	cam = commit -am
+	cm = commit -m
+	ap = add -p :/
+[diff]
+	colorMoved = plain
+[status]
+	showUntrackedFiles = all
+[include]
+	path = ~/.gitconfig.local
+# below breaks trizen
+#[url "ssh://git@github.com/"]
+#	insteadOf = https://github.com/
+[receive]
+	denyCurrentBranch = updateInstead

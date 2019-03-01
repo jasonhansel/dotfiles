@@ -3,7 +3,7 @@
 # Add instructions
 # Include all things, make installable
 
-/.IdeaIC2018.2/config/options/window.manager.xml
+/.IdeaIC2018.2/config/options/window.*.xml
 /.IdeaIC2018.2/config/options/runner.layout.xml
 /.IdeaIC2018.2/config/tasks/*.zip
 /.scalac/fsc_redirects/*.log
