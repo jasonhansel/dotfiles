@@ -3,6 +3,7 @@
 # Add instructions
 # Include all things, make installable
 
+/**/.git
 /.IdeaIC2018.2/config/options/window.*.xml
 /.IdeaIC2018.2/config/options/runner.layout.xml
 /.IdeaIC2018.2/config/tasks/*.zip
