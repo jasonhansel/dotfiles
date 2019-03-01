@@ -7,7 +7,9 @@
       <homePath value="/usr/lib/jvm/java-8-openjdk" />
       <roots>
         <annotationsPath>
-          <root type="composite" />
+          <root type="composite">
+            <root url="jar://$APPLICATION_HOME_DIR$/lib/jdkAnnotations.jar!/" type="simple" />
+          </root>
         </annotationsPath>
         <classPath>
           <root type="composite">

@@ -2,9 +2,9 @@
         { "keys": ["insert"], "command": "insert", "args": {"characters": "x"} },
     { "keys": ["ctrl+alt+a"], "command": "alignment" },
 	{ "keys": ["ctrl+d"], "command": "find_under_expand" },
-    { "keys": ["ctrl+,"], "command": "insert", "args": {"characters": "§"} }, // 0xa7
+    { "keys": ["ctrl+,"], "command": "insert", "args": {"characters": "→"} }, // 0xa7
     { "keys": ["f18","3"], "command": "insert", "args": {"characters": "§"} }, // 0xa7
-    { "keys": ["ctrl+."], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
+    { "keys": ["ctrl+."], "command": "insert", "args": {"characters": "•"} }, //0x186
     { "keys": ["f18", "c"], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186
     { "keys": ["f18", "f18"], "command": "insert", "args": {"characters": "¯"} }, //0x186
     { "keys": ["f18", "4"], "command": "insert", "args": {"characters": "Ɔ"} }, //0x186

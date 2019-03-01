@@ -1,3 +1,4 @@
+
 xkb_keymap {
 xkb_keycodes "evdev+aliases(qwerty)" {
     minimum = 8;
@@ -440,145 +441,6 @@ xkb_types "complete" {
         level_name[Level7]= "X Alt Base";
         level_name[Level8]= "X Shift Alt";
     };
-    type "EIGHT_LEVEL_ALPHABETIC" {
-        modifiers= Shift+Lock+LevelThree+LevelFive;
-        map[Shift]= Level2;
-        map[Lock]= Level2;
-        map[LevelThree]= Level3;
-        map[Shift+LevelThree]= Level4;
-        map[Lock+LevelThree]= Level4;
-        map[Shift+Lock+LevelThree]= Level3;
-        map[LevelFive]= Level5;
-        map[Shift+LevelFive]= Level6;
-        map[Lock+LevelFive]= Level6;
-        map[LevelThree+LevelFive]= Level7;
-        map[Shift+LevelThree+LevelFive]= Level8;
-        map[Lock+LevelThree+LevelFive]= Level8;
-        map[Shift+Lock+LevelThree+LevelFive]= Level7;
-        level_name[Level1]= "Base";
-        level_name[Level2]= "Shift";
-        level_name[Level3]= "Alt Base";
-        level_name[Level4]= "Shift Alt";
-        level_name[Level5]= "X";
-        level_name[Level6]= "X Shift";
-        level_name[Level7]= "X Alt Base";
-        level_name[Level8]= "X Shift Alt";
-    };
-    type "EIGHT_LEVEL_LEVEL_FIVE_LOCK" {
-        modifiers= Shift+Lock+NumLock+LevelThree+LevelFive;
-        map[Shift]= Level2;
-        map[LevelThree]= Level3;
-        map[Shift+LevelThree]= Level4;
-        map[LevelFive]= Level5;
-        map[Shift+LevelFive]= Level6;
-        preserve[Shift+LevelFive]= Shift;
-        map[LevelThree+LevelFive]= Level7;
-        map[Shift+LevelThree+LevelFive]= Level8;
-        map[NumLock]= Level5;
-        map[Shift+NumLock]= Level6;
-        preserve[Shift+NumLock]= Shift;
-        map[NumLock+LevelThree]= Level7;
-        map[Shift+NumLock+LevelThree]= Level8;
-        map[Shift+NumLock+LevelFive]= Level2;
-        map[NumLock+LevelThree+LevelFive]= Level3;
-        map[Shift+NumLock+LevelThree+LevelFive]= Level4;
-        map[Shift+Lock]= Level2;
-        map[Lock+LevelThree]= Level3;
-        map[Shift+Lock+LevelThree]= Level4;
-        map[Lock+LevelFive]= Level5;
-        map[Shift+Lock+LevelFive]= Level6;
-        preserve[Shift+Lock+LevelFive]= Shift;
-        map[Lock+LevelThree+LevelFive]= Level7;
-        map[Shift+Lock+LevelThree+LevelFive]= Level8;
-        map[Lock+NumLock]= Level5;
-        map[Shift+Lock+NumLock]= Level6;
-        preserve[Shift+Lock+NumLock]= Shift;
-        map[Lock+NumLock+LevelThree]= Level7;
-        map[Shift+Lock+NumLock+LevelThree]= Level8;
-        map[Shift+Lock+NumLock+LevelFive]= Level2;
-        map[Lock+NumLock+LevelThree+LevelFive]= Level3;
-        map[Shift+Lock+NumLock+LevelThree+LevelFive]= Level4;
-        level_name[Level1]= "Base";
-        level_name[Level2]= "Shift";
-        level_name[Level3]= "Alt Base";
-        level_name[Level4]= "Shift Alt";
-        level_name[Level5]= "X";
-        level_name[Level6]= "X Shift";
-        level_name[Level7]= "X Alt Base";
-        level_name[Level8]= "X Shift Alt";
-    };
-    type "EIGHT_LEVEL_ALPHABETIC_LEVEL_FIVE_LOCK" {
-        modifiers= Shift+Lock+NumLock+LevelThree+LevelFive;
-        map[Shift]= Level2;
-        map[LevelThree]= Level3;
-        map[Shift+LevelThree]= Level4;
-        map[LevelFive]= Level5;
-        map[Shift+LevelFive]= Level6;
-        preserve[Shift+LevelFive]= Shift;
-        map[LevelThree+LevelFive]= Level7;
-        map[Shift+LevelThree+LevelFive]= Level8;
-        map[NumLock]= Level5;
-        map[Shift+NumLock]= Level6;
-        preserve[Shift+NumLock]= Shift;
-        map[NumLock+LevelThree]= Level7;
-        map[Shift+NumLock+LevelThree]= Level8;
-        map[Shift+NumLock+LevelFive]= Level2;
-        map[NumLock+LevelThree+LevelFive]= Level3;
-        map[Shift+NumLock+LevelThree+LevelFive]= Level4;
-        map[Lock]= Level2;
-        map[Lock+LevelThree]= Level3;
-        map[Shift+Lock+LevelThree]= Level4;
-        map[Lock+LevelFive]= Level5;
-        map[Shift+Lock+LevelFive]= Level6;
-        map[Lock+LevelThree+LevelFive]= Level7;
-        map[Shift+Lock+LevelThree+LevelFive]= Level8;
-        map[Lock+NumLock]= Level5;
-        map[Shift+Lock+NumLock]= Level6;
-        map[Lock+NumLock+LevelThree]= Level7;
-        map[Shift+Lock+NumLock+LevelThree]= Level8;
-        map[Lock+NumLock+LevelFive]= Level2;
-        map[Lock+NumLock+LevelThree+LevelFive]= Level4;
-        map[Shift+Lock+NumLock+LevelThree+LevelFive]= Level3;
-        level_name[Level1]= "Base";
-        level_name[Level2]= "Shift";
-        level_name[Level3]= "Alt Base";
-        level_name[Level4]= "Shift Alt";
-        level_name[Level5]= "X";
-        level_name[Level6]= "X Shift";
-        level_name[Level7]= "X Alt Base";
-        level_name[Level8]= "X Shift Alt";
-    };
-    type "EIGHT_LEVEL_SEMIALPHABETIC" {
-        modifiers= Shift+Lock+LevelThree+LevelFive;
-        map[Shift]= Level2;
-        map[Lock]= Level2;
-        map[LevelThree]= Level3;
-        map[Shift+LevelThree]= Level4;
-        map[Lock+LevelThree]= Level3;
-        preserve[Lock+LevelThree]= Lock;
-        map[Shift+Lock+LevelThree]= Level4;
-        preserve[Shift+Lock+LevelThree]= Lock;
-        map[LevelFive]= Level5;
-        map[Shift+LevelFive]= Level6;
-        map[Lock+LevelFive]= Level6;
-        preserve[Lock+LevelFive]= Lock;
-        map[Shift+Lock+LevelFive]= Level6;
-        preserve[Shift+Lock+LevelFive]= Lock;
-        map[LevelThree+LevelFive]= Level7;
-        map[Shift+LevelThree+LevelFive]= Level8;
-        map[Lock+LevelThree+LevelFive]= Level7;
-        preserve[Lock+LevelThree+LevelFive]= Lock;
-        map[Shift+Lock+LevelThree+LevelFive]= Level8;
-        preserve[Shift+Lock+LevelThree+LevelFive]= Lock;
-        level_name[Level1]= "Base";
-        level_name[Level2]= "Shift";
-        level_name[Level3]= "Alt Base";
-        level_name[Level4]= "Shift Alt";
-        level_name[Level5]= "X";
-        level_name[Level6]= "X Shift";
-        level_name[Level7]= "X Alt Base";
-        level_name[Level8]= "X Shift Alt";
-    };
     type "FOUR_LEVEL" {
         modifiers= Shift+LevelThree;
         map[Shift]= Level2;
@@ -597,21 +459,6 @@ xkb_types "complete" {
         map[Shift+LevelThree]= Level4;
         map[Lock+LevelThree]= Level4;
         map[Shift+Lock+LevelThree]= Level3;
-        level_name[Level1]= "Base";
-        level_name[Level2]= "Shift";
-        level_name[Level3]= "Alt Base";
-        level_name[Level4]= "Shift Alt";
-    };
-    type "FOUR_LEVEL_SEMIALPHABETIC" {
-        modifiers= Shift+Lock+LevelThree;
-        map[Shift]= Level2;
-        map[Lock]= Level2;
-        map[LevelThree]= Level3;
-        map[Shift+LevelThree]= Level4;
-        map[Lock+LevelThree]= Level3;
-        preserve[Lock+LevelThree]= Lock;
-        map[Shift+Lock+LevelThree]= Level4;
-        preserve[Shift+Lock+LevelThree]= Lock;
         level_name[Level1]= "Base";
         level_name[Level2]= "Shift";
         level_name[Level3]= "Alt Base";
@@ -640,21 +487,6 @@ xkb_types "complete" {
         level_name[Level2]= "Alt Base";
         level_name[Level3]= "Shift Alt";
         level_name[Level4]= "Ctrl+Alt";
-    };
-    type "SEPARATE_CAPS_AND_SHIFT_ALPHABETIC" {
-        modifiers= Shift+Lock+LevelThree;
-        map[Shift]= Level2;
-        map[Lock]= Level4;
-        preserve[Lock]= Lock;
-        map[LevelThree]= Level3;
-        map[Shift+LevelThree]= Level4;
-        map[Lock+LevelThree]= Level3;
-        preserve[Lock+LevelThree]= Lock;
-        map[Shift+Lock+LevelThree]= Level3;
-        level_name[Level1]= "Base";
-        level_name[Level2]= "Shift";
-        level_name[Level3]= "AltGr Base";
-        level_name[Level4]= "Shift AltGr";
     };
     type "FOUR_LEVEL_PLUS_LOCK" {
         modifiers= Shift+Lock+LevelThree;
@@ -1146,9 +978,6 @@ xkb_compatibility "complete" {
     interpret Any+AnyOf(all) {
         action= SetMods(modifiers=modMapMods,clearLocks);
     };
-    group 2 = AltGr;
-    group 3 = AltGr;
-    group 4 = AltGr;
     indicator "Caps Lock" {
         !allowExplicit;
         whichModState= locked;
@@ -1235,9 +1064,9 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     };
     key <AD03> {
         type[group1]= "ALPHABETIC",
-        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
+        type[group2]= "ALPHABETIC",
         symbols[Group1]= [               e,               E ],
-        symbols[Group2]= [   Greek_epsilon,   Greek_EPSILON,        EuroSign,        NoSymbol ]
+        symbols[Group2]= [   Greek_epsilon,   Greek_EPSILON ]
     };
     key <AD04> {
         type[group1]= "ALPHABETIC",
@@ -1295,7 +1124,7 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     key <AC02> {
         type= "ALPHABETIC",
         symbols[Group1]= [               s,               S ],
-        symbols[Group2]= [     Greek_sigma,     Greek_SIGMA, Greek_finalsmallsigma ]
+        symbols[Group2]= [     Greek_sigma,     Greek_SIGMA ]
     };
     key <AC03> {
         type= "ALPHABETIC",
@@ -1335,12 +1164,12 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     key <AC10> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [       semicolon,           colon ],
-        symbols[Group2]= [     semicolon, periodcentered ]
+        symbols[Group2]= [     semicolon, U0387 ]
     };
     key <AC11> {
         type[group2]= "FOUR_LEVEL",
         symbols[Group1]= [      apostrophe,        quotedbl ],
-        symbols[Group2]= [      dead_grave, dead_abovereversedcomma,      apostrophe,        quotedbl ]
+        symbols[Group2]= [      U2019, dead_abovereversedcomma ]
     };
     key <TLDE> {         [           grave,      asciitilde ] };
     key <LFSH> {         [         Shift_L,  ISO_Prev_Group ] };

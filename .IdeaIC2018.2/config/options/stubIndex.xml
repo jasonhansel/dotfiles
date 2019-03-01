@@ -2,6 +2,7 @@
   <component name="FileBasedIndex">
     <option name="registeredIndices">
       <list>
+        <option value="makefile.target.index" />
         <option value="sc.implicit.function.name" />
         <option value="sc.self.type.class.name.key" />
         <option value="sc.super.class.name" />

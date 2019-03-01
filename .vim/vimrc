@@ -23,7 +23,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 "let g:netrw_keepdir=0
-let g:airline#extensions#tabline#formatter = 'jason'
+" let g:airline#extensions#tabline#formatter = 'jason'
 
 set pyxversion=3 encoding=utf-8
 
@@ -39,6 +39,9 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
 Plug 'chriskempson/base16-vim'
 
+Plug 'derekwyatt/vim-scala'
+
+
 " needs  pip install --user neovim greenlet==0.4.10
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
@@ -52,6 +55,8 @@ Plug 'sebastianmarkow/deoplete-rust'
 Plug 'vim-scripts/DetectIndent'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'wellle/tmux-complete.vim'
+
+Plug 'ensime/ensime-vim'
 
 Plug 'junegunn/fzf'
 
@@ -84,13 +89,19 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 
 
-let g:airline#extensions#tabline#formatter = 'jason'
+" let g:airline#extensions#tabline#formatter = 'jason'
 
+ nnoremap <silent> <leader>t :EnType<CR>
 " call deoplete#custom#option('complete_method', 'omnifunc')
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around'  ]  })
+call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around', 'omni'  ]  })
+call deoplete#custom#source('omni', 'functions', { 'scala' : 'EnCompleteFunc' })
+call deoplete#custom#var('omni', 'input_patterns', {
+  \ 'scala':  '[^. *\t]\.\w*'
+\})
+" let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 " 
-" call deoplete#custom#option('ignore_sources', { '_' : [ 'around', 'dictionary', 'member',  'buffer', 'file']  })
+call deoplete#custom#option('ignore_sources', { '_' : [ 'around', 'dictionary', 'member',  'buffer', 'file']  })
 
 call deoplete#custom#source('file', 'enable_buffer_path', 1)
 
@@ -149,10 +160,15 @@ function! SearchCount()
 	endtry
 endfunction
 
+function! AirCwd()
+  return fnamemodify(getcwd(), ":p:h:t")
+endfunction
+
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 command! C let @/=""
 
 call airline#parts#define_function('search2', 'SearchCount')
+call airline#parts#define_function('cwd', 'AirCwd')
 
 let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '0-IMPT.md']
 
@@ -262,13 +278,13 @@ let g:airline#themes#jason#palette['inactive_modified']['airline_err'] = err
 " It helps to remove the bold typography into modes section
 let g:airline#themes#jason#palette.accents = {}  "'black' : airline#themes#get_highlight2(['LineNr', 'bg'], ['ModeMsg', 'fg'], 'none')}
 
-let g:airline#extensions#tabline#formatter = 'jason'
+" let g:airline#extensions#tabline#formatter = 'jason'
 
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tabnr_formatter = 'default'
-let g:airline_section_x = airline#section#create([])
+let g:airline_section_x = airline#section#create(['cwd'])
 let g:airline#extensions#ale#enabled = 1
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
@@ -284,7 +300,7 @@ let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline_section_y = airline#section#create(['search2']) " ,'ale_warning_count','ale_error_count'])
 let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 
-let g:airline_theme='jason'
+" let g:airline_theme='jason'
 
 
 let mapleader=","
@@ -457,3 +473,7 @@ nnoremap <silent> <C-p> :GFiles<CR>
 
 nnoremap <silent> <C-i> :History<CR>
 nnoremap <silent> <C-u> :Buffer<CR>
+
+"Scala
+let EnErrorStyle='Underlined'
+autocmd BufWritePost *.scala :silent EnTypeCheck

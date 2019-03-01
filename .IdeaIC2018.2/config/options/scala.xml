@@ -1,6 +1,9 @@
 <application>
   <component name="ScalaSettings">
+    <option name="SHOW_TYPE_TOOLTIP_ON_MOUSE_HOVER" value="true" />
     <option name="COMPILE_SERVER_ID" value="2aa821dc-ed41-45f2-9a0b-fe2f543f55b7" />
-    <option name="COMPILE_SERVER_SDK" value="1.8" />
+    <option name="COMPILE_SERVER_SDK" value="Project Default" />
+    <option name="COMPILE_SERVER_MAXIMUM_HEAP_SIZE" value="2048" />
+    <option name="COMPILE_SERVER_JVM_PARAMETERS" value="-server -Xss256m" />
   </component>
 </application>

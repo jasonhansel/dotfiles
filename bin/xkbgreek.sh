@@ -1,2 +1,2 @@
 #!/bin/sh
-xkbcomp -w 0 ~/.config/greek.xkb $DISPLAY
+xkbcomp -w 3 ~/.config/greek.xkb $DISPLAY

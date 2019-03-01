@@ -8,13 +8,14 @@ set -euo pipefail
 
 exec 2>&1 &> >(tee -a $HOME/test.txt)
 
+echo "$*" >> $HOME/test.txt
+export >> $HOME/test.txt
 
 
 echo "$*" >> $HOME/test.txt
-if [[ "$*" = "Enter passphrase for key"* ]]
+if [[ "$*" = "Enter passphrase for key"* || "$*" = "Username for"* || "$*" = "Password for"* || "$*" = *"password"*  ]]
 then
-  echo TESTd >> $HOME/test.txt
-  { echo "SETTITLE abc" ;
+ { echo "SETTITLE saving" ;
   echo "SETDESC $*" ;
   echo "GETPIN" ; } | PINENTRY="pinentry-qt" pinentry-kwallet | sed -n 's/^D //p' | head -c-1
   exit 0
@@ -29,7 +30,7 @@ then
     echo -n $PASS
   fi
 else  
-  { echo "SETTITLE abc" ;
+  { echo "SETTITLE unsaved" ;
   echo "SETDESC $*" ;
   echo "GETPIN" ; } | pinentry-qt | sed -n 's/^D //p' | head -c-1
   exit 0

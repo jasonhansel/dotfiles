@@ -3,6 +3,9 @@ export GOPATH=~/go
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export RUST_BACKTRACE=1
 
+export SCALA_HOME=/usr/share/scala
+
+
 export DISABLE_AUTO_TITLE=false
 export AUTO_TITLE=true
 

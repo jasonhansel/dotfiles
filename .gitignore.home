@@ -3,6 +3,10 @@
 # Add instructions
 # Include all things, make installable
 
+/.IdeaIC2018.2/config/options/window.manager.xml
+/.IdeaIC2018.2/config/options/runner.layout.xml
+/.IdeaIC2018.2/config/tasks/*.zip
+/.scalac/fsc_redirects/*.log
 !/.*
 /.sbt
 /.rustup
@@ -21,6 +25,7 @@
 /.pdfstudio2018
 !/.toprc
 !/.ssh
+/.gitconfig.local
 !/.gitignore.home
 /*.tmp
 /.*auth
@@ -62,7 +67,6 @@
 /.fltk
 /.gdbinit
 /.gimp-2.8
-/.gitconfig
 /.gnome*
 /.gnupg
 /.gstreamer*
