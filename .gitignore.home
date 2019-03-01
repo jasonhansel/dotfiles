@@ -67,7 +67,6 @@
 /.gstreamer*
 /.gsutil
 /.gtk-bookmarks
-/.hledger.journal
 /.icons
 /.indicator-weather
 /.ipython
@@ -114,7 +113,6 @@
 /.wget-hsts
 /.wine*
 /.wunderground
-/.xinitrc
 /.xkb
 /.xmaximarc
 /.xsession*
