@@ -68,7 +68,6 @@
 /.ecryptfs
 /.electron*
 /.fltk
-/.gdbinit
 /.gimp-2.8
 /.gnome
 /.gnome2
@@ -102,7 +101,7 @@
 /.recently-used
 /.rnd
 /.sage
-/.ssh/*
+/.ssh
 /.stack
 /.stalonetrayrc
 /.subversion
