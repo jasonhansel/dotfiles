@@ -4,6 +4,7 @@
 	cam = commit -am
 	cm = commit -m
 	ap = add -p :/
+	shouldnt-ignore =  ls-files -i --exclude-standard :/
 [diff]
 	colorMoved = plain
 [status]

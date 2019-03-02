@@ -16,6 +16,14 @@
 /*.ofx
 /My *
 
+# Ordinary app data
+/.mozilla/firefox
+/.zotero
+/.config/google-chrome
+/.config/chromium
+/.config/epiphany
+
+
 /**/.git
 /.scalac/fsc_redirects/*.log
 /.sbt
@@ -44,23 +52,15 @@
 /.AtD-*
 /.Mathematica
 /.bash_logout
-/.Private
-/.Skype*
 /.Xauthority
 /.adobe
 /.antigen*
-/.aqbanking
-/.asoundrc
-/.aspell*
 /.audacity-data
 /.autokey-log
 /.bundle
-/.cabal
-/.cargo
-/.cmake
 /.cups
-/.darcs
-/.dbus
+/.darcs/author
+/.dbus/session-bus
 /.directory
 /.dmrc
 /.drirc
@@ -85,25 +85,36 @@
 /.lastpass
 /.ltspice
 /.m2
-/.macromedia
 /.magic*
-/.mono
-/.mozilla
+
+# Package registries and managers
+/.mono/registry
 /.node-gyp
 /.npm
-/.nuget
+/.nuget/packages
+/.cabal/packages
+/.cmake/packages
+/.cargo
+/.stack
+/.virtualenvs
+/.vpython-root
+
+# Private data
+/.rnd
+/.viminfo
+/.pki
+/.Private
+/.Skype*
+/.aspell*
+/.macromedia
+
 /.odbc.ini
 /.oracle_jre_usage
-/.parallel
-/.pki
-/.projectM
+/.parallel/tmp
 /.qucs
 /.recently-used
-/.rnd
 /.sage
 /.ssh
-/.stack
-/.stalonetrayrc
 /.subversion
 /.swt
 /.texlive/texmf-var/web2c
@@ -111,21 +122,15 @@
 /.thumbnails
 /.tooling
 /.unxrandr
-/.virtualenvs
-/.viminfo
-/.vpython-root
 /.vscode*
 /.wget-hsts
 /.wine*
 /.wunderground
 /.xkb
-/.xmaximarc
 /.xsession*
-/.zcompdump
-/.zotero
+/.zcompdump*
 
 !/.ssh/config-default
-!/.zshrc
 !/.tmux.conf
 !/.xprofile
 !/bin
@@ -133,11 +138,7 @@
 /.vim/**
 !/.vim/vimrc
 
-!/.tmux-color.sh
 
-/.config/google-chrome
-/.config/chromium
-/.config/epiphany
 /.config/Electron
 /.config/WebCatalog
 /.config/autokey
@@ -164,9 +165,6 @@
 !/.local/share/applications**
 /.local/share/applications/wine**
 /.local/share/applications/q4wine**
-!/.zsh
-!/.zsh**
-/.zsh_history
 /**/*.zwc
 /.config/sublime-text-3/*
 !/.config/sublime-text-3/Packages
