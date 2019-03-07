@@ -33,6 +33,7 @@
 /.Idea*/system
 /.Idea*/config/*
 !/.Idea*/config/settingsRepository
+/.Idea*/config/settingsRepository/repository/find.xml
 
 /.install4j
 /.idea-build
@@ -105,6 +106,7 @@
 /.pki
 /.Private
 /.Skype*
+/.config/Skype/
 /.aspell*
 /.macromedia
 /.recently-used
@@ -192,7 +194,6 @@
 /.config/Pinta/
 /.config/PosteRazorrc
 /.config/QtProject.conf
-/.config/Skype/
 /.config/SpeedCrunch/
 /.config/Thunar/
 /.config/Trolltech.conf
@@ -271,10 +272,7 @@
 /.config/kio_desktoprc
 /.config/kiorc
 /.config/kleopatrarc
-/.config/kmail2rc
 /.config/kmenueditrc
-/.config/kmixctrlrc
-/.config/kmixrc
 /.config/knfsshare
 /.config/knotesrc
 /.config/knotifyrc
@@ -308,7 +306,6 @@
 /.config/org.kde.gwenviewrc
 /.config/oxygen-gtk/
 /.config/pavucontrol.ini
-/.config/plasma-localerc
 /.config/plasma-nm
 /.config/plasma-org.kde.plasma.desktop-appletsrc
 /.config/plasma-org.kde.plasma.desktop-appletsrc.yJH666
@@ -316,7 +313,6 @@
 /.config/plasmarc
 /.config/plasmashellrc
 /.config/plasmawindowed-appletsrc
-/.config/polybar/
 /.config/powerdevilrc
 /.config/powermanagementprofilesrc
 /.config/print-manager
@@ -331,7 +327,6 @@
 /.config/qt5ct/
 /.config/qucs/
 /.config/ristretto/
-/.config/rocsrc
 /.config/scdl/
 /.config/specialmailcollectionsrc
 /.config/spectaclerc

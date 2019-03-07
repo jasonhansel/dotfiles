@@ -1,4 +1,5 @@
 {
+    "delay": 3,
     "linters": {
         "spell": {
             "disable": false
