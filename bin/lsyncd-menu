@@ -1,0 +1,99 @@
+#!/bin/bash
+set -euo pipefail
+
+status_file=$(mktemp --tmpdir lsyncd-status.XXXXX)
+config_file=$(mktemp --tmpdir lsyncd-config.XXXXX)
+log_file=$(mktemp --tmpdir lsyncd-log.XXXXX)
+
+touch $status_file
+
+cat <<EOF > $config_file
+settings {
+	nodaemon = true,
+	statusFile = "$status_file",
+	insist = true,
+	maxDelays = 100
+}
+
+sync {
+	default.rsyncssh,
+	source = "$HOME",
+	host = "backup", -- configured in ~/.ssh/config
+	targetdir = "/home_$USER",
+	delay = 600,
+	exclude = {
+		'/mnt',
+		'/Desktop/Server',
+		'/.nobackup',
+		-- Caches:
+		'/.cache',
+		'/.ccache',
+		'**.dropbox.cache',
+		'/.compose-cache',
+		'/.local/share/Nuget/Cache',
+		'/.npm',
+		'/.config/sublime-text-3/Cache',
+		'/.config/libreoffice/4/cache',
+		'/Desktop/Projects/dotfiles/sublime/Package Control.cache',
+		'/Desktop/Projects/mybackup/roottest',
+		-- See https://github.com/rust-lang/cargo/issues/3712:
+		'/.cargo/registry',
+		'/.cargo/git',
+		-- Stuff I can always redownload:
+		'/**/node_modules',
+		'/.nuget',	
+		'/.stack/indices',
+		'/.stack/snapshots',
+		'/.stack/programs',
+		-- Pointless stuff:
+		'/.local/share/tracker/data',
+		'/.rustup',
+		'*.lock', -- Misc lock files
+		'*.tmp',
+		'/.zsh_history*',
+		'/.dtach',
+		'/.config/spotify',    -- spotify config (changes a lot)
+		'/.local/share/baloo', -- search index
+		-- Backups:
+		'*.swp',           -- vim swap files
+		'/.config/sublime-text-3/Backup',
+		'/.local/share/Trash/',
+		-- Stuff that changes very often:
+		'/.dropbox',
+		'/.config/configstore/update-notifier-npm*',
+		'/.mozilla/firefox/*/cookies.sqlite*',
+		'/.mozilla/firefox/*/favicons.sqlite*',
+		'/.config/**/*.lock',
+		'/.local/share/kwalletd',
+		'/.mozilla/firefox/*/storage',
+		'/.mozilla/firefox/*/saved-telemetry-pings',
+		'/.mozilla/firefox/*/datareporting',
+		'/.mozilla/firefox/*/sessionstore-backups',
+		'/.mozilla/firefox/*/serviceworker*.txt',
+		'/.local/share/RecentDocuments',
+		'/.vim/swap',
+		'/.lesshs*',
+		'/.config/Franz'
+	},
+	rsync = {
+		verbose = false,
+		checksum = true,
+		compress = true,
+		whole_file = false,
+		archive = true,
+		acls = true,
+		xattrs =true,
+		append_verify = true,
+		prune_empty_dirs = false,
+		keep_dirlinks = true,
+		links = true,
+		_extra = {
+			"-M--fake-super"
+		}
+	}
+}
+EOF
+
+
+lsyncd $config_file 2>&1 > $log_file || /bin/true
+notify-send "Error: lsyncd exited!"
