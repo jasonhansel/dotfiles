@@ -1,12 +1,13 @@
 {
 	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-darktooth.tmTheme",
+	"dpi_scale": 1.2,
 	"enable_tab_scrolling": false,
 	"file_exclude_patterns":
 	[
 	],
+	"find_selected_text": false,
 	"font_face": "Consolas",
 	"font_size": 9.5,
-	"find_selected_text": false,
 	"hot_exit": false,
 	"ignored_packages":
 	[
@@ -15,7 +16,6 @@
 	"preview_on_click": false,
 	"show_line_endings": true,
 	"theme": "Default.sublime-theme",
-	"update_check": false,
 	"ui_scale": 1.0,
-	"dpi_scale": 1.2
+	"update_check": false
 }

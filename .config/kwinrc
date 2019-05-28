@@ -1,5 +1,5 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js
 
 [Compositing]
 AnimationSpeed=1
@@ -17,7 +17,9 @@ WindowsBlockCompositing=false
 XRenderSmoothScale=false
 
 [Desktops]
+Id_1=6eee5d99-7ca0-41c2-9786-f93b13eea818
 Number=1
+Rows=1
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -94,10 +96,10 @@ highlightwindowEnabled[$d]
 kwin4_effect_dialogparentEnabled=false
 kwin4_effect_fadeEnabled=false
 kwin4_effect_morphingpopupsEnabled=false
+kwin4_effect_squashEnabled=false
 kwin4_effect_translucencyEnabled=false
 kwin4_effect_windowapertureEnabled=false
 minimizeallEnabled=false
-minimizeanimationEnabled=false
 synchronizeskipswitcherEnabled=false
 videowallEnabled=false
 windowgeometryEnabled=false
