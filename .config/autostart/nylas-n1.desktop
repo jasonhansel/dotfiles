@@ -1,0 +1,12 @@
+[Desktop Entry]
+Categories=GNOME;GTK;Network;Email;Utility;Development;
+Comment=An extensible, open-source mail client built on the modern web.
+Exec=/usr/share/nylas/nylas --background %U
+GenericName=Nylas N1
+Hidden=true
+Icon=nylas
+MimeType=text/plain;x-scheme-handler/mailto;x-scheme-handler/nylas;
+Name=Nylas N1
+StartupNotify=true
+StartupWMClass=Nylas N1
+Type=Application

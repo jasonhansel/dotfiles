@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=xembedsniproxy
+Icon=system-run
+Path=
+Terminal=false
+Type=Application

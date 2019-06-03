@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Comment=QStarDict is Qt version of StarDict
+Exec=qstardict
+GenericName=Dictionary
+Icon=qstardict
+Name=QStarDict
+Type=Application
+Categories=Qt;Dictionary;Utility;
+Name[ru]=QStarDict
+GenericName[ru]=Словарь
+Name[tr]=QStarDict
+GenericName[tr]=Sözlük
+Hidden=true
