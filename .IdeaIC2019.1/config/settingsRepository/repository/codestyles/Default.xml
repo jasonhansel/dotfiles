@@ -1,0 +1,28 @@
+<code_scheme name="Default" version="173">
+  <option name="SOFT_MARGINS" value="120" />
+  <ScalaCodeStyleSettings>
+    <option name="classCountToUseImportOnDemand" value="20" />
+    <option name="NOT_CONTINUATION_INDENT_FOR_PARAMS" value="true" />
+    <option name="USE_SCALADOC2_FORMATTING" value="false" />
+    <option name="SPACES_AROUND_AT_IN_PATTERNS" value="true" />
+    <option name="CALL_PARAMETERS_NEW_LINE_AFTER_LPAREN" value="2" />
+    <option name="ENABLE_SCALADOC_FORMATTING" value="false" />
+  </ScalaCodeStyleSettings>
+  <codeStyleSettings language="Scala">
+    <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
+    <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
+    <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
+    <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+    <option name="CALL_PARAMETERS_WRAP" value="5" />
+    <option name="CALL_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
+    <option name="METHOD_PARAMETERS_WRAP" value="5" />
+    <option name="METHOD_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
+    <option name="METHOD_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
+    <option name="METHOD_CALL_CHAIN_WRAP" value="1" />
+    <option name="PARENTHESES_EXPRESSION_LPAREN_WRAP" value="true" />
+    <option name="PARENTHESES_EXPRESSION_RPAREN_WRAP" value="true" />
+    <option name="BINARY_OPERATION_WRAP" value="1" />
+    <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
+    <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
+  </codeStyleSettings>
+</code_scheme>
