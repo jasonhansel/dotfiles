@@ -93,6 +93,7 @@ FAST_HIGHLIGHT_STYLES[alias]='none'
 FAST_HIGHLIGHT_STYLES[unknown-token]='none'
 FAST_HIGHLIGHT_STYLES[arg0]='none'
 
+alias config='GIT_DIR=$HOME/.cfg/ GIT_WORK_TREE=$HOME git'
 
 # Start "tmux", if necessary
 source ~/.zsh/start-tmux.zsh

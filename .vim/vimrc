@@ -1,4 +1,4 @@
-" VIM CONFIGURATION
+": VIM CONFIGURATION
 " Based heavily on: https://raw.githubusercontent.com/skwp/dotfiles/master/vimrc
 " Optimized for use on Arch Linux, with many customizations of my own.
 
@@ -32,13 +32,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
 
-" Plug 'eiginn/netrw'
+Plug 'eiginn/netrw'
 Plug 'tpope/vim-vinegar'
 Plug 'rust-lang/rust.vim' " before filetype on in vim-sesnible
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
-Plug 'chriskempson/base16-vim'
-
+Plug 'danielwe/base16-vim' " fixes a bug on vim8.1
 Plug 'derekwyatt/vim-scala'
 
 
@@ -52,17 +51,17 @@ Plug 'fholgado/minibufexpl.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'sebastianmarkow/deoplete-rust'
 " Plug 'lifepillar/vim-mucomplete
-Plug 'vim-scripts/DetectIndent'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'wellle/tmux-complete.vim'
+ Plug 'vim-scripts/DetectIndent'
+ Plug 'rbgrouleff/bclose.vim'
+" Plug 'wellle/tmux-complete.vim'
 
 Plug 'ensime/ensime-vim'
 
 Plug 'junegunn/fzf'
 
-" Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth'
 
-" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -94,16 +93,18 @@ let g:deoplete#file#enable_buffer_path = 1
  nnoremap <silent> <leader>t :EnType<CR>
 " call deoplete#custom#option('complete_method', 'omnifunc')
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around', 'omni'  ]  })
+call deoplete#custom#option('sources', { '_' : [ 'file', 'omni'  ]  })
+call deoplete#custom#source('omni', 'mark', 'Ω')
 call deoplete#custom#source('omni', 'functions', { 'scala' : 'EnCompleteFunc' })
 call deoplete#custom#var('omni', 'input_patterns', {
   \ 'scala':  '[^. *\t]\.\w*'
 \})
+inoremap <silent><expr> <C-e> deoplete#mappings#manual_complete()
 " let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 " 
-call deoplete#custom#option('ignore_sources', { '_' : [ 'around', 'dictionary', 'member',  'buffer', 'file']  })
+call deoplete#custom#option('ignore_sources', { '_' : [ 'around', 'dictionary', 'member',  'buffer']  })
 
-call deoplete#custom#source('file', 'enable_buffer_path', 1)
+call deoplete#custom#var('file', 'enable_buffer_path', 1)
 
 " let g:deoplete#ignore_sources = {}
 " let g:deoplete#ignore_sources._ = ['buffer', 'tag', 'file', 'dictionary', 'around']

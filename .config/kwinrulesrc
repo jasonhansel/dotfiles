@@ -1,5 +1,7 @@
 [1]
-Description=Window settings for pulseaudio-equalizer.py
+Description=Application settings for kwalletd5
+above=true
+aboverule=2
 acceptfocus[$d]
 acceptfocusrule[$d]
 below[$d]
@@ -8,18 +10,18 @@ blockcompositing[$d]
 blockcompositingrule[$d]
 clientmachine=localhost
 clientmachinematch=0
-closeable=false
-closeablerule=2
 minimize[$d]
 minimizerule[$d]
 noborder[$d]
 noborderrule[$d]
 opacityactive[$d]
 opacityactiverule[$d]
-placement[$d]
-placementrule[$d]
+placement=Centered
+placementrule=2
 position[$d]
 positionrule[$d]
+screen=0
+screenrule=2
 shade[$d]
 shaderule[$d]
 size[$d]
@@ -30,30 +32,52 @@ skipswitcher[$d]
 skipswitcherrule[$d]
 skiptaskbar[$d]
 skiptaskbarrule[$d]
-title=PulseAudio Multiband EQ [Enabled]
-titlematch=0
 type[$d]
 typerule[$d]
+wmclass=kwalletd5
+wmclasscomplete=false
+wmclassmatch=1
+
+[10]
+Description=Epiphany web apps
+noborder=false
+noborderrule=2
 types=1
+wmclass=epiphany-.*
+wmclasscomplete=true
+wmclassmatch=3
+
+[2]
+Description=Window settings for pulseaudio-equalizer.py
+activity[$d]
+activityrule[$d]
+clientmachine=localhost
+clientmachinematch=0
+closeable=false
+closeablerule=2
+desktop[$d]
+desktoprule[$d]
+ignoregeometry[$d]
+ignoregeometryrule[$d]
+screen[$d]
+screenrule[$d]
+skippager[$d]
+skippagerrule[$d]
+skipswitcher[$d]
+skipswitcherrule[$d]
+title=PulseAudio Multiband EQ [Enabled]
+titlematch=0
+types=1
+windowrole[$d]
+windowrolematch[$d]
 wmclass=pulseaudio-equalizer.py pulseaudio-equalizer.py
 wmclasscomplete=true
 wmclassmatch=1
 
-[10]
-Description[$d]
-noborder[$d]
-noborderrule[$d]
-types[$d]
-wmclass[$d]
-wmclasscomplete[$d]
-wmclassmatch[$d]
-
-[2]
+[3]
 Description=Settings for Conky
 acceptfocus=false
 acceptfocusrule=2
-activity[$d]
-activityrule[$d]
 below=true
 belowrule=2
 blockcompositing=false
@@ -62,10 +86,6 @@ clientmachine=jasons-laptop
 clientmachinematch=0
 closeable=false
 closeablerule=2
-desktop[$d]
-desktoprule[$d]
-ignoregeometry[$d]
-ignoregeometryrule[$d]
 minimize=false
 minimizerule=2
 noborder=true
@@ -74,59 +94,48 @@ opacityactive=100
 opacityactiverule=2
 position=1430,0
 positionrule=2
-screen[$d]
-screenrule[$d]
 shade=false
 shaderule=2
 size=960,1030
 sizerule=2
-skippager[$d]
-skippagerrule[$d]
-skipswitcher[$d]
-skipswitcherrule[$d]
 skiptaskbar=true
 skiptaskbarrule=2
 title=Home
 titlematch=0
 type=1
 typerule=2
-types[$d]
-windowrole[$d]
-windowrolematch[$d]
 wmclass=nautilus ndesktop
 wmclasscomplete=true
 wmclassmatch=1
 
-[3]
+[4]
 Description=Settings for Conky
+above[$d]
+aboverule[$d]
 activity=00000000-0000-0000-0000-000000000000
 activityrule=1
+closeable[$d]
+closeablerule[$d]
 desktop=1
 desktoprule=2
+minimize[$d]
+minimizerule[$d]
 screen=0
 screenrule=1
 wmclass=conky
 wmclasscomplete=true
 wmclassmatch=2
 
-[4]
+[5]
 Description=Window settings for alacritty
-above[$d]
-aboverule[$d]
-activity[$d]
-activityrule[$d]
 below=true
 belowrule=2
 clientmachine=jasons-laptop
 clientmachinematch=0
-closeable[$d]
-closeablerule[$d]
-desktop[$d]
-desktoprule[$d]
+fsplevel[$d]
+fsplevelrule[$d]
 ignoregeometry=true
 ignoregeometryrule=2
-minimize[$d]
-minimizerule[$d]
 noborder=true
 noborderrule=2
 position=0,0
@@ -148,44 +157,34 @@ wmclass=alacritty
 wmclasscomplete=false
 wmclassmatch=1
 
-[5]
+[6]
 Description=Application settings for wine
 above=true
 aboverule=2
-below[$d]
-belowrule[$d]
 clientmachine=jasons-laptop
 clientmachinematch=0
 closeable=true
 closeablerule=2
-fsplevel[$d]
-fsplevelrule[$d]
-ignoregeometry[$d]
-ignoregeometryrule[$d]
 minimize=true
 minimizerule=3
-noborder[$d]
-noborderrule[$d]
-position[$d]
-positionrule[$d]
-screen[$d]
-screenrule[$d]
-size[$d]
-sizerule[$d]
+opacityactive[$d]
+opacityactiverule[$d]
+opacityinactive[$d]
+opacityinactiverule[$d]
 skippager=true
 skippagerrule=2
 skipswitcher=true
 skipswitcherrule=2
 skiptaskbar=true
 skiptaskbarrule=2
-title[$d]
-titlematch[$d]
+type[$d]
+typerule[$d]
 types=1
 wmclass=.*wine
 wmclasscomplete=true
 wmclassmatch=3
 
-[6]
+[7]
 Description=Window settings for toplevel
 above=false
 aboverule=3
@@ -195,37 +194,19 @@ closeable[$d]
 closeablerule[$d]
 fsplevel=0
 fsplevelrule=2
-minimize[$d]
-minimizerule[$d]
-opacityactive[$d]
-opacityactiverule[$d]
-opacityinactive[$d]
-opacityinactiverule[$d]
-skippager[$d]
-skippagerrule[$d]
-skipswitcher[$d]
-skipswitcherrule[$d]
-skiptaskbar[$d]
-skiptaskbarrule[$d]
 title=analyzer
 titlematch=0
-type[$d]
-typerule[$d]
 types=1
 wmclass=analyzer toplevel
 wmclasscomplete=true
 wmclassmatch=1
 
-[7]
+[8]
 Description=Window settings for com-sun-electric-launcher
-above[$d]
-aboverule[$d]
 clientmachine=jasons-laptop
 clientmachinematch=0
-closeable[$d]
-closeablerule[$d]
-fsplevel[$d]
-fsplevelrule[$d]
+noborder[$d]
+noborderrule[$d]
 opacityactive=100
 opacityactiverule=2
 opacityinactive=50
@@ -239,41 +220,18 @@ wmclass=sun-awt-x11-xframepeer com-sun-electric-launcher
 wmclasscomplete=true
 wmclassmatch=1
 
-[8]
+[9]
 Description=Window settings for biz-papercut-pcng-client-uit-userclient
 clientmachine=jasons-laptop
 clientmachinematch=0
 closeable=false
 closeablerule=2
-noborder[$d]
-noborderrule[$d]
-opacityactive[$d]
-opacityactiverule[$d]
-opacityinactive[$d]
-opacityinactiverule[$d]
 title=Balance for jsh5
 titlematch=0
-type[$d]
-typerule[$d]
 types=1
 wmclass=sun-awt-x11-xframepeer biz-papercut-pcng-client-uit-userclient
 wmclasscomplete=true
 wmclassmatch=1
 
-[9]
-Description=Epiphany web apps
-clientmachine[$d]
-clientmachinematch[$d]
-closeable[$d]
-closeablerule[$d]
-noborder=false
-noborderrule=2
-title[$d]
-titlematch[$d]
-types=1
-wmclass=epiphany-.*
-wmclasscomplete=true
-wmclassmatch=3
-
 [General]
-count=9
+count=10

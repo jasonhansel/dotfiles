@@ -1007,10 +1007,10 @@ xkb_compatibility "complete" {
     };
 };
 
-xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
+xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)+jason" {
 
     name[group1]="English (US)";
-    name[group2]="Greek (polytonic)";
+    name[group2]="Greek (Jason)";
 
     key  <ESC> {         [          Escape ] };
     key <AE01> {         [               1,          exclam ] };
@@ -1028,7 +1028,11 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     };
     key <AE06> {         [               6,     asciicircum ] };
     key <AE07> {         [               7,       ampersand ] };
-    key <AE08> {         [               8,        asterisk ] };
+    key <AE08> {      
+        type[group2] = "THREE_LEVEL",
+        symbols[Group1] = [               8,        asterisk ],
+        symbols[Group2] = [               dead_macron,        U2026 ] 
+        };
      key <AE09> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [               9, parenleft ],
@@ -1042,7 +1046,7 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     key <AE11> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [           minus,      underscore ],
-        symbols[Group2]= [           minus,      underscore,       plusminus ]
+        symbols[Group2]= [           minus,     U2014,       plusminus ]
     };
     key <AE12> {
         type[group2]= "THREE_LEVEL",
@@ -1217,17 +1221,17 @@ xkb_symbols "pc+us+gr(polytonic):2+inet(evdev)+group(shifts_toggle)" {
     key <AB08> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [           comma,            less ],
-        symbols[Group2]= [           comma,            slash ]
+        symbols[Group2]= [           comma,            less ]
     };
     key <AB09> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1]= [          period,         greater ],
-        symbols[Group2]= [          period,         backslash ]
+        symbols[Group2]= [          period,         greater ]
     };
     key <AB10> {
         type[group2]= "THREE_LEVEL",
         symbols[Group1] =    [           slash,        question ],
-        Symbols[Group2] = [ dead_acute ]
+        Symbols[Group2] = [ dead_acute, slash ]
     };
     key <RTSH> {         [         Shift_R,  ISO_Next_Group ] };
     key <KPMU> {

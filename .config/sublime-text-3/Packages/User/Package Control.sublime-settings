@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"Alignment",
+		"AlignTab",
 		"ApacheConf",
 		"AutoAligner",
 		"Babel",

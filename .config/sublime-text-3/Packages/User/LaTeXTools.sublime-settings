@@ -86,7 +86,7 @@
 	"builder_path": "",
 
 	// OPTION: "builder_settings"
-	"output_directory": "/home/work/Desktop/_latex",
+	"output_directory": "/home/work/latex-tmp",
 	// "program": "lualatex",
 	"builder_settings" : {
 		// "program": "lualatex",

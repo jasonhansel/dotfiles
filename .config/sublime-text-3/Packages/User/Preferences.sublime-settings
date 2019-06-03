@@ -2,14 +2,14 @@
 	"added_words":
 	[
 	],
-	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-darktooth.tmTheme",
+	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-eighties.tmTheme",
 	"enable_tab_scrolling": false,
 	"file_exclude_patterns":
 	[
 	],
 	"find_selected_text": false,
 	"font_face": "Consolas",
-	"font_size": 12,
+	"font_size": 8,
 	"hot_exit": false,
 	"ignored_packages":
 	[

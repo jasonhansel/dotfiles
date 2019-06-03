@@ -88,6 +88,8 @@ sync {
 		keep_dirlinks = true,
 		links = true,
 		_extra = {
+			-- Hopefully this solves those weird iconv crashes
+			"--no-iconv",
 			"-M--fake-super"
 		}
 	}

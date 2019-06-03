@@ -69,10 +69,11 @@ conky.config = {
 conky.text = [[
 ${color grey}Battery: $color$battery
 $hr
-$hr
-${color grey}Disk usage: $color${fs_used /}/${fs_size /}
-$hr
-${texeci 10 journalctl --quiet --output=short -p 3 -n 5 --no-full --no-hostname | cut -d ' ' -f3- }
+${texeci 10 journalctl --quiet --output=short -p0..3 -n 5 --no-full --no-hostname | cut -d ' ' -f3- }
 $hr
 ${texeci 10 ls -1t /tmp/lsyncd-status.* | head -1 | xargs head -n4 | sed -e "s/^Lsyncd status report at /lsyncd: /;/^$/d" }
+$hr
+${texeci 10 ls -F -C -w40 --tabsize=100 ~/Desktop}
+$hr
+${texeci 10  findmnt --real -t 'nobpf,fuse.gvfsd-fuse' -o FSTYPE,USE%,TARGET  }
 ]]

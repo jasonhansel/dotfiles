@@ -10,6 +10,11 @@
 "krunner"
 	F18
 
+"~/bin/desktop-menu.sh"
+	Mod4 + p
+
+"~/bin/app-menu.sh"
+	Shift + Mod4 +  p
 
 #"xdotool keydown Super_L"
 #	F13

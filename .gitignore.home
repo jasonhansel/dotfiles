@@ -1,12 +1,17 @@
 /Desktop
+/.cfg
+/.config/ensime-vim
 /Documents
 /Downloads
 /Dropbox.OLD
+/.dockbarx/log
+/.coursier/cache
 /FoxitSoftware
 /linux
 /LTspiceXVII
 /eclipse-workspace
 /dotfiles*
+/latex-tmp
 /VirtualBox *
 /idea-settings-repo
 /Nextcloud
@@ -15,6 +20,20 @@
 /texmf
 /*.ofx
 /My *
+
+/.android/analytics.settings
+/.config/xfce4/xfconf
+/.config/Zeal/Zeal.conf
+/.config/emaildefaults
+/.config/kaddressbookrc
+/.config/kcmdisplayrc
+/.config/kcmfonts
+/.config/kde.org/marble.conf
+/.config/ktimerrc
+/.config/marblerc
+/.config/networkmanagement.notifyrc
+/.config/kwinrc
+
 
 # Ordinary app data
 /.mozilla/firefox
@@ -114,7 +133,6 @@
 
 /.odbc.ini
 /.parallel/tmp
-/.qucs
 /.sage
 /.ssh
 /.subversion
@@ -182,10 +200,8 @@
 
 /.config/CasaPortale/
 /.config/Code - OSS
-/.config/Flavio Tordini/
 /.config/Foxit Software/
 /.config/GIMP/
-/.config/KDE/
 /.config/LanguageTool/
 /.config/Nextcloud/
 /.config/NotSnapChat/
@@ -200,16 +216,13 @@
 /.config/VirtualBox/
 /.config/XpdfReaderrc
 /.config/abiword/
-/.config/akregatorrc
 /.config/arkrc
 /.config/auroraerc
-/.config/autostart/
 /.config/baloofileinformationrc
 /.config/baloofilerc
 /.config/baloorc
 /.config/bluedevilglobalrc
 /.config/bluedevilreceiverrc
-/.config/cantorrc
 /.config/cava/
 /.config/configstore/
 /.config/dconf/
@@ -220,43 +233,30 @@
 /.config/dolphinrc
 /.config/drkonqirc
 /.config/easytag/
-/.config/emaildefaults
-/.config/emailidentities
 /.config/enchant/
 /.config/evince/
 /.config/filelightrc
 /.config/filetypesrc
-/.config/fman/
-/.config/foldermailarchiverc
 /.config/fontconfig/
 /.config/freshwrapper.conf
 /.config/gconf/
-/.config/globalnotesettings
 /.config/gtk-2.0/
 /.config/gtk-3.0/
 /.config/gtkrc
 /.config/gtkrc-2.0
-/.config/gummi/
 /.config/gwenviewrc
-/.config/hiri.com/
 /.config/htop/
 /.config/inkscape/
 /.config/kaccess.notifyrc
 /.config/kaccessrc
 /.config/kactivitymanagerd-statsrc
 /.config/kactivitymanagerdrc
-/.config/kalarmrc
 /.config/katemetainfos
-/.config/katepartrc
-/.config/katerc
-/.config/kateschemarc
-/.config/katevirc
-/.config/kcmdisplayrc
-/.config/kcmfonts
+/.config/kate*rc
 /.config/kcminputrc
 /.config/kcmshell5rc
 /.config/kconf_updaterc
-/.config/kde.org/
+/.config/kde.org/libphonon.conf
 /.config/kde5-nm-connection-editorrc
 /.config/kdebugrc
 /.config/kded5rc
@@ -271,16 +271,9 @@
 /.config/kickoffrc
 /.config/kio_desktoprc
 /.config/kiorc
-/.config/kleopatrarc
 /.config/kmenueditrc
 /.config/knfsshare
-/.config/knotesrc
 /.config/knotifyrc
-/.config/komparerc
-/.config/konsolerc
-/.config/kontact_summaryrc
-/.config/kontactrc
-/.config/korgacrc
 /.config/krunnerrc
 /.config/kscreenlockerrc
 /.config/kservicemenurc
@@ -292,14 +285,10 @@
 /.config/kxkbrc
 /.config/libaccounts-glib/
 /.config/lxqt/
-/.config/mailtransports
-/.config/mailviewerrc
 /.config/menus/
-/.config/meteo-qt/
 /.config/mimeapps.list
 /.config/mono.addins/
 /.config/nautilus/
-/.config/nemo/
 /.config/okularpartrc
 /.config/okularrc
 /.config/openrazer/
@@ -307,8 +296,7 @@
 /.config/oxygen-gtk/
 /.config/pavucontrol.ini
 /.config/plasma-nm
-/.config/plasma-org.kde.plasma.desktop-appletsrc
-/.config/plasma-org.kde.plasma.desktop-appletsrc.yJH666
+/.config/plasma-org.kde.plasma.desktop-appletsrc*
 /.config/plasma_workspace.notifyrc
 /.config/plasmarc
 /.config/plasmashellrc
@@ -325,10 +313,8 @@
 /.config/qpdfviewrc
 /.config/qstardict/
 /.config/qt5ct/
-/.config/qucs/
 /.config/ristretto/
 /.config/scdl/
-/.config/specialmailcollectionsrc
 /.config/spectaclerc
 /.config/spotify/
 /.config/stardict/
@@ -339,9 +325,7 @@
 /.config/systemsettingsrc
 /.config/taskmanagerrulesrc
 /.config/texstudio/
-/.config/totem/
 /.config/trashrc
 /.config/vlc/
 /.config/volumeicon/
 /.config/xbuild/
-/.config/yad.conf
