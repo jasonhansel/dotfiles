@@ -1,0 +1,15 @@
+#!/bin/zsh
+set -euo pipefail
+
+export GIT_DIR=$HOME/.cfg/
+export GIT_WORK_TREE=$HOME
+
+mkdir $GIT_DIR # fails if already exists, intentionally
+git init $GIT_DIR
+git config core.excludesFile $HOME/.gitignore.home
+
+git remote add origin ssh://git@github.com/jasonhansel/dotfiles.git
+git fetch
+
+git reset --mixed remotes/origin/laptop-jason
+git checkout laptop-jason
