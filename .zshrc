@@ -89,3 +89,9 @@ FAST_HIGHLIGHT_STYLES[arg0]='none'
 # Start "tmux", if necessary
 source ~/.zsh/start-tmux.zsh
 
+alias config='GIT_DIR=$HOME/.cfg/ GIT_WORK_TREE=$HOME git'
+#if ! test -d $HOME/.cfg
+#	echo Setting up dotfiles repository...
+#	mkdir -p $HOME/.cfg
+#	config init $HOME/.cfg
+#fi

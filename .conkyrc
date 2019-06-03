@@ -69,7 +69,6 @@ conky.config = {
 conky.text = [[
 ${color grey}Battery: $color$battery
 $hr
-$hr
 ${color grey}Disk usage: $color${fs_used /}/${fs_size /}
 $hr
 ${texeci 10 journalctl --quiet --output=short -p 3 -n 5 --no-full --no-hostname | cut -d ' ' -f3- }

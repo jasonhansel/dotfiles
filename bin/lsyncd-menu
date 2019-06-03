@@ -88,6 +88,7 @@ sync {
 		keep_dirlinks = true,
 		links = true,
 		_extra = {
+			"--no-iconv",
 			"-M--fake-super"
 		}
 	}

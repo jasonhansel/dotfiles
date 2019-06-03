@@ -1,0 +1,11 @@
+#
+# CLEX configuration file
+#
+FRAME=2
+CMD_F3=less -- $f
+CMD_F4=vim -- $f
+CMD_F5=cp -ir -- $f $2
+CMD_F6=mv -i -- $f $2
+CMD_F7=mkdir -- 
+CMD_F8=rm -- $f
+CMD_F9=lpr -- $f
