@@ -120,6 +120,8 @@
 /.vifm/*.txt
 /.zkbd/*.tmp
 
+/.cfg
+
 !/.ssh/config-default
 !/.zshrc
 !/.tmux.conf
@@ -149,6 +151,7 @@
 /.local/*
 !/.local/share
 /.local/share/*
+!/.local/bin
 !/.local/share/applications**
 /.local/share/applications/wine**
 /.local/share/applications/q4wine**

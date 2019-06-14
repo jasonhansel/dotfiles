@@ -14,7 +14,6 @@ let $SUDO_ASKPASS=''
 if has("termguicolors")     " set true colors
     set termguicolors
 endif
-
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -457,3 +456,6 @@ nnoremap <silent> <C-p> :GFiles<CR>
 
 nnoremap <silent> <C-i> :History<CR>
 nnoremap <silent> <C-u> :Buffer<CR>
+
+" easier copy/paste with xterm escapes
+vnoremap Y y:<C-U>execute '!echo -ne ''\033]52;c;' . system('base64 --wrap=0', @0) . '\a'''<CR>

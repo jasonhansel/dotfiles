@@ -70,3 +70,4 @@ export DISABLE_AUTO_TITLE="false"
 export AUTO_TITLE=true
 export _ZSH_TMUX_FIXED_CONFIG="$HOME/.tmux.conf"
 
+alias config='GIT_DIR=$HOME/.cfg/ GIT_WORK_TREE=$HOME git'
