@@ -68,8 +68,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 call plug#end()
 
-" Plug 'tpope/vim-sleuth'
-
 "inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
@@ -230,7 +228,6 @@ set viminfo+=n~/.vim/viminfo
 
 
 
-let g:airline#themes#jason#palette = {}
 let s:guibg = '#080808'
 let s:guibg2 = '#1c1c1c'
 let s:termbg = 232
@@ -240,52 +237,6 @@ let s:N2 = [ '#ff5f00' , s:guibg2, 202 , s:termbg2 ]
 let s:N3 = [ '#767676' , s:guibg, 243 , s:termbg]
 
 
-
-
-let g:airline#themes#jason#palette.normal = 'AirlineNormal'
-" airline#themes#generate_color_map(s:N1, s:N2, s:N3)
-let g:airline#themes#jason#palette.insert = 'AirlineInsert'
-" airline#themes#generate_color_map(s:I1, s:N2, s:N3)
-let g:airline#themes#jason#palette.replace = 'AirlineInsert'
-" airline#themes#generate_color_map(s:R1, s:N2, s:N3)
-let g:airline#themes#jason#palette.visual = 'AirlineVisual'
-let g:airline#themes#jason#palette.terminal = 'AirlineTerminal'
-
-
-
-
-
-let warn = airline#themes#get_highlight('AirlineWarning')
-let err = airline#themes#get_highlight('AirlineError')
-let N2 = airline#themes#get_highlight('LineNr')
-let modified = airline#themes#get_highlight2(['AirlineError', 'bg'], ['StatusLine', 'bg'], 'none')
-for mode in keys(g:airline#themes#jason#palette)
-	let str = g:airline#themes#jason#palette[mode]
-	let N1 = airline#themes#get_highlight(str)
-	let N3 = airline#themes#get_highlight2([str, 'bg'], ['StatusLine', 'bg'], 'none')
-
-	" let N2 = airline#themes#get_highlight2([str, 'bg'], ['StatusLine', 'bg'], 'none')
-	let g:airline#themes#jason#palette[mode] = airline#themes#generate_color_map(N1, N2, N3)
-	
-	if mode != "terminal"
-		let g:airline#themes#jason#palette[mode . '_modified'] = airline#themes#generate_color_map(N1, N2, modified)
-		let g:airline#themes#jason#palette[mode . '_modified']['airline_warning'] = warn
-		let g:airline#themes#jason#palette[mode . '_modified']['airline_err'] = err
-	endif
-	let g:airline#themes#jason#palette[mode]['airline_warning'] = warn
-	let g:airline#themes#jason#palette[mode]['airline_error'] = err
-endfor
-
-let g:airline#themes#jason#palette.inactive = airline#themes#generate_color_map(s:N2, s:N2, s:N2)
-
-let g:airline#themes#jason#palette['inactive_modified'] = airline#themes#generate_color_map(s:N2, s:N2, modified)
-let g:airline#themes#jason#palette['inactive_modified']['airline_warning'] = warn
-let g:airline#themes#jason#palette['inactive_modified']['airline_err'] = err
-" Accent color
-" It helps to remove the bold typography into modes section
-let g:airline#themes#jason#palette.accents = {}  "'black' : airline#themes#get_highlight2(['LineNr', 'bg'], ['ModeMsg', 'fg'], 'none')}
-
-let g:airline#extensions#tabline#formatter = 'jason'
 
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
@@ -307,7 +258,6 @@ let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline_section_y = airline#section#create(['search2', 'ale_warning_count','ale_error_count'])
 let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 
-let g:airline_theme='jason'
 
 
 let mapleader=","
