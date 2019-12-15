@@ -1,8 +1,0 @@
-
-
-#"xdotool keydown Super_L"
-#	F13
-
-#"xdotool keyup Super_L"
-#	Mod4 + Super_L + F13 + release
-

@@ -12,13 +12,13 @@ filetype off
 let $SUDO_ASKPASS=''
 
 if has("termguicolors")     " set true colors
-    set termguicolors
+  set termguicolors
 endif
 
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -27,52 +27,67 @@ let g:airline#extensions#tabline#formatter = 'jason'
 
 set pyxversion=3 encoding=utf-8
 
+let g:ale_linters = {'rust': ['cargo'], 'javascript': ['eslint']}
+let g:ale_linters_explicit = 1
+filetype plugin indent on
+let g:ale_sign_column_always=1
+let g:ale_set_highlights=0
+let g:ale_rust_cargo_check_all_targets=1
+let g:ale_rust_rls_toolchain='stable'
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_text_changed='normal'
+let g:ale_completion_enabled = 0 " TODO
+let g:ale_maximum_file_size=1000000
+set signcolumn=yes " always show sign column
+
+let g:deoplete#enable_at_startup = 1
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
-Plug 'gmarik/Vundle.vim'
-
-" Plug 'eiginn/netrw'
-Plug 'tpope/vim-vinegar'
+" Plug 'gmarik/Vundle.vim'
 Plug 'rust-lang/rust.vim' " before filetype on in vim-sesnible
-Plug 'w0rp/ale'
 Plug 'tpope/vim-sensible'
 Plug 'chriskempson/base16-vim'
-
 " needs  pip install --user neovim greenlet==0.4.10
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-eunuch'
-Plug 'fholgado/minibufexpl.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'sebastianmarkow/deoplete-rust'
-" Plug 'lifepillar/vim-mucomplete
 Plug 'vim-scripts/DetectIndent'
+Plug 'vim-scripts/BufOnly.vim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'wellle/tmux-complete.vim'
-
+Plug 'deoplete-plugins/deoplete-tag'
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-endwise'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+call plug#end()
 
 " Plug 'tpope/vim-sleuth'
 
-" Plug 'ctrlpvim/ctrlp.vim'
+"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-Plug 'junegunn/fzf.vim'
-call plug#end()
 
+
+
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
 autocmd BufReadPost * :DetectIndent
 
 "TEST
 let g:rooter_manual_only = 1
 
 set notitle
+set nu
 
-let g:deoplete#max_menu_width=80
-
-let g:deoplete#auto_completion_start_length = 1
-let g:deoplete#enable_refresh_always = 0
 
 " Use <tab> for completion
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
@@ -86,20 +101,38 @@ let g:deoplete#file#enable_buffer_path = 1
 
 let g:airline#extensions#tabline#formatter = 'jason'
 
-" call deoplete#custom#option('complete_method', 'omnifunc')
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#enable_refresh_always = 0
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around'  ]  })
-" 
-" call deoplete#custom#option('ignore_sources', { '_' : [ 'around', 'dictionary', 'member',  'buffer', 'file']  })
+call deoplete#custom#source('_',  'max_menu_width', 20)
+call deoplete#custom#source('_', 'max_menu_width', 20)
+set pumwidth=5
+let deoplete#tag#cache_limit_size = 100000000
+call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around', 'tag' ]  })
 
+call deoplete#custom#source('_', 'matchers', ['matcher_head']) " , 'matcher_length'])
 call deoplete#custom#source('file', 'enable_buffer_path', 1)
 
-" let g:deoplete#ignore_sources = {}
-" let g:deoplete#ignore_sources._ = ['buffer', 'tag', 'file', 'dictionary', 'around']
 
 let g:miniBufExplorerAutoStart = 0
 let g:miniBufExplBRSplit = 1
 let g:miniBufExplVSplit = 20
+
+" from SO: close all buffers that are hidden and not modified
+" unlike BufOnly, this leaves modified buffers instead of erroring
+" note need call Bcloseothers() -- a funciton not a command
+function! Bcloseothers()
+  let tpbl=[]
+  let closed = 0
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    if getbufvar(buf, '&mod') == 0
+      silent execute 'Bclose' buf
+      let closed += 1
+    endif
+  endfor
+  echo "Closed ".closed." hidden buffers"
+endfunction
 
 " Fix dtach issues
 set term=xterm-256color
@@ -110,43 +143,43 @@ autocmd VimResized * set term=xterm-256color
 let s:oldval = ""
 
 function! SearchCount()
-	let pos=getpos('.')
-	try
-		let keyString=@/
-		if strlen(keyString) == 0
-			return ""
-		endif
+  let pos=getpos('.')
+  try
+    let keyString=@/
+    if strlen(keyString) == 0
+      return ""
+    endif
 
-		if getfsize(expand(@%)) > 100000
-			return "Too Large"
-		endif
+    if getfsize(expand(@%)) > 100000
+      return "Too Large"
+    endif
 
-		let cnt = ''
-		redir => cnt
-			silent exe '%s/' . keyString . '//nge'
-		redir END
-		let cnt = matchstr(cnt, '\d\+')
-		if cnt == "0" || cnt == ""
-			return "🔍 0/0"
-		endif
-		
-		let nth = ''
-		let rest = ''
-		 call setpos('.', pos)
-		redir => rest
-			silent exe 's/' . keyString . '\(.\{-}\%#\)\@=//nge'
-		 call setpos('.', pos)
-		redir => nth
-			silent exe '0,.-1s/' . keyString . '//nge'
-		redir END
-		let s:oldval = '🔍 ' . (matchstr( nth, '\d\+' ) + matchstr(rest,'\d\+')) . '/' . cnt. ''
-		return s:oldval
-	catch
-		return "ERR".v:exception
-	finally
-		 call setpos('.', pos)
-		let s:oldval = "NONE"
-	endtry
+    let cnt = ''
+    redir => cnt
+    silent exe '%s/' . keyString . '//nge'
+    redir END
+    let cnt = matchstr(cnt, '\d\+')
+    if cnt == "0" || cnt == ""
+      return "🔍 0/0"
+    endif
+
+    let nth = ''
+    let rest = ''
+    call setpos('.', pos)
+    redir => rest
+    silent exe 's/' . keyString . '\(.\{-}\%#\)\@=//nge'
+    call setpos('.', pos)
+    redir => nth
+    silent exe '0,.-1s/' . keyString . '//nge'
+    redir END
+    let s:oldval = '🔍 ' . (matchstr( nth, '\d\+' ) + matchstr(rest,'\d\+')) . '/' . cnt. ''
+    return s:oldval
+  catch
+    return "ERR".v:exception
+  finally
+    call setpos('.', pos)
+    let s:oldval = "NONE"
+  endtry
 endfunction
 
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
@@ -156,16 +189,6 @@ call airline#parts#define_function('search2', 'SearchCount')
 
 let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '0-IMPT.md']
 
-let g:ale_linters = {'rust': ['cargo'], 'javascript': ['eslint']}
-let g:ale_linters_explicit = 1
-filetype plugin indent on
-let g:ale_sign_column_always=1
-let g:ale_set_highlights=0
-let g:ale_rust_cargo_check_all_targets=1
-let g:ale_rust_rls_toolchain='stable'
-let g:ale_lint_on_insert_leave=1
-let g:ale_lint_on_text_changed='normal'
-
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
@@ -173,17 +196,17 @@ let $RUST_SRC_PATH='/usr/src/rust/src'
 
 
 let g:airline#extensions#tabline#buffer_idx_format = {
-	  \ '0': '0·',
-	  \ '1': '1·',
-	  \ '2': '2·',
-	  \ '3': '3·',
-	  \ '4': '4·',
-	  \ '5': '5·',
-	  \ '6': '6·',
-	  \ '7': '7·',
-	  \ '8': '8·',
-	  \ '9': '9·'
-	  \}
+      \ '0': '0·',
+      \ '1': '1·',
+      \ '2': '2·',
+      \ '3': '3·',
+      \ '4': '4·',
+      \ '5': '5·',
+      \ '6': '6·',
+      \ '7': '7·',
+      \ '8': '8·',
+      \ '9': '9·'
+      \}
 " Set a better color scheme
 set background=dark
 "colorscheme desert
@@ -281,7 +304,7 @@ let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#exclude_preview = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#fnamecollapse = 1
-let g:airline_section_y = airline#section#create(['search2']) " ,'ale_warning_count','ale_error_count'])
+let g:airline_section_y = airline#section#create(['search2', 'ale_warning_count','ale_error_count'])
 let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 
 let g:airline_theme='jason'
@@ -311,8 +334,8 @@ let g:netrw_winsize = 25
 " Keep undo history across sessions. Requires that ~/.vim/backups exist.
 
 if has('persistent_undo')
-	set undodir=~/.vim/backups
-	set undofile
+  set undodir=~/.vim/backups
+  set undofile
 endif
 
 " SETTINGS
@@ -327,13 +350,11 @@ augroup CursorLine
 augroup END
 
 " paste with proper indent
-nnoremap <c-p> p
+nnoremap <Leader>p p
 nnoremap p ]p
 
 
-nnoremap q a
 
-call deoplete#custom#source('_', 'matchers', ['matcher_head']) " , 'matcher_length'])
 set complete=d
 set completeopt=menu,menuone,noinsert
 set pumheight=5
@@ -362,7 +383,7 @@ set smartindent
 set shiftwidth=4
 set softtabstop=0
 set tabstop=4
-set noexpandtab
+set expandtab
 
 " Display tabs and trailing spaces
 set list listchars=tab:\│\ ,trail:·
@@ -392,7 +413,7 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>, <Plug>AirlineSelectPrevTab
+nnoremap <silent> <leader>, :b#<CR>
 nmap <leader>. <Plug>AirlineSelectNextTab
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>= <Plug>AirlineSelectNextTab
@@ -401,6 +422,8 @@ nmap <leader>= <Plug>AirlineSelectNextTab
 imap <C-w> <Esc><C-w>
 nmap <C-w>\|  <C-w>v
 nmap <C-w>-  <C-w>s
+nnoremap <silent> <C-e> :Bclose<CR>
+nnoremap <silent> <leader>! :bd<CR>
 " https://github.com/vim/vim/issues/2216
 tnoremap <Esc> <c-\><c-n>
 " below is needed to fix arrow-key issues; sadly, it breaks the <nowait> stuff
@@ -415,23 +438,106 @@ endfunc
 
 " https://stackoverflow.com/questions/13850914/vim-overloaded-mapping-for-multiple-modes
 function! MapBoth(keys, rhs)
-    execute 'nmap' '<silent>' a:keys a:rhs
-	execute 'imap' '<silent>' a:keys '<C-o>'.a:rhs
-	execute 'tmap' '<silent>' a:keys '<C-\><C-n>'.a:rhs
+  execute 'nmap' '<silent>' a:keys a:rhs
+  execute 'imap' '<silent>' a:keys '<C-o>'.a:rhs
+  execute 'tmap' '<silent>' a:keys '<C-\><C-n>'.a:rhs
 endfunction
 
 " https://stackoverflow.com/questions/18546533/execute-plug-commands-in-vim
 for i in [1,2,3,4,5,6,7,8,9]
-	call MapBoth('<C-w>'.i, '<Plug>AirlineSelectTab'.i)
+  call MapBoth('<C-w>'.i, '<Plug>AirlineSelectTab'.i)
 endfor
 
 call MapBoth('<C-w>[', 'gT')
 call MapBoth('<C-w>]', 'gt')
 call MapBoth('<C-T>', ':ter ++close zsh<CR>')
 
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#cancel_popup() . "\<CR>"
+endfunction
+
 " Mouse support
 set ttymouse=xterm2
 set mouse=a
+
+let s:TYPE = {'dict': type({}), 'funcref': type(function('call')), 'string': type(''), 'list': type([])}
+
+function! s:extend_opts(dict, eopts, prepend)
+  if empty(a:eopts)
+    return
+  endif
+  if has_key(a:dict, 'options')
+    if type(a:dict.options) == s:TYPE.list && type(a:eopts) == s:TYPE.list
+      if a:prepend
+        let a:dict.options = extend(copy(a:eopts), a:dict.options)
+      else
+        call extend(a:dict.options, a:eopts)
+      endif
+    else
+      let all_opts = a:prepend ? [a:eopts, a:dict.options] : [a:dict.options, a:eopts]
+      let a:dict.options = join(map(all_opts, 'type(v:val) == s:TYPE.list ? join(map(copy(v:val), "fzf#shellescape(v:val)")) : v:val'))
+    endif
+  else
+    let a:dict.options = a:eopts
+  endif
+endfunction
+
+
+function! s:wrap(name, opts, bang)
+  " fzf#wrap does not append --expect if sink or sink* is found
+  let opts = copy(a:opts)
+  let options = ''
+  if has_key(opts, 'options')
+    let options = type(opts.options) == s:TYPE.list ? join(opts.options) : opts.options
+  endif
+  if options !~ '--expect' && has_key(opts, 'sink*')
+    let Sink = remove(opts, 'sink*')
+    let wrapped = fzf#wrap(a:name, opts, a:bang)
+    let wrapped['sink*'] = Sink
+  else
+    let wrapped = fzf#wrap(a:name, opts, a:bang)
+  endif
+  return wrapped
+endfunction
+
+function! s:merge_opts(dict, eopts)
+  return s:extend_opts(a:dict, a:eopts, 0)
+endfunction
+
+function! s:fzf(name, opts, extra)
+  let [extra, bang] = [{}, 0]
+  if len(a:extra) <= 1
+    let first = get(a:extra, 0, 0)
+    if type(first) == s:TYPE.dict
+      let extra = first
+    else
+      let bang = first
+    endif
+  elseif len(a:extra) == 2
+    let [extra, bang] = a:extra
+  else
+    throw 'invalid number of arguments'
+  endif
+
+  let eopts  = has_key(extra, 'options') ? remove(extra, 'options') : ''
+  let merged = extend(copy(a:opts), extra)
+  call s:merge_opts(merged, eopts)
+  return fzf#run(s:wrap(a:name, merged, bang))
+endfunction
+
+function! s:get_git_root()
+  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+  return v:shell_error ? '' : root
+endfunction
+
+"function! NewGitFiles()
+"  " Git files but put history first
+"  return s:fzf('gfiles', {
+"        \ 'source': '~/bin/gfiles.pl',
+"        \ 'options': '--tiebreak=index --prompt "NewGitFiles> "'
+"        \}, a:000)
+"endfunction
 
 " Misc
 set whichwrap=b,s,<,>,[,]
@@ -443,17 +549,73 @@ highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Re
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 let g:fzf_layout = {'window': 'botright split'}
 
 nnoremap <silent> <C-o> :Files<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
+" nnoremap <silent> <C-p> :execute 'GFiles' <CR> :execute 'tnoremap <buffer> \<esc\> \<C-W\>N:bd!\<CR\>'<CR>
+nnoremap <silent> <C-p> :call NewGitFiles()<CR>
+nnoremap <silent> <C-t> :Tags<CR>
+nnoremap <silent> <M-p> :GFiles<CR>
 
+nnoremap <silent> <C-n> :enew<CR>
 
 "below code is stolen from fzf.vim
 
 nnoremap <silent> <C-i> :History<CR>
 nnoremap <silent> <C-u> :Buffer<CR>
+
+" readability
+hi Comment guifg='#888888'
+
+" consistency
+nnoremap Y y$
+
+" stuff I always hit by accident or find useless
+nnoremap Q <Nop>
+nnoremap M <Nop>
+nnoremap X <Nop>
+nnoremap U <Nop>
+nnoremap R <Nop>
+nnoremap zz <Nop>
+nnoremap zz <Nop>
+nnoremap h <Nop>
+nnoremap j ^
+nnoremap k $
+nnoremap l <Nop>
+nnoremap ' <Nop>
+nnoremap ; <Nop>
+nnoremap H <Nop>
+nnoremap K <Nop>
+nnoremap s <Nop>
+nnoremap S <Nop>
+nnoremap L <Nop>
+nnoremap y/ ygn
+nnoremap c/ cgn
+nnoremap d/ dgn
+nnoremap \! dgn
+nnoremap Y dgn
+
+set sidescroll=1
+
+"  TODO easier way to press <Esc>; remap the above incl '\' and '|' and
+"  '[]'-shortcuts; simplpify p/P; better auto ident; etc.
+
+
+" TODO this just breaks netrw, doesn't really fix it
+" https://github.com/tpope/vim-vinegar/issues/13
+function! QuitNetrw()
+  autocmd! FileExplorer
+endfunction
+
+let g:netrw_fastbrowse=0
+
+" https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" stop trying to fix final EOL
+set nofixendofline

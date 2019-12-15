@@ -74,6 +74,9 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ln='ln -v'
 
+# Options I always forget
+alias pgrep='pgrep -af'
+
 # Create a link in whichever direction works
 function link() {
 	if [[ -e $1 ]] ; then

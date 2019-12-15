@@ -90,6 +90,17 @@ FAST_HIGHLIGHT_STYLES[arg0]='none'
 source ~/.zsh/start-tmux.zsh
 
 alias config='GIT_DIR=$HOME/.cfg/ GIT_WORK_TREE=$HOME git'
+
+widget-my-reset() {
+	tput rmcup # exit alternate screen
+	tput ed # clear to end of screen
+	kill -SIGWINCH $PPID # reset window size
+}
+zle -N my-reset widget-my-reset
+bindkey ^P my-reset
+
+stty tostop # disable background output
+
 #if ! test -d $HOME/.cfg
 #	echo Setting up dotfiles repository...
 #	mkdir -p $HOME/.cfg

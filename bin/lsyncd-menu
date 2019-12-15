@@ -73,7 +73,14 @@ sync {
 		'/.local/share/RecentDocuments',
 		'/.vim/swap',
 		'/.lesshs*',
-		'/.config/Franz'
+		'/.config/Franz',
+		'/.local/share/Nextcloud',
+		'/.local/share/kcookiejar',
+		'/.mozilla/firefox/*/permissions.sqlite*',
+		'/.mozilla/firefox/*/SiteSecurityServiceState.txt',
+		'/.pki/nssdb',
+		'/.local/share/gvfs-metadata',
+		'/.local/share/kactivitymanagerd'
 	},
 	rsync = {
 		verbose = false,
