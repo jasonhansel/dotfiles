@@ -37,7 +37,6 @@ let g:ale_completion_enabled = 0 " TODO
 let g:ale_maximum_file_size=1000000
 set signcolumn=yes " always show sign column
 
-let g:deoplete#enable_at_startup = 1
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
@@ -64,65 +63,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 call plug#end()
 
-" from SO: close all buffers that are hidden and not modified
-" unlike BufOnly, this leaves modified buffers instead of erroring
-" note need call Bcloseothers() -- a funciton not a command
-function! Bcloseothers()
-  let tpbl=[]
-  let closed = 0
-  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-    if getbufvar(buf, '&mod') == 0
-      silent execute 'Bclose' buf
-      let closed += 1
-    endif
-  endfor
-  echo "Closed ".closed." hidden buffers"
-endfunction
 
-
-
-let g:detectindent_preferred_expandtab = 1
-let g:detectindent_preferred_indent = 4
-autocmd BufReadPost * :DetectIndent
-
-
-" COMPLETION AND LINTING
-" =========================================================================
-
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Use <tab> for completion
-inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
-
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_on_insert_enter = 1
-let g:deoplete#auto_refresh_delay = 0
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#auto_completion_start_length = 1
-let g:deoplete#enable_refresh_always = 0
-
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-let deoplete#tag#cache_limit_size = 100000000
-call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around','buffer', 'tag' ]  })
-    " fix caching etc wrt above
-call deoplete#custom#option('min_pattern_length', 1)
-
-" Allow deoplete to see all relevant completions
-call deoplete#custom#option('max_list', 1000)
-
-" Set size of completion menu
-call deoplete#custom#source('_', 'max_abbr_width', 10)
-set pumheight=5
-
-
-call deoplete#custom#source('_', 'matchers', ['matcher_head']) " , 'matcher_length'])
-call deoplete#custom#source('file', 'enable_buffer_path', 10)
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
-let $RUST_SRC_PATH='/usr/src/rust/src'
 
 " VIM SETTINGS
 " =========================================================================
@@ -212,9 +153,6 @@ set smartcase  " ... unless it contains a capital
 set ttymouse=xterm2
 set mouse=a
 
-
-
-
 " Color Scheme
 
 set background=dark
@@ -243,6 +181,45 @@ highlight DiffText   guifg=fg guibg=#0000cc
 
 " readability
 hi Comment guifg='#888888'
+
+
+" COMPLETION AND LINTING
+" =========================================================================
+
+let g:deoplete#enable_at_startup = 1
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Use <tab> for completion
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
+
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_on_insert_enter = 1
+let g:deoplete#auto_refresh_delay = 0
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#enable_refresh_always = 0
+
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+let deoplete#tag#cache_limit_size = 100000000
+call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around','buffer', 'tag' ]  })
+    " fix caching etc wrt above
+call deoplete#custom#option('min_pattern_length', 1)
+
+" Allow deoplete to see all relevant completions
+call deoplete#custom#option('max_list', 1000)
+
+" Set size of completion menu
+call deoplete#custom#source('_', 'max_abbr_width', 10)
+set pumheight=5
+
+
+call deoplete#custom#source('_', 'matchers', ['matcher_head']) " , 'matcher_length'])
+call deoplete#custom#source('file', 'enable_buffer_path', 10)
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
+let $RUST_SRC_PATH='/usr/src/rust/src'
 
 " AIRLINE
 " =========================================================================
@@ -357,6 +334,29 @@ autocmd! FileType fzf
 autocmd  FileType fzf setlocal laststatus=0
           \| tnoremap <buffer><nowait><silent> <Esc> <C-w>:bd!<CR>
           \| autocmd BufLeave <buffer> set laststatus=2
+
+" MISC
+" =========================================================================
+
+" from SO: close all buffers that are hidden and not modified
+" unlike BufOnly, this leaves modified buffers instead of erroring
+" note need call Bcloseothers() -- a funciton not a command
+function! Bcloseothers()
+  let tpbl=[]
+  let closed = 0
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    if getbufvar(buf, '&mod') == 0
+      silent execute 'Bclose' buf
+      let closed += 1
+    endif
+  endfor
+  echo "Closed ".closed." hidden buffers"
+endfunction
+
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
+autocmd BufReadPost * :DetectIndent
 
 " KEY BINDINGS
 " =========================================================================
