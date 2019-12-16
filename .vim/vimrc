@@ -54,7 +54,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'Shougo/deoplete.nvim'
 Plug 'sebastianmarkow/deoplete-rust'
 Plug 'vim-scripts/DetectIndent'
-Plug 'vim-scripts/BufOnly.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'deoplete-plugins/deoplete-tag'
 Plug 'junegunn/fzf'
@@ -65,17 +64,35 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 call plug#end()
 
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" from SO: close all buffers that are hidden and not modified
+" unlike BufOnly, this leaves modified buffers instead of erroring
+" note need call Bcloseothers() -- a funciton not a command
+function! Bcloseothers()
+  let tpbl=[]
+  let closed = 0
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    if getbufvar(buf, '&mod') == 0
+      silent execute 'Bclose' buf
+      let closed += 1
+    endif
+  endfor
+  echo "Closed ".closed." hidden buffers"
+endfunction
+
+
 
 let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
 autocmd BufReadPost * :DetectIndent
 
 
-set notitle  " Don't set X11 window title
-set number   " Show line numbers
-set t_Co=256 " Force 256-color mode
+" COMPLETION AND LINTING
+" =========================================================================
 
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+endif
 " Use <tab> for completion
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 
@@ -108,27 +125,128 @@ let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
 let $RUST_SRC_PATH='/usr/src/rust/src'
 
+" VIM SETTINGS
+" =========================================================================
 
-" from SO: close all buffers that are hidden and not modified
-" unlike BufOnly, this leaves modified buffers instead of erroring
-" note need call Bcloseothers() -- a funciton not a command
-function! Bcloseothers()
-  let tpbl=[]
-  let closed = 0
-  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-    if getbufvar(buf, '&mod') == 0
-      silent execute 'Bclose' buf
-      let closed += 1
-    endif
-  endfor
-  echo "Closed ".closed." hidden buffers"
-endfunction
+set notitle  " Don't set X11 window title
+set number   " Show line numbers
+set t_Co=256 " Force 256-color mode
+
 
 " Fix dtach issues
 set term=xterm-256color
 autocmd VimResized * set term=xterm-256color
 
+" Change viminfo location
+set viminfo+=n~/.vim/viminfo
+
+" https://shapeshed.com/vim-netrw/
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" TODO fix other netrw issues
+let g:netrw_fastbrowse=0
+
+" PERSISTENT UNDO
+" Keep undo history across sessions. Requires that ~/.vim/backups exist.
+
+if has('persistent_undo')
+  set undodir=~/.vim/backups
+  set undofile
+endif
+set undoreload=50000
+set matchpairs+=<:>
+
+" Highlight current line, but only in currently-focused window
+" http://vim.wikia.com/wiki/Highlight_current_line
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
+set complete=d
+set completeopt=menu,menuone,noinsert
+set shortmess+=c
+set splitright
+
+
+" stop trying to fix final EOL
+set nofixendofline
+
+
+" Allow buffers to exist without being displayed
+set hidden
+
+" Override sensible.vim
+set noshowcmd
+
+" Make indentation use tabs, and set tab width to 4
+set smartindent
+set shiftwidth=4
+set softtabstop=0
+set tabstop=4
+set expandtab
+
+" Display tabs and trailing spaces
+set list listchars=tab:\│\ ,trail:·
+
+" Disable line wrapping by default
+set nowrap
+set linebreak
+set sidescroll=1
+
+" Disable code folding, except in vimdiff
+if &diff
+    set foldenable
+else
+    set nofoldenable
+endif
+
+" Search results
+set hlsearch   " Highlight results
+set ignorecase " Make search case-insensitive
+set smartcase  " ... unless it contains a capital
+
+" Mouse support
+set ttymouse=xterm2
+set mouse=a
+
+
+
+
+" Color Scheme
+
+set background=dark
+colorscheme base16-pop
+
+hi AirlineNormal guibg='#00d400' guifg='#000000'
+hi AirlineInsert guibg='#00ddff' guifg='#000000'
+hi AirlineTerminal guibg='#ff8d2d' guifg='#000000'
+hi AirlineVisual guibg='#d5b51c' guifg='#000000'
+hi DarkText guifg='#000000'
+hi Normal guibg='#000000' ctermbg=0
+hi Terminal guibg='#000000' ctermbg=0
+hi CursorLine guibg=#262626
+hi SignColumn guibg=#262626
+hi ALEWarningSign guibg=#D78700 guifg=#D78700
+hi AirlineWarning guibg=#D78700 guifg=#000000
+hi ALEErrorLine guibg=NONE
+hi ALEErrorSign guibg=#FF0000 guifg=#FF0000
+hi AirlineError guibg=#FF0000 guifg=#000000
+
+" https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
+highlight DiffAdd    NONE ctermbg=22
+highlight DiffDelete guifg=fg guibg=#440000
+highlight DiffChange guifg=fg guibg=#000044
+highlight DiffText   guifg=fg guibg=#0000cc
+
+" readability
+hi Comment guifg='#888888'
+
+" AIRLINE
+" =========================================================================
 
 " https://github.com/vim/vim/issues/453
 let s:oldval = ""
@@ -173,47 +291,17 @@ function! SearchCount()
   endtry
 endfunction
 
-" https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
-command! C let @/=""
-
 call airline#parts#define_function('search2', 'SearchCount')
 
 
-
-
-" Color Scheme
-
-set background=dark
-colorscheme base16-pop
-
-hi AirlineNormal guibg='#00d400' guifg='#000000'
-hi AirlineInsert guibg='#00ddff' guifg='#000000'
-hi AirlineTerminal guibg='#ff8d2d' guifg='#000000'
-hi AirlineVisual guibg='#d5b51c' guifg='#000000'
-hi DarkText guifg='#000000'
-hi Normal guibg='#000000' ctermbg=0
-hi Terminal guibg='#000000' ctermbg=0
-hi CursorLine guibg=#262626
-hi SignColumn guibg=#262626
-hi ALEWarningSign guibg=#D78700 guifg=#D78700
-hi AirlineWarning guibg=#D78700 guifg=#000000
-hi ALEErrorLine guibg=NONE
-hi ALEErrorSign guibg=#FF0000 guifg=#FF0000
-hi AirlineError guibg=#FF0000 guifg=#000000
-
-" https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
-highlight DiffAdd    NONE ctermbg=22
-highlight DiffDelete guifg=fg guibg=#440000
-highlight DiffChange guifg=fg guibg=#000044
-highlight DiffText   guifg=fg guibg=#0000cc
-
-" Change viminfo location
-set viminfo+=n~/.vim/viminfo
-
+set noshowmode
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
 
 let g:airline#extensions#ale#enabled = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
 let g:airline_extensions = ['tabline',  'ale' ]
@@ -250,125 +338,8 @@ let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-
-
-" https://shapeshed.com/vim-netrw/
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-
-" PERSISTENT UNDO
-" Keep undo history across sessions. Requires that ~/.vim/backups exist.
-
-if has('persistent_undo')
-  set undodir=~/.vim/backups
-  set undofile
-endif
-
-" SETTINGS
-
-set matchpairs+=<:>
-
-" http://vim.wikia.com/wiki/Highlight_current_line
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
-" paste with proper indent
-nnoremap <Leader>p p
-nnoremap p ]p
-
-
-
-set complete=d
-set completeopt=menu,menuone,noinsert
-set shortmess+=c
-
-"make < > shifts keep selection
-vnoremap < <gv
-vnoremap > >gv
-
-set splitright
-
-set noshowmode
-
-" Allow buffers to exist without being displayed
-set hidden
-
-set undoreload=50000
-
-" Override sensible.vim
-set noshowcmd
-
-" Make indentation use tabs, and set tab width to 4
-set smartindent
-set shiftwidth=4
-set softtabstop=0
-set tabstop=4
-set expandtab
-
-" Display tabs and trailing spaces
-set list listchars=tab:\│\ ,trail:·
-
-" Disable line wrapping by default
-set nowrap
-set linebreak
-set sidescroll=1
-
-" Disable code folding, except in vimdiff
-if &diff
-    set foldenable
-else
-    set nofoldenable
-endif
-
-" Highlight search results
-set hlsearch
-
-" Make searches case-insensitive, unless the search contains a capital letter.
-set ignorecase
-set smartcase
-
-
-
-imap <C-w> <Esc><C-w>
-nmap <C-w>\|  <C-w>v
-nmap <C-w>-  <C-w>s
-nnoremap <silent> <C-e> :Bclose<CR>
-nnoremap <silent> <leader>! :bd<CR>
-" https://github.com/vim/vim/issues/2216
-tnoremap <Esc> <c-\><c-n>
-" below is needed to fix arrow-key issues; sadly, it breaks the <nowait> stuff
-tnoremap <Esc>: <c-\><c-n>:
-tnoremap <silent> <C-e> <C-\><C-n>:call term_sendkeys("","\<lt>Esc>")<CR>a
-
-" https://stackoverflow.com/questions/13850914/vim-overloaded-mapping-for-multiple-modes
-function! MapBoth(keys, rhs)
-  execute 'nmap' '<silent>' a:keys a:rhs
-  execute 'imap' '<silent>' a:keys '<C-o>'.a:rhs
-  execute 'tmap' '<silent>' a:keys '<C-\><C-n>'.a:rhs
-endfunction
-
-" https://stackoverflow.com/questions/18546533/execute-plug-commands-in-vim
-for i in [1,2,3,4,5,6,7,8,9]
-  call MapBoth('<C-w>'.i, '<Plug>AirlineSelectTab'.i)
-endfor
-
-call MapBoth('<C-w>[', 'gT')
-call MapBoth('<C-w>]', 'gt')
-call MapBoth('<C-T>', ':ter ++close zsh<CR>')
-
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#cancel_popup() . "\<CR>"
-endfunction
-
-" Mouse support
-set ttymouse=xterm2
-set mouse=a
+" FZF
+" =========================================================================
 
 let s:TYPE = {'dict': type({}), 'funcref': type(function('call')), 'string': type(''), 'list': type([])}
 
@@ -443,11 +414,6 @@ endfunction
 "        \}, a:000)
 "endfunction
 
-" Misc
-set whichwrap=b,s,<,>,[,]
-
-
-
 
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
@@ -455,21 +421,66 @@ let g:fzf_action = {
 
 let g:fzf_layout = {'window': 'botright split'}
 
+
+" KEY BINDINGS
+" =========================================================================
+
+" Allow keys to wrap around EOLs
+set whichwrap=b,s,<,>,[,]
+
+" paste with proper indent
+nnoremap <Leader>p p
+nnoremap p ]p
+
+" Make < and > preserve selection in VISUAL mode
+vnoremap < <gv
+vnoremap > >gv
+
+
+" Allow <C-w> shortcuts even in insert mode
+imap <C-w> <Esc><C-w>
+nmap <C-w>\|  <C-w>v
+nmap <C-w>-  <C-w>s
+
+" Ctrl-E closes current buffer (leaving windows in place)
+nnoremap <silent> <C-e> :Bclose<CR>
+
+" https://github.com/vim/vim/issues/2216
+tnoremap <Esc> <c-\><c-n>
+" below is needed to fix arrow-key issues; sadly, it breaks the <nowait> stuff
+tnoremap <Esc>: <c-\><c-n>:
+tnoremap <silent> <C-e> <C-\><C-n>:call term_sendkeys("","\<lt>Esc>")<CR>a
+
+" https://stackoverflow.com/questions/13850914/vim-overloaded-mapping-for-multiple-modes
+function! MapBoth(keys, rhs)
+  execute 'nmap' '<silent>' a:keys a:rhs
+  execute 'imap' '<silent>' a:keys '<C-o>'.a:rhs
+  execute 'tmap' '<silent>' a:keys '<C-\><C-n>'.a:rhs
+endfunction
+
+" https://stackoverflow.com/questions/18546533/execute-plug-commands-in-vim
+for i in [1,2,3,4,5,6,7,8,9]
+  call MapBoth('<C-w>'.i, '<Plug>AirlineSelectTab'.i)
+endfor
+
+call MapBoth('<C-w>[', 'gT')
+call MapBoth('<C-w>]', 'gt')
+call MapBoth('<C-T>', ':ter ++close zsh<CR>')
+
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#cancel_popup() . "\<CR>"
+endfunction
+
+" fzf mappings, partly borrowed from fzf.vim
 nnoremap <silent> <C-o> :Files<CR>
-" nnoremap <silent> <C-p> :execute 'GFiles' <CR> :execute 'tnoremap <buffer> \<esc\> \<C-W\>N:bd!\<CR\>'<CR>
 nnoremap <silent> <C-p> :call NewGitFiles()<CR>
 nnoremap <silent> <C-t> :Tags<CR>
 nnoremap <silent> <M-p> :GFiles<CR>
-
 nnoremap <silent> <C-n> :enew<CR>
-
-"below code is stolen from fzf.vim
-
 nnoremap <silent> <C-i> :History<CR>
 nnoremap <silent> <C-u> :Buffer<CR>
 
-" readability
-hi Comment guifg='#888888'
 
 " Consistency - make 'Y' replace to EOL, like as with 'C'
 nnoremap Y y$
@@ -506,6 +517,10 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
+" Use ~ to clear search highlighting
+" https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
+nnoremap <silent> ~ :let @/=""<CR>
+
 " Use ,, to go back to the previous file
 nnoremap <silent> <leader>, :b#<CR>
 
@@ -513,34 +528,18 @@ nnoremap <silent> <leader>, :b#<CR>
 nmap ; <Plug>AirlineSelectPrevTab
 nmap ' <Plug>AirlineSelectNextTab
 
-" Shortcuts for 'gn' motions
+" Use '/' for 'gn' motions
 nnoremap y/ ygn
 nnoremap c/ cgn
 nnoremap d/ dgn
-
 
 " Use 's' to insert a single character, 'S' to append
 nnoremap s i <Esc>r
 nnoremap S a <Esc>r
 
-set sidescroll=1
-
-"  TODO easier way to press <Esc>; remap the above incl '\' and '|' and
-"  '[]'-shortcuts; simplpify p/P; better auto ident; etc.
-
-
-" TODO this just breaks netrw, doesn't really fix it
-" https://github.com/tpope/vim-vinegar/issues/13
-function! QuitNetrw()
-  autocmd! FileExplorer
-endfunction
-
-let g:netrw_fastbrowse=0
-
+" Use 'F10' to see curren tsyntax highlighting state
 " https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" stop trying to fix final EOL
-set nofixendofline
