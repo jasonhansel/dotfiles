@@ -85,7 +85,6 @@ let g:rooter_manual_only = 1
 set notitle
 set number
 
-
 " Use <tab> for completion
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 
@@ -100,19 +99,21 @@ let g:airline#extensions#tabline#formatter = 'jason'
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#enable_refresh_always = 0
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#source('_',  'max_menu_width', 20)
-call deoplete#custom#source('_', 'max_menu_width', 20)
-set pumwidth=5
 let deoplete#tag#cache_limit_size = 100000000
-call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around', 'tag' ]  })
+call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around','buffer', 'tag' ]  })
+    " fix caching etc wrt above
+call deoplete#custom#option('min_pattern_length', 1)
+
+" Allow deoplete to see all relevant completions
+call deoplete#custom#option('max_list', 1000)
+
+" Set size of completion menu
+call deoplete#custom#source('_', 'max_abbr_width', 10)
+set pumheight=5
+
 
 call deoplete#custom#source('_', 'matchers', ['matcher_head']) " , 'matcher_length'])
-call deoplete#custom#source('file', 'enable_buffer_path', 1)
-
-
-let g:miniBufExplorerAutoStart = 0
-let g:miniBufExplBRSplit = 1
-let g:miniBufExplVSplit = 20
+call deoplete#custom#source('file', 'enable_buffer_path', 10)
 
 " from SO: close all buffers that are hidden and not modified
 " unlike BufOnly, this leaves modified buffers instead of erroring
