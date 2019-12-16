@@ -1,0 +1,8 @@
+[Desktop Entry]
+Exec=xbindkeys
+Hidden=false
+Icon=system-run
+Path=
+Terminal=false
+Type=Application
+
