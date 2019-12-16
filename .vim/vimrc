@@ -80,22 +80,20 @@ let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
 autocmd BufReadPost * :DetectIndent
 
-"TEST
 let g:rooter_manual_only = 1
 
 set notitle
-set nu
+set number
 
 
 " Use <tab> for completion
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 
 let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_on_insert_enter = 0
-let g:deoplete#auto_refresh_delay = 1
+let g:deoplete#enable_on_insert_enter = 1
+let g:deoplete#auto_refresh_delay = 0
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
-
 
 let g:airline#extensions#tabline#formatter = 'jason'
 
@@ -227,7 +225,6 @@ hi AirlineError guibg=#FF0000 guifg=#000000
 set viminfo+=n~/.vim/viminfo
 
 
-
 let s:guibg = '#080808'
 let s:guibg2 = '#1c1c1c'
 let s:termbg = 232
@@ -307,8 +304,6 @@ nnoremap p ]p
 
 set complete=d
 set completeopt=menu,menuone,noinsert
-set pumheight=5
-" ,preview pumheight=5
 set shortmess+=c
 
 "make < > shifts keep selection
@@ -344,7 +339,11 @@ set linebreak
 set sidescroll=1
 
 " Disable code folding
-set nofoldenable
+if &diff
+    set foldenable
+else
+    set nofoldenable
+endif
 
 " Highlight search results
 set hlsearch
@@ -352,21 +351,8 @@ set hlsearch
 " Make searches case-insensitive, unless the search contains a capital letter.
 set ignorecase
 set smartcase
-"
+
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nnoremap <silent> <leader>, :b#<CR>
-nmap <leader>. <Plug>AirlineSelectNextTab
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>= <Plug>AirlineSelectNextTab
 
 
 imap <C-w> <Esc><C-w>
@@ -379,12 +365,6 @@ tnoremap <Esc> <c-\><c-n>
 " below is needed to fix arrow-key issues; sadly, it breaks the <nowait> stuff
 tnoremap <Esc>: <c-\><c-n>:
 tnoremap <silent> <C-e> <C-\><C-n>:call term_sendkeys("","\<lt>Esc>")<CR>a
-
-func! SendToTerm(what)
-  call term_sendkeys('', a:what)
-  return ''
-endfunc
-
 
 " https://stackoverflow.com/questions/13850914/vim-overloaded-mapping-for-multiple-modes
 function! MapBoth(keys, rhs)
@@ -476,11 +456,6 @@ function! s:fzf(name, opts, extra)
   return fzf#run(s:wrap(a:name, merged, bang))
 endfunction
 
-function! s:get_git_root()
-  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
-  return v:shell_error ? '' : root
-endfunction
-
 "function! NewGitFiles()
 "  " Git files but put history first
 "  return s:fzf('gfiles', {
@@ -492,11 +467,14 @@ endfunction
 " Misc
 set whichwrap=b,s,<,>,[,]
 
+
+set t_Co=256
+
 " https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+highlight DiffAdd    NONE ctermbg=22
+highlight DiffDelete guifg=fg guibg=#440000
+highlight DiffChange guifg=fg guibg=#000044
+highlight DiffText   guifg=fg guibg=#0000cc
 
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
@@ -520,33 +498,57 @@ nnoremap <silent> <C-u> :Buffer<CR>
 " readability
 hi Comment guifg='#888888'
 
-" consistency
+" Consistency - make 'Y' replace to EOL, like as with 'C'
 nnoremap Y y$
 
 " stuff I always hit by accident or find useless
+nnoremap ~ <Nop>
 nnoremap Q <Nop>
 nnoremap M <Nop>
 nnoremap X <Nop>
 nnoremap U <Nop>
 nnoremap R <Nop>
-nnoremap zz <Nop>
-nnoremap zz <Nop>
+nnoremap # <Nop>
+nnoremap _ <Nop>
+nnoremap - <Nop>
+nnoremap + <Nop>
+nnoremap % <Nop>
+
 nnoremap h <Nop>
 nnoremap j ^
 nnoremap k $
 nnoremap l <Nop>
-nnoremap ' <Nop>
-nnoremap ; <Nop>
 nnoremap H <Nop>
+nnoremap J <Nop>
 nnoremap K <Nop>
-nnoremap s <Nop>
-nnoremap S <Nop>
 nnoremap L <Nop>
+
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+" Use ,, to go back to the previous file
+nnoremap <silent> <leader>, :b#<CR>
+
+" Use ; and ' to move tabs
+nmap ; <Plug>AirlineSelectPrevTab
+nmap ' <Plug>AirlineSelectNextTab
+
+" Shortcuts for 'gn' motions
 nnoremap y/ ygn
 nnoremap c/ cgn
 nnoremap d/ dgn
-nnoremap \! dgn
-nnoremap Y dgn
+
+
+" Use 's' to insert a single character, 'S' to append
+nnoremap s i <Esc>r
+nnoremap S a <Esc>r
 
 set sidescroll=1
 
