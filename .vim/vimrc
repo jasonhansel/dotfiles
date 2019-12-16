@@ -22,9 +22,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-"let g:netrw_keepdir=0
-let g:airline#extensions#tabline#formatter = 'jason'
-
 set pyxversion=3 encoding=utf-8
 
 let g:ale_linters = {'rust': ['cargo'], 'javascript': ['eslint']}
@@ -68,13 +65,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 call plug#end()
 
-"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-
-
 
 let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
@@ -93,11 +84,9 @@ let g:deoplete#enable_on_insert_enter = 1
 let g:deoplete#auto_refresh_delay = 0
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
-
-let g:airline#extensions#tabline#formatter = 'jason'
-
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#enable_refresh_always = 0
+
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 let deoplete#tag#cache_limit_size = 100000000
 call deoplete#custom#option('sources', { '_' : [ 'file', 'member', 'around','buffer', 'tag' ]  })
@@ -192,18 +181,7 @@ let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
 let $RUST_SRC_PATH='/usr/src/rust/src'
 
 
-let g:airline#extensions#tabline#buffer_idx_format = {
-      \ '0': '0·',
-      \ '1': '1·',
-      \ '2': '2·',
-      \ '3': '3·',
-      \ '4': '4·',
-      \ '5': '5·',
-      \ '6': '6·',
-      \ '7': '7·',
-      \ '8': '8·',
-      \ '9': '9·'
-      \}
+
 " Set a better color scheme
 set background=dark
 "colorscheme desert
@@ -225,17 +203,6 @@ hi AirlineError guibg=#FF0000 guifg=#000000
 " Change viminfo location
 set viminfo+=n~/.vim/viminfo
 
-
-let s:guibg = '#080808'
-let s:guibg2 = '#1c1c1c'
-let s:termbg = 232
-let s:termbg2= 234
-let s:N1 = [ s:guibg , '#00dfff' , s:termbg , 45 ]
-let s:N2 = [ '#ff5f00' , s:guibg2, 202 , s:termbg2 ]
-let s:N3 = [ '#767676' , s:guibg, 243 , s:termbg]
-
-
-
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -248,11 +215,6 @@ let g:airline_extensions = ['tabline',  'ale' ]
 let g:airline_detect_spell=0
 let g:airline_inactive_collapse=0
 let g:airline_symbols_ascii=1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#tabline#exclude_preview = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline_section_y = airline#section#create(['search2', 'ale_warning_count','ale_error_count'])
 let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 
@@ -260,23 +222,36 @@ let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
 
 let mapleader=","
 
+" Airline Tabline
+
+let g:airline#extensions#tabline#buffer_idx_format = {
+\ '0': '0·',
+\ '1': '1·',
+\ '2': '2·',
+\ '3': '3·',
+\ '4': '4·',
+\ '5': '5·',
+\ '6': '6·',
+\ '7': '7·',
+\ '8': '8·',
+\ '9': '9·'
+\}
+
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#exclude_preview = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 
 
 " https://shapeshed.com/vim-netrw/
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-"let g:netrw_preview = 1
 let g:netrw_winsize = 25
-
-"let g:netrw_mousemaps= 0
-" augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-" augroup END
 
 " PERSISTENT UNDO
 " Keep undo history across sessions. Requires that ~/.vim/backups exist.
@@ -318,7 +293,6 @@ set noshowmode
 " Allow buffers to exist without being displayed
 set hidden
 
-
 set undoreload=50000
 
 " Override sensible.vim
@@ -339,7 +313,7 @@ set nowrap
 set linebreak
 set sidescroll=1
 
-" Disable code folding
+" Disable code folding, except in vimdiff
 if &diff
     set foldenable
 else
@@ -353,7 +327,6 @@ set hlsearch
 set ignorecase
 set smartcase
 
-let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 
 imap <C-w> <Esc><C-w>
