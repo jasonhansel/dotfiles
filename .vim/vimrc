@@ -71,10 +71,10 @@ let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
 autocmd BufReadPost * :DetectIndent
 
-let g:rooter_manual_only = 1
 
-set notitle
-set number
+set notitle  " Don't set X11 window title
+set number   " Show line numbers
+set t_Co=256 " Force 256-color mode
 
 " Use <tab> for completion
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
@@ -103,6 +103,11 @@ set pumheight=5
 
 call deoplete#custom#source('_', 'matchers', ['matcher_head']) " , 'matcher_length'])
 call deoplete#custom#source('file', 'enable_buffer_path', 10)
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
+let $RUST_SRC_PATH='/usr/src/rust/src'
+
 
 " from SO: close all buffers that are hidden and not modified
 " unlike BufOnly, this leaves modified buffers instead of erroring
@@ -173,19 +178,14 @@ command! C let @/=""
 
 call airline#parts#define_function('search2', 'SearchCount')
 
-let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '0-IMPT.md']
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/usr/src/rust/src'
-let $RUST_SRC_PATH='/usr/src/rust/src'
 
 
 
-" Set a better color scheme
+" Color Scheme
+
 set background=dark
-"colorscheme desert
 colorscheme base16-pop
+
 hi AirlineNormal guibg='#00d400' guifg='#000000'
 hi AirlineInsert guibg='#00ddff' guifg='#000000'
 hi AirlineTerminal guibg='#ff8d2d' guifg='#000000'
@@ -200,14 +200,19 @@ hi AirlineWarning guibg=#D78700 guifg=#000000
 hi ALEErrorLine guibg=NONE
 hi ALEErrorSign guibg=#FF0000 guifg=#FF0000
 hi AirlineError guibg=#FF0000 guifg=#000000
+
+" https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
+highlight DiffAdd    NONE ctermbg=22
+highlight DiffDelete guifg=fg guibg=#440000
+highlight DiffChange guifg=fg guibg=#000044
+highlight DiffText   guifg=fg guibg=#0000cc
+
 " Change viminfo location
 set viminfo+=n~/.vim/viminfo
 
 let g:airline_powerline_fonts = 0
 let g:airline_symbols_ascii = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#tabnr_formatter = 'default'
-let g:airline_section_x = airline#section#create([])
+
 let g:airline#extensions#ale#enabled = 1
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
@@ -215,10 +220,9 @@ let g:airline_extensions = ['tabline',  'ale' ]
 let g:airline_detect_spell=0
 let g:airline_inactive_collapse=0
 let g:airline_symbols_ascii=1
+let g:airline_section_x = airline#section#create([])
 let g:airline_section_y = airline#section#create(['search2', 'ale_warning_count','ale_error_count'])
 let g:airline_section_z = airline#section#create(['linenr','maxlinenr'])
-
-
 
 let mapleader=","
 
@@ -236,7 +240,8 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 \ '8': '8·',
 \ '9': '9·'
 \}
-
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#tabnr_formatter = 'default'
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#exclude_preview = 0
@@ -442,13 +447,7 @@ endfunction
 set whichwrap=b,s,<,>,[,]
 
 
-set t_Co=256
 
-" https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
-highlight DiffAdd    NONE ctermbg=22
-highlight DiffDelete guifg=fg guibg=#440000
-highlight DiffChange guifg=fg guibg=#000044
-highlight DiffText   guifg=fg guibg=#0000cc
 
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
