@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+  text-rendering: optimizeLegibility !important;
+  text-shadow: none !important;
+  -webkit-font-smoothing: none !important;
+}
+
+
+
+.tl-save,
+.button-add {
+  display: none  !important;
+}
+
+#view-navigation-bar #menu-item-collection-tracks,
+#view-navigation-bar #menu-item-collection-albums,
+#view-navigation-bar #menu-item-collection-artists {
+  display: none;
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item > div {
+  position:relative;
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item,
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.folder .sub-title,
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.folder .title,
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.playlist .sub-title,
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.playlist .title{
+  font-size: 19px !important;
+  font-family: Roboto !important;
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item:first-child {
+  border-top:solid 5px #555;
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item {
+  border-bottom:solid 1px #555;
+}
+
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active:after {
+  display:none !important;
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active > div {
+  background: linear-gradient(to top, transparent 1px, rgba(30,214,96,0.5) 1px);
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active .title {
+  font-weight: normal !important;
+  color: black;
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active > :first-child:before {
+  display:none !important;
+}
+
+
+
+.tl-save {
+  display: none  !important;
+}
+
+#view-navigation-bar #menu-item-collection-tracks,
+#view-navigation-bar #menu-item-collection-albums,
+#view-navigation-bar #menu-item-collection-artists {
+  display: none;
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item > div {
+  position:relative;
+}
+
+.sidebar h2 {
+  text-indent:-999em;
+  height:20px;
+  padding:0 !important; margin:0 !important;
+}
+
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item > :first-child:after {
+  bottom:100%;
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element .item > :first-child:before {
+  bottom:0;
+}
+
+.sidebar-scroll-element .item {
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  margin-top:-1px;
+}
+.sidebar-scroll-element .item:first-child {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active:after {
+  display:none !important;
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active {
+  background:rgba(30,214,96,0.7);
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active .title {
+  font-weight: bold !important;
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item.active > :first-child:before {
+  display:none !important;
+}
+.sidebar .sidebar-navbar.sidebar-scroll-element .item > div,
+.sidebar .sidebar-navbar.sidebar-scroll-element .item > a {
+  height: 28px !important;
+  line-height: 28px !important;
+}
+
+.tl-row {
+  font-size: 17px !important;
+  font-family: Roboto !important;
+}
